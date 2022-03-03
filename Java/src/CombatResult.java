@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
- *
- * @author mario
+ * @brief DEEPSPACE (Java). 
+ * This enum type specifies the state of a combat. 
+ * @author Mario Megías Mateo and Shao Jie Hu Shen.
  */
-public class CombatResult {
-    
+public enum CombatResult {
+    ENEMYWINS, NOCOMBAT, STATIONESCAPES, STATIONWINS
 }
