@@ -37,18 +37,18 @@ class SuppliesPackage
 
 end
 
-if __FILE__ == $0
+# if __FILE__ == $0
     
-    supplies = SuppliesPackage.new(15,18,20)
-    supplies_2 = SuppliesPackage.newCopy(supplies) 
+#     supplies = SuppliesPackage.new(15,18,20)
+#     supplies_2 = SuppliesPackage.newCopy(supplies) 
 
-    puts "info primer objeto:"
-    puts supplies.ammoPower
-    puts supplies.fuelUnits
-    puts supplies.shieldPower
-    puts "info segundo objeto:"
-    puts supplies_2.ammoPower
-    puts supplies_2.fuelUnits
-    puts supplies_2.shieldPower
+#     puts "info primer objeto:"
+#     puts supplies.ammoPower
+#     puts supplies.fuelUnits
+#     puts supplies.shieldPower
+#     puts "info segundo objeto:"
+#     puts supplies_2.ammoPower
+#     puts supplies_2.fuelUnits
+#     puts supplies_2.shieldPower
 
-end
+# end
