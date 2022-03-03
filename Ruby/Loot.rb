@@ -11,12 +11,12 @@
 class Loot
 
     # Constructor 
-    def initialize (supplies, weapons, shields, hangars, medals)
-        @nSupplies = supplies
-        @nWeapons  = weapons
-        @nShields  = shields
-        @nHangars  = hangars
-        @nMedals   = medals
+    def initialize (the_supplies, the_weapons, the_shields, the_hangars, the_medals)
+        @nSupplies = the_supplies
+        @nWeapons  = the_weapons
+        @nShields  = the_shields
+        @nHangars  = the_hangars
+        @nMedals   = the_medals
     end
 
     # Gets methods
