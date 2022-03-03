@@ -11,7 +11,7 @@ module WeaponType
     class Type
         #  Constructor or Initializer
         def initialize (the_power)
-            @power=the_power
+            @power = the_power
         end
 
         # Get function
