@@ -1,3 +1,5 @@
+package deepspace;
+
 /**
  * @brief DEEPSPACE (Java). 
  * Enumeration of different weapons and their damage powers. 
@@ -13,13 +15,13 @@ public enum WeaponType {
      * @brief constructor
      * @param p 
      */
-    WeaponType(float p) {
-        this.power = p;
+    WeaponType(float the_power) {
+        this.power = the_power;
     }
     
     /**
-     * Get method
-     * @return 
+     * @brief Get method
+     * @return the power of the weapon type
      */
     float getPower() {
         return this.power;

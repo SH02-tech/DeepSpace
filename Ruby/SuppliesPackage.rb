@@ -46,6 +46,7 @@ end
 #     puts supplies.ammoPower
 #     puts supplies.fuelUnits
 #     puts supplies.shieldPower
+
 #     puts "info segundo objeto:"
 #     puts supplies_2.ammoPower
 #     puts supplies_2.fuelUnits

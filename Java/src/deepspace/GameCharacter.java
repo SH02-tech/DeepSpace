@@ -1,3 +1,5 @@
+package deepspace;
+
 /**
  * @brief DEEPSPACE (Java). 
  * This enum type specifies the type of space station.

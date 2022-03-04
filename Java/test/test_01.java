@@ -1,3 +1,9 @@
+
+import deepspace.GameCharacter;
+import deepspace.CombatResult;
+import deepspace.WeaponType;
+import deepspace.ShotResult;
+
 /**
  * @brief Programa de prueba para los tipos enumerados.
  * @author Mario Megías Mateo and Shao Jie Hu Shen.
