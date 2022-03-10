@@ -72,7 +72,7 @@ class Dice {
     
     public boolean spaceStationMoves(float speed) {
         float randomNumber = generator.nextFloat();
-        
+      
         return (randomNumber < speed);
     }
 }
