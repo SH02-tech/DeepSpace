@@ -11,7 +11,7 @@
 class Loot
 
     # Constructor 
-    def initialize (the_supplies, the_weapons, the_shields, the_hangars, the_medals)
+    def initialize(the_supplies, the_weapons, the_shields, the_hangars, the_medals)
         @nSupplies = the_supplies
         @nWeapons  = the_weapons
         @nShields  = the_shields

@@ -8,6 +8,6 @@
 # +-------------------------------------------------------------------+ #
 
 module ShotResult
-    DONOTRESIST=   :donotresist 
-    RESIST=        :resist 
+    DONOTRESIST = :donotresist
+    RESIST      = :resist
 end

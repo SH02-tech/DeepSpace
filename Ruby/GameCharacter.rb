@@ -8,6 +8,6 @@
 # +-------------------------------------------------------------------+ #
 
 module GameCharacter
-    ENEMYSTARSHIP=   :enemystarship 
-    SPACESTATION=    :spacestation 
+    ENEMYSTARSHIP = :enemystarship
+    SPACESTATION  = :spacestation
 end
