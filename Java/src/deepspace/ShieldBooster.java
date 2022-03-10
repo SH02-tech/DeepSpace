@@ -3,7 +3,7 @@ package deepspace;
 /**
  * @brief DEEPSPACE (Java). 
  * Class that represents the shield boosters that space stations can contain
- * @author Mario Megías Mateo and Shao Jie Hu Shen.
+ * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
 class ShieldBooster {
     
@@ -13,14 +13,14 @@ class ShieldBooster {
     
     /**
      * @brief Constructor with parameters
-     * @param the_name
-     * @param the_boost
-     * @param the_uses 
+     * @param theName Name.
+     * @param theBoost Boost.
+     * @param theUses Use.
      */
-    ShieldBooster(String the_name, float the_boost, int the_uses) {
-        this.name = the_name;
-        this.boost = the_boost;
-        this.uses = the_uses;
+    ShieldBooster(String theName, float theBoost, int theUses) {
+        this.name = theName;
+        this.boost = theBoost;
+        this.uses = theUses;
     }
     
     /**
