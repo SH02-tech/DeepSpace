@@ -13,19 +13,19 @@ class Weapon {
     
     /**
      * @brief Constructor with parameters
-     * @param the_name
-     * @param the_type
-     * @param the_uses 
+     * @param theName Name associated to weapon. 
+     * @param theType Type associated to weapon. 
+     * @param theUses Uses associated to weapon. 
      */
-    Weapon(String the_name, WeaponType the_type, int the_uses) {
-        this.name = the_name;
-        this.type = the_type;
-        this.uses = the_uses;
+    Weapon(String theName, WeaponType theType, int theUses) {
+        this.name = theName;
+        this.type = theType;
+        this.uses = theUses;
     }
     
     /**
      * @brief Copy constructor
-     * @param instance 
+     * @param instance Another instance of Weapon. 
      */
     Weapon(Weapon instance) {
         this.name = instance.name;
@@ -34,33 +34,32 @@ class Weapon {
     }
     
     /**
-     * @brief get method
-     * @return type attribute
+     * @brief Get method
+     * @return Type associated to weapon. 
      */
     public WeaponType getType() {
         return this.type;
     }
     
     /**
-     * @brief get method
-     * @return uses attribute
+     * @brief Get method
+     * @return Uses associated to weapon. 
      */
     public int getUses() {
         return this.uses;
     }
     
     /**
-     * @brief indicates the power of the weapon
-     * @return the power of the weapon
+     * @brief It indicates the power of the weapon.
+     * @return Power associated to weapon. 
      */
     public float power() {
         return this.type.getPower();
     }
     
-     /**
-     * @brief decrease the uses of the weapon
-     * @pre uses > 0
-     * @return weapon power if uses > 0 or 1.0 in other case
+    /**
+     * @brief It decreases the uses of the weapon.
+     * @return Weapon power if uses > 0. Otherwise, 1.0. 
      */
     public float useIt() {
         if(uses > 0) {

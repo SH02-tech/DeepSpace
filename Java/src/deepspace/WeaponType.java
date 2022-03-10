@@ -12,7 +12,7 @@ public enum WeaponType {
     private final float power;
     
     /**
-     * @brief constructor
+     * @brief Constructor with parameter. 
      * @param thePower Power associated to the weapon. 
      */
     WeaponType(float thePower) {
@@ -21,7 +21,7 @@ public enum WeaponType {
     
     /**
      * @brief Get method
-     * @return the power of the weapon type
+     * @return Power associated to weapon. 
      */
     float getPower() {
         return this.power;
