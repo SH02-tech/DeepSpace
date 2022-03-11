@@ -4,7 +4,7 @@
 # | DEEPSPACE (Ruby)                                                  | #
 # | Authors: Shao Jie Hu Chen and Mario Megías Mateo                  | #
 # +-------------------------------------------------------------------+ #
-# | This module determine the state of a combat.                      | #
+# | This module determines the state of a combat.                     | #
 # +-------------------------------------------------------------------+ #
 
 module CombatResult
