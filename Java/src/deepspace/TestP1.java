@@ -2,9 +2,10 @@ package deepspace;
 
 /**
  * @brief DEEPSPACE (Java). 
- * Practise 1 test
+ * Practice 1 test
  * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
+
 public class TestP1 {
     public static void main(String[] args) {
         

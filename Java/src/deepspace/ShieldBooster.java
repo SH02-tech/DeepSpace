@@ -1,10 +1,11 @@
-package deepspace;
-
 /**
  * @brief DEEPSPACE (Java). 
  * Class that represents the shield boosters that space stations can contain
  * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
+
+package deepspace;
+
 class ShieldBooster {
     
     private String name;

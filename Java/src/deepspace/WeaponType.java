@@ -1,10 +1,11 @@
-package deepspace;
-
 /**
  * @brief DEEPSPACE (Java). 
  * Enumeration of different weapons and their damage powers. 
  * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
+
+package deepspace;
+
 public enum WeaponType {
     
     LASER(2.0f), MISSILE(3.0f), PLASMA(4.0f);

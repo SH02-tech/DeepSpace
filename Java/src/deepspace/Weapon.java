@@ -1,10 +1,11 @@
-package deepspace;
-
 /**
  * @brief DEEPSPACE (Java). 
  * Class that represents the arms of a space station to increase the shot power
  * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
+
+package deepspace;
+
 class Weapon {
     
     private String name;

@@ -3,6 +3,7 @@
  * Class that represents the supplies package of a space station. 
  * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
+
 package deepspace;
 import java.util.Random;
 

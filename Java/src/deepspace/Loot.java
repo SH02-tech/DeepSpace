@@ -3,6 +3,7 @@
  * Class that represents the loot which may be obtained from a battle.
  * @author Mario Megías Mateo and Shao Jie Hu Chen
  */
+
 package deepspace;
 
 class Loot {
