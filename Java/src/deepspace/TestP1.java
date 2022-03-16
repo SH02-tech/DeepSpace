@@ -1,10 +1,9 @@
 package deepspace;
-import java.util.ArrayList; // import the ArrayList class
-import javax.lang.model.type.NoType;
 
 /**
- *
- * @author mario
+ * @brief DEEPSPACE (Java). 
+ * Practise 1 test
+ * @author Mario Megías Mateo and Shao Jie Hu Chen.
  */
 public class TestP1 {
     public static void main(String[] args) {

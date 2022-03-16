@@ -31,6 +31,7 @@ class ShieldBooster {
         this.name = instance.name;
         this.boost = instance.boost;
         this.uses = instance.uses;
+        // this(instance.name, instance.getBoost(), instance.getUses());
     }
     
     /**
