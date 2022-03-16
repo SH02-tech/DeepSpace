@@ -34,7 +34,7 @@ class Dice
         prob = @generator.rand
         if prob < @NWEAPONSPROB
             return 1
-        elsif prob == (2*@NWEAPONSPROB)  
+        elsif @NWEAPONSPROB < prob && prob < (2*@NWEAPONSPROB)  
             return 2
         else
             return 3
