@@ -37,7 +37,7 @@ class ShieldBooster
             @uses = @uses - 1
             @boost
         else
-            1
+            return 1
         end
     end
 end

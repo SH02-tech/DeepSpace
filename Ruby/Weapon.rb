@@ -42,7 +42,7 @@ class Weapon
             @uses = @uses -1
             self.power
         else
-            1
+            return 1
         end
     end
 end
