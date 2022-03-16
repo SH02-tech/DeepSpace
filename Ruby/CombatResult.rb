@@ -7,6 +7,8 @@
 # | This module determines the state of a combat.                     | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 module CombatResult
     ENEMYWINS      = :enemywins
     NOCOMBAT       = :nocombat

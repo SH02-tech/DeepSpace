@@ -7,6 +7,8 @@
 # | Class that represents a supplies package for a space station      | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 class SuppliesPackage
 
     # Constructor

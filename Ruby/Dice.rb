@@ -7,6 +7,8 @@
 # |                                                                   | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 require_relative "GameCharacter.rb"
 
 class Dice

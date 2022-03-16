@@ -7,6 +7,8 @@
 # | Test program of the methods.                                      | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 require_relative 'CombatResult.rb'
 require_relative 'Dice.rb'
 require_relative 'GameCharacter.rb'

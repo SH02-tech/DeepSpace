@@ -8,6 +8,8 @@
 # | defeats a enemy ship.                                             | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 class Loot
 
     # Constructor 

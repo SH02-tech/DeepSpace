@@ -7,6 +7,8 @@
 # | Enumeration of different weapons and their different programs.    | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 module WeaponType
     class Type
         #  Constructor or Initializer

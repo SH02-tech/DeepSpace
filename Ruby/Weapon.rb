@@ -8,6 +8,8 @@
 # | up their energy at shooting.                                      | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+    
 require_relative 'WeaponType.rb'
 
 class Weapon

@@ -7,6 +7,8 @@
 # | This module specifies the state of space stations.                | #
 # +-------------------------------------------------------------------+ #
 
+module Deepspace
+
 module GameCharacter
     ENEMYSTARSHIP = :enemystarship
     SPACESTATION  = :spacestation
