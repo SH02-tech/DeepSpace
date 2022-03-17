@@ -49,6 +49,8 @@ class Weapon
     end
 end
 
+end # end of Deepspace
+
 =begin TESTS 
 test = Weapon.new("URS2", WeaponType::MISSILE, 0)
 puts test.inspect

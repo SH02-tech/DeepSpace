@@ -15,3 +15,5 @@ module CombatResult
     STATIONESCAPES = :stationescapes
     STATIONWINS    = :stationwins
 end
+
+end # end of Deepspace

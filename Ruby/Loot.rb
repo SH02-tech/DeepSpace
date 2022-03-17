@@ -44,3 +44,5 @@ class Loot
     end
 
 end
+
+end # end of Deepspace

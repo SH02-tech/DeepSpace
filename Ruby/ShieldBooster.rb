@@ -44,6 +44,8 @@ class ShieldBooster
     end
 end
 
+end # end of Deepspace
+
 =begin TEST
 test = ShieldBooster.new("Escudo", 14, -1)
 puts test.inspect

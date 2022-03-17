@@ -13,3 +13,5 @@ module GameCharacter
     ENEMYSTARSHIP = :enemystarship
     SPACESTATION  = :spacestation
 end
+
+end # end of Deepspace

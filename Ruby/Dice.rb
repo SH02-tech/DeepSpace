@@ -68,15 +68,12 @@ class Dice
 
     # Determines if the space sattion will move to avoid a shot
     def spaceStationMoves(speed)
-        if @generator.rand < speed
-            return true
-        else
-            return false
-        end
+        return @generator.rand < speed
     end
 
 end
 
+end # end of Deepspace
 
 ### TEST PROGRAM    
 

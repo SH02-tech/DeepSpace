@@ -39,6 +39,8 @@ class SuppliesPackage
 
 end
 
+end # end of Deepspace
+
 # if __FILE__ == $0
     
 #     supplies = SuppliesPackage.new(15,18,20)
