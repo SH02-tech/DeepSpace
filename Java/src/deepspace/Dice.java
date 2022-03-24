@@ -111,4 +111,14 @@ class Dice {
       
         return (randomNumber < speed);
     }
+
+    public String toString() {
+        String data = "";
+
+        data += "Probability of nº Hangars: " + NHANGARSPROB + "\n";
+        data += "Probability of nº Shields: " + NSHIELDSPROB + "\n";
+        data += "Probability of nº Weapons: " + NWEAPONSPROB + "\n";
+
+        return data;
+    }
 }

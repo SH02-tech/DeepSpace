@@ -95,5 +95,7 @@ public class TestP1 {
         System.out.println();
         System.out.println("5. First shot: SPACESTATION(" + possibleFirstShots[0] + "), ENEMYSTARSHIP(" + possibleFirstShots[1] + ")");
         System.out.println("6. Will the space station move? YES(" + possibilityOfMove[0] + "), NO(" + possibilityOfMove[1] + ")");
+
+        System.out.println("Datos del dado: \n" + dice.toString());
     }
 }
