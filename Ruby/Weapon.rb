@@ -13,16 +13,20 @@ module Deepspace
 require_relative 'WeaponType.rb'
 
 class Weapon
+
+    # Constructor
     def initialize(the_name, the_type, the_uses)
         @name = the_name
         @type = the_type
         @uses = the_uses
     end
 
+    # Copy constructor 
     def self.newCopy(instance)
         new(instance.name, instance.type, instance.uses)
     end
 
+    # Getters
     def name
         @name
     end
@@ -39,6 +43,7 @@ class Weapon
         @type.power
     end
 
+    # It decreases the uses of the weapon.
     def useIt
         if @uses > 0
             @uses = @uses -1
@@ -47,7 +52,30 @@ class Weapon
             return 1
         end
     end
+
+    def getUIversion
+        return WeaponToUI.new(self)
+    end
+
+    # to_s method
+    def to_s
+
+        if type == WeaponType::LASER
+            typeName = "LASER"
+        elsif type == WeaponType::MISSILE
+            typeName = "MISSILE"
+        else
+            typeName = "PLASMA"
+        end
+
+        return "Weapon => Name: #{name}, Type: #{typeName}, Uses: #{uses}."
+    end
+
 end
+
+    ### TEST PROGRAM
+    # w = Weapon.new("weapon", "Laser", 10)
+    # puts w.to_s
 
 end # end of Deepspace
 

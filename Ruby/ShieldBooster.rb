@@ -12,15 +12,19 @@ module Deepspace
 
 class ShieldBooster
 
+    # Constructor 
     def initialize (the_name, the_boost, the_uses)
         @name  = the_name
         @boost = the_boost
         @uses  = the_uses
     end
-
+    
+    # Copy constructor
     def self.newCopy (instance)
         new(instance.name, instance.boost, instance.uses)
     end
+
+    # Getters
 
     def name
         @name
@@ -34,6 +38,7 @@ class ShieldBooster
         @uses
     end
 
+    # Decrease the uses of the shield
     def useIt 
         if @uses > 0
             @uses = @uses - 1
@@ -42,7 +47,20 @@ class ShieldBooster
             return 1
         end
     end
+
+    def getUIversion
+        return ShieldToUI.new(self)
+    end
+
+    # to_s method
+    def to_s
+        return "ShieldBooster => Name: #{name}, Boost: #{boost}, Uses: #{uses}."
+    end
 end
+
+    # ### Test program
+    # s = ShieldBooster.new("Shield men", 4, 5)
+    # puts s.to_s
 
 end # end of Deepspace
 

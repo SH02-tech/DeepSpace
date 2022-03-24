@@ -37,7 +37,16 @@ class SuppliesPackage
         @shieldPower
     end
 
+    # to_s method
+    def to_s
+        return "Ammo power: #{ammoPower}, \tFuel units: #{fuelUnits}, \tShield Power: #{shieldPower}."
+    end
+
 end
+
+    # ### TEST PROGRAM
+    # s = SuppliesPackage.new(5,4,5)
+    # puts s.to_s
 
 end # end of Deepspace
 

@@ -43,6 +43,20 @@ class Loot
         @nMedals
     end
 
+    def getUIversion
+        return LootToUI.new(self)
+    end
+
+    # to_s method
+    def to_s
+        "Loot => Supplies: #{nSupplies}, \tWeapons: #{nWeapons}, " + \
+        "\tShields: #{nShields}, \tHangars: #{nHangars}, \tMedals: #{nMedals}."
+    end
+
 end
+
+    ### TEST PROGRAM    
+    # l = Loot.new(10,5,4,8,10)
+    # puts l.to_s
 
 end # end of Deepspace

@@ -71,16 +71,28 @@ class Dice
         return @generator.rand < speed
     end
 
+    # to_s method
+    def to_s
+        return "Probabilities: " + \
+            "\tHangars: #{@NHANGARSPROB}, " + \
+            "\tShields: #{@NSHIELDSPROB}, " + \
+            "\tWeapons: #{@NWEAPONSPROB}, " + \
+            "\tFirst shot: #{@FIRSTSHOTPROB}"
+    end
+
 end
 
-end # end of Deepspace
 
 ### TEST PROGRAM    
 
-# d = Dice.new
-# puts d.initWithNHangars
-# puts d.initWithNHangars
-# puts d.initWithNShields
-# puts d.whoStarts(10)
-# puts d.firstShot
-# puts d.spaceStationMoves(9)
+d = Dice.new
+puts d.initWithNHangars
+puts d.initWithNHangars
+puts d.initWithNShields
+puts d.whoStarts(10)
+puts d.firstShot
+puts d.spaceStationMoves(9)
+puts d.to_s
+
+
+end # end of Deepspace

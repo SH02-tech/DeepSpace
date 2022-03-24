@@ -22,8 +22,8 @@ class SuppliesPackage {
      * @param theShieldPower Number that represents the protection offered by shield. 
      */
     SuppliesPackage(float theAmmoPower, float theFuelUnits, float theShieldPower) {
-        this.ammoPower = theAmmoPower;
-        this.fuelUnits = theFuelUnits;
+        this.ammoPower   = theAmmoPower;
+        this.fuelUnits   = theFuelUnits;
         this.shieldPower = theShieldPower;
     }
     
@@ -32,8 +32,8 @@ class SuppliesPackage {
      * @param s Instance of SuppliesPackage. 
      */
     SuppliesPackage(SuppliesPackage s) {
-        this.ammoPower = s.ammoPower;
-        this.fuelUnits = s.fuelUnits;
+        this.ammoPower   = s.ammoPower;
+        this.fuelUnits   = s.fuelUnits;
         this.shieldPower = s.shieldPower;
     }
     
