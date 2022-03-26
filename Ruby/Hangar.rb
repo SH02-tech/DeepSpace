@@ -26,6 +26,8 @@ module Deepspace
             new(h.capacity)
         end
 
+        attr_reader :maxElements, :shieldBoosters, :weapons
+
         def getUIversion
             HangarToUI.new(self)
         end
@@ -33,6 +35,8 @@ module Deepspace
         def spaceAvailable 
             shieldBoosters.length + weapons.length < maxElements
         end
+
+        private :spaceAvailable 
 
         def addWeapon(w)
             if spaceAvailable()
@@ -76,8 +80,6 @@ module Deepspace
             "Maximum of elements: #{maxElements}\n#{shieldString}#{weaponString}"
         end
 
-        attr_reader :maxElements, :shieldBoosters, :weapons
-
     end
 
     ### TESTING
@@ -113,5 +115,3 @@ module Deepspace
     # end
  
 end
-
- 

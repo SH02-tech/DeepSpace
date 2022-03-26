@@ -59,6 +59,7 @@ module Deepspace
     end
 
 =begin
+
     ### TEST PROGRAM
 
     l = Loot.new(10, 20 ,30, 40, 50)
@@ -82,6 +83,6 @@ module Deepspace
     fuego = -321
     puts "¿Se puede modificar fire desde fuera? #{e.fire}"
     puts
-=end
+
 
 end

@@ -9,7 +9,8 @@
 
 module Deepspace
 
-    require_relative "Weapon.rb"
+    require_relative "WeaponType.rb"
+    require_relative "ShieldBooster.rb"
 
     class Damage
 
@@ -21,16 +22,24 @@ module Deepspace
             @weapons  = wl
         end
 
+        attr_reader :nShields, :nWeapons, :weapons
+
         def self.newNumericWeapons(w, s)
-            new(w, s, [])
+            new(w, s, nil)
         end
 
         def self.newSpecificWeapons(wl, s)
-            new(wl.length, s, wl)
+            new(-1, s, wl)
         end
 
+        private_class_method :new
+
         def self.newCopy(d)
-            new(d.nWeapons, d.nShields, d.weapons)
+            if d.nWeapons == -1   # Usamos array
+                newSpecificWeapons(d.weapons, d.nShields)
+            else                  # Usamos array the weapons
+                newNumericWeapons(d.nWeapons, d.nShields)
+            end
         end
 
         def getUIversion()
@@ -42,7 +51,7 @@ module Deepspace
             count = 0
             found = false
             while count < w.length && !found
-                if (w[count].type == t)
+                if (w[count] == t)
                     index = count
                     found = true
                 end
@@ -52,130 +61,157 @@ module Deepspace
             return index
         end
 
+        private :arrayContainsType
+
         def adjust(w, s)
-            # Preguntar al profe
+
+            if nWeapons == -1   # Caso vector
+                
+                weaponsCopy = weapons
+                w.each do |element|
+                    pos = arrayContainsType(weaponsCopy, element) 
+                    if pos != -1
+                        weaponsCopy.delete_at(pos)
+                    end
+                end
+
+                nShieldsCopy = nShields - s.length
+                if nShieldsCopy < 0
+                    nShieldsCopy = 0
+                end
+                
+                Damage.newSpecificWeapons(weaponsCopy, nShieldsCopy)
+
+            else    # Caso númerico
+                nWeaponsCopy = nWeapons - w.length
+                if nWeaponsCopy < 0
+                    nWeaponsCopy = 0
+                end
+
+                nShieldsCopy = nShields - s.length
+                if nShieldsCopy < 0
+                    nShieldsCopy = 0
+                end
+
+                Damage.newNumericWeapons(nWeaponsCopy, nShieldsCopy)
+            end
         end
 
         def discardWeapon(w)
-            if weapons.length > 0
+            if @nWeapons == -1 && @weapons.length > 0 # Caso vector
                 @weapons.delete(w)
-            elsif @nWeapons > 0
+            elsif @nWeapons > 0                       # Caso numérico
                 @nWeapons -= 1
             end
             return nil
         end
         
         def discardShieldBooster()
-            if nShields > 0
+            if @nShields > 0
                 @nShields -=1
             end
             return nil
         end
 
         def hasNoEffect
-            nWeapons == 0 && nShields == 0
+            if nWeapons == -1       # Caso vector
+                nShields == 0 && weapons.length == 0
+            else                    # Caso numérico
+                nShields == 0 && nWeapons == 0
+            end
         end
 
         def to_s
-            weaponsString = ""
-            weapons.each do |w|
-                weaponsString += "#{w.to_s}\n"
+
+            if nWeapons == -1
+
+                weaponsString = ""
+                @weapons.each do |w|
+                    case w
+                    when WeaponType::LASER
+                        weaponsString += "LASER, "
+                    when WeaponType::MISSILE
+                        weaponsString += "MISSILE, "
+                    when WeaponType::PLASMA
+                        weaponsString += "PLASMA, "
+                    end
+                end
+
+                "DAMAGE: \n" + \
+                "Number of shields: #{nShields} \n" + \
+                "List of weapons: \n" + \
+                "#{weaponsString}"
+            else
+                "DAMAGE: \n" + \
+                "Number of weapons: #{nWeapons} \n" + \
+                "Number of shields: #{nShields} \n"
             end
-            
-            "DAMAGE: \n" + \
-            "Number of shields: #{nShields} \n" + \
-            "Number of weapons: #{nWeapons} \n" + \
-            "#{weaponsString}"
         end
 
-        attr_reader :nShields, :nWeapons, :weapons
-
-        private_class_method :new
-        private :arrayContainsType
-    
     end
 
     ### TEST PROGRAM
 
-=begin
+
 
     # Declarations
 
+    a = [WeaponType::LASER, WeaponType::LASER, WeaponType::MISSILE, WeaponType::PLASMA, WeaponType::LASER]
+    s1 = ShieldBooster.new("Escudo1", 14, -1)
+    s2 = ShieldBooster.new("Escudo2", 10, -20)
+    s3 = ShieldBooster.new("Escudo3", 1, 0)
+    b = [s1, s2, s3]
     d1 = Damage.newNumericWeapons(10, 20)
-    w1 = Weapon.new("arma_1", WeaponType::LASER, 5)
-    w2 = Weapon.new("arma_2", WeaponType::MISSILE, 5)
-    w3 = Weapon.new("arma_2", WeaponType::PLASMA, 5)
-    a =[w1,w2]
-    d2 = Damage.newSpecificWeapons(a, 20)
+    d2 = Damage.newSpecificWeapons(a, 38)
 
     # Operations
 
-    puts "Damage object 1: "
-    puts d1.to_s + "\n"
-    puts "LLamamos a discardShieldBooster(): "
-
-    var = d1.discardShieldBooster()
-    if var == nil
-        puts "Devuelve nil"
-    else
-        puts var
-    end
-
+    puts "Firts damage type: "
+    puts d1.to_s
     puts
-    puts "Damage object 1:"
-    puts d1.to_s + "\n"
-    puts "Llamamos a hasNoEffect"
+    puts "Second damage type: "
+    puts d2.to_s
+    puts
+    w = [WeaponType::LASER, WeaponType::MISSILE, WeaponType::PLASMA, WeaponType::LASER, WeaponType::MISSILE, WeaponType::MISSILE]
+    d3 = d2.adjust(w, b)
+    puts d3.to_s
+    puts
 
+    # Probaremos el discard, el constructor de copia y el metodo hasNoEffect
+
+    puts "Descartando dos escudos de d1"
+    d1.discardShieldBooster
+    d1.discardShieldBooster
+    puts d1
+    puts
+    puts "Descartando dos armas del damage dos: " 
+    puts d2.discardWeapon(w[0]) # Como solo queda un laser y lo quitamos pues deberia de dejar de haber 
+    puts d2.discardWeapon(w[2])
+    puts d2
+    puts
+    puts "Probando has no effect sobre d1: "
     if d1.hasNoEffect()
-        puts "No tiene efecto"
+        puts "has no effect sobre d1 igual a true."
     else
-        puts "Tiene efecto"
+        puts "has no effect en el d1 igual a falso. "
     end
-
-    puts
-    puts d2.to_s
-    puts
-
-    # puts
-    # puts "Damage objetc 2: "
-    # puts d2.to_s
-    # puts
-    # puts "Llamamos a arrayContainsType: "
-
-    # index = d2.arrayContainsType(a,w1)
-    # if index == -1
-    #     puts "No coincide el tipo"
-    # else
-    #     puts "Coincide el tipo"
-    # end
-
-    # Vamos a probar a modificar el estado del objeto d2
-    weapons_d2 = d2.weapons
-    weapons_d2.delete_at(1)
-
-    puts "Nuevo estado de weapon d2: \n"
-    puts d2.to_s
-    puts
-
-    d2.discardWeapon(w1)
-
-    puts
-    puts "After discard a weapon"
-    puts d2.to_s
-    puts
-
-    # parece que se modifica el estado del array a
-    a.each do |indice|
-        puts indice
+    d3 = Damage.newNumericWeapons(0,0)
+    puts "Probando has no effect sobre un objeto damage con 0 nWeapons y 0 nShields"
+    if d3.hasNoEffect()
+        puts "has no effect sobre d3 igual a true."
+    else
+        puts "has no effect en el d3 igual a falso. "
     end
-
-    # Probemos a modificar el array a para ver si se modifica
-    # el objeto.
-    a.push(w3)
-    puts
-    puts d2.to_s
-    puts
-
-=end
+    d4 = Damage.newSpecificWeapons([],0)
+    puts "Probando has no effect con un objeto con 0 shields y [] weaponsTypes. "
+    if d4.hasNoEffect()
+        puts "has no effect sobre d4 igual a true."
+    else
+        puts "has no effect en el d4 igual a falso. "
+    end
+    puts "Probando el constructor de copia: "
+    d5=Damage.newCopy(d4)
+    puts "Este es el objeto copia:"
+    puts d5.to_s
 
 end
