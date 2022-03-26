@@ -6,6 +6,7 @@
  */
 
 package deepspace;
+import java.util.ArrayList;
 
 public class Hangar {
     private int maxElements;
@@ -47,7 +48,7 @@ public class Hangar {
         throw new UnsupportedOperationException();
     }
 
-    public Weapon getWeapons() {
+    public ArrayList<Weapon> getWeapons() {
         throw new UnsupportedOperationException();
     }
 

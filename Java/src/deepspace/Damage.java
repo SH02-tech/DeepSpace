@@ -5,6 +5,7 @@ import java.util.ArrayList; // import the ArrayList class
 public class Damage {
     private int nShields;
     private int nWeapons;
+    private ArrayList<WeaponType> weapons;
 
     Damage(int w, int s) {
         nWeapons = w;

@@ -76,4 +76,8 @@ class Loot {
     public int getNMedals() {
         return this.nMedals;
     }
+
+    LootToUI getUIversion() {
+        throw new UnsupportedOperationException();
+    }
 }
