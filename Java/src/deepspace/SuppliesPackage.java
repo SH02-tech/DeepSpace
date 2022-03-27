@@ -62,4 +62,18 @@ class SuppliesPackage {
     float getShieldPower() {
         return this.shieldPower;
     }
+    
+    /*
+    public static void main(String[] args) {
+        SuppliesPackage s = new SuppliesPackage(10f, 1.2f,8f);
+        float fuel = s.getFuelUnits();
+        System.out.println("Probemos a modificar el fuel: " + fuel);
+        fuel = fuel - 100;
+        System.out.println("Nuevo estado de la variable: " + fuel );
+        System.out.println("Estado de fuel en el obejtos: " + s.getFuelUnits());
+        // Los tipos primitivos no pasan las referencias sino las copias.
+    }
+    */
 }
+
+

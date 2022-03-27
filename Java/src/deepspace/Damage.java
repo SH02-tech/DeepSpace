@@ -10,22 +10,34 @@ public class Damage {
     Damage(int w, int s) {
         nWeapons = w;
         nShields = s;
+        weapons = new ArrayList<WeaponType>();
     }
 
     Damage(ArrayList<WeaponType> wl, int s) {
         this(wl.size(), s);
+        weapons = new ArrayList<WeaponType>(wl);
     }
 
     Damage(Damage d) {
-        this(d.getNShields(), d.getNWeapons());
+        this(d.weapons, d.nShields);
     }
 
     DamageToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new DamageToUI(this);
     }
 
     private int arrayContainsType(ArrayList<Weapon> w, WeaponType t) {
-        throw new UnsupportedOperationException();
+        int pos = -1;
+        boolean found = false;
+
+        for (int i=0; i<w.size() && !found; ++i) {
+            if (w.get(i).getType() == t) {
+                pos = i;
+                found = true;
+            }
+        }
+
+        return pos;
     }
 
     public Damage adjust(ArrayList<Weapon> w, ShieldBooster[] s) {
