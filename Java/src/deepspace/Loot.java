@@ -35,6 +35,10 @@ class Loot {
     }
     
     // Get methods
+
+    LootToUI getUIversion() {
+        throw new UnsupportedOperationException();
+    }
     
     /**
      * @brief Get method.
@@ -75,9 +79,5 @@ class Loot {
      */
     public int getNMedals() {
         return this.nMedals;
-    }
-
-    LootToUI getUIversion() {
-        throw new UnsupportedOperationException();
     }
 }

@@ -33,6 +33,12 @@ class Weapon {
         this.type = instance.type;
         this.uses = instance.uses;
     }
+
+    // TODO
+
+    WeaponToUI getUIversion() {
+        throw new UnsupportedOperationException();
+    }
     
     /**
      * @brief Get method

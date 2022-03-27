@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class Hangar {
     private int maxElements;
+    private ArrayList<Weapon> weapons;
+    private ArrayList<ShieldBooster> shieldBoosters;
 
     /**
      * @brief Constructor
@@ -44,7 +46,7 @@ public class Hangar {
         return maxElements;
     }
 
-    public int getShieldBoosters() {
+    public ArrayList<ShieldBooster> getShieldBoosters() {
         throw new UnsupportedOperationException();
     }
 

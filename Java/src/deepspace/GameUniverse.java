@@ -1,4 +1,5 @@
 package deepspace;
+import java.util.ArrayList;
 
 public class GameUniverse {
     
@@ -52,11 +53,11 @@ public class GameUniverse {
         throw new UnsupportedOperationException();
     }
 
-    public bool haveAWinner {
+    public boolean haveAWinner() {
         throw new UnsupportedOperationException();
     }
 
-    public void init(String[] names) {
+    public void init(ArrayList<String> names) {
         throw new UnsupportedOperationException();
     }
 

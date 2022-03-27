@@ -34,6 +34,24 @@ class ShieldBooster {
         this.uses = instance.uses;
         // this(instance.name, instance.getBoost(), instance.getUses());
     }
+
+    ShieldToUI getUIversion() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * @brief decrease the uses of the shield
+     * @pre uses > 0
+     * @return boost if uses > 0 or 1.0 in other case
+     */
+    public float useIt() {
+        if(uses > 0) {
+            uses--;
+            return this.boost;
+        } else {
+            return 1.0f;
+        }
+    } 
     
     /**
      * @brief get method
@@ -50,18 +68,4 @@ class ShieldBooster {
     public int getUses() {
         return this.uses;
     }
-    
-    /**
-     * @brief decrease the uses of the shield
-     * @pre uses > 0
-     * @return boost if uses > 0 or 1.0 in other case
-     */
-    public float useIt() {
-        if(uses > 0) {
-            uses--;
-            return this.boost;
-        } else {
-            return 1.0f;
-        }
-    } 
 }
