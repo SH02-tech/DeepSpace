@@ -5,48 +5,57 @@ public class EnemyStarShip {
     private String name;
     private float shieldPower;
     private Loot loot;
+    private Damage damage;
 
     EnemyStarShip(String n, float a, float s, Loot l, Damage d) {
-        throw new UnsupportedOperationException();
+        this.ammoPower = a;
+        this.name = n;
+        this.shieldPower = s;
+        this.loot = l; // Not usual.
+        this.damage = new Damage(d);
     }
 
     EnemyStarShip(EnemyStarShip e) {
-        throw new UnsupportedOperationException();
+        this(e.name, e.ammoPower, e.shieldPower, e.loot, e.damage);
     }
 
     EnemyToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new EnemyToUI(this);
     }
 
     public float fire() {
-        throw new UnsupportedOperationException();
+        return this.getAmmoPower();
     }
 
     public float getAmmoPower() {
-        throw new UnsupportedOperationException();
+        return this.ammoPower;
     }
 
     public Damage getDamage() {
-        throw new UnsupportedOperationException();
+        return new Damage(this.damage);
     }
 
     public Loot getLoot() {
-        throw new UnsupportedOperationException();
+        return this.loot; // Not usual.
     }
 
     public String getName() {
-        throw new UnsupportedOperationException();
+        return new String(this.name);
     }
 
     public float getShieldPower() {
-        throw new UnsupportedOperationException();
+        return this.shieldPower;
     }
 
     public float protection() {
-        throw new UnsupportedOperationException();
+        return this.getShieldPower();
     }
 
     public ShotResult receiveShot(float shot) {
-        throw new UnsupportedOperationException();
+        if (this.shieldPower < shot) {
+            return ShotResult.DONOTRESIST;
+        } else {
+            return ShotResult.RESIST;
+        }
     }
 }

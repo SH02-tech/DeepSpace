@@ -14,7 +14,7 @@ public class Damage {
     }
 
     Damage(ArrayList<WeaponType> wl, int s) {
-        this(wl.size(), s);
+        this(-1, s); // -1 denotes that an array list is used. 
         weapons = new ArrayList<WeaponType>(wl);
     }
 
@@ -40,31 +40,58 @@ public class Damage {
         return pos;
     }
 
-    public Damage adjust(ArrayList<Weapon> w, ShieldBooster[] s) {
-        throw new UnsupportedOperationException();
+    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
+        Damage newDamage = new Damage(this);
+
+        newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
+
+        if (newDamage.nWeapons < 0) {     // Array Case
+            for (WeaponType weapon : newDamage.weapons) {
+                int pos = this.arrayContainsType(w, weapon);
+
+                if (pos >= 0) {
+                    w.remove(pos);
+                    newDamage.weapons.remove(weapon);
+                    --newDamage.nWeapons;
+                }
+            }
+        } else {                        // Numeric Case
+            newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
+        }
+
+        return newDamage;
     }
+
+    // TODO: Use of arrayContains?
 
     public void discardWeapon(Weapon w) {
         throw new UnsupportedOperationException();
     }
 
     public void discardShieldBooster() {
-        throw new UnsupportedOperationException();
+        if (this.nShields > 0) {
+            --this.nShields;
+        }
     }
 
     public boolean hasNoEffect() {
-        throw new UnsupportedOperationException();
+        return ((this.nWeapons == 0 || this.weapons.isEmpty()) && this.nShields == 0);
     }
 
     public int getNShields() {
-        throw new UnsupportedOperationException();
+        return this.nShields;
     }
 
+    // TODO: ¿Sólo se llama para uno de los casos? Para ambos métodos. 
+
     public int getNWeapons() {
-        throw new UnsupportedOperationException();
+        if (this.nWeapons < 0)
+            return this.weapons.size();
+        else
+            return this.nWeapons;
     }
 
     public ArrayList<WeaponType> getWeapons() {
-        throw new UnsupportedOperationException();
+        return new ArrayList<WeaponType>(this.weapons);
     }
 }
