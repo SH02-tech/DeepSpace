@@ -2,53 +2,16 @@ package deepspace;
 import java.util.ArrayList;
 
 public class SpaceStation {
-<<<<<<< HEAD
-    private static int MAXFUEL = 100;
-    private static float SHIELDLOSSPERUNITSHOT = 0.1f;
-
-    private int ammoPower;
-=======
     
     // Attributes
 
     private static final int MAXFUEL = 100;
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f;
     private float ammoPower;
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
     private float fuelUnits;
     private String name;
     private int nMedals;
     private float shieldPower;
-<<<<<<< HEAD
-    private Damage pendingDamage;
-    private ArrayList<Weapon> weapons;
-    private ArrayList<ShieldBooster> shieldBoosters;
-    private Hangar hangar;
-
-    // TODO
-
-    private void assignFuelValue(float f) {
-        throw new UnsupportedOperationException();
-    }
-
-    private void cleanPendingDamage() {
-        throw new UnsupportedOperationException();
-    }
-
-    SpaceStation(String n, SuppliesPackage supplies) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void cleanUpMountedItems() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void discardHangar() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void discardShieldBooster(int i) {
-=======
     private ArrayList<Weapon> weapons;
     private ArrayList<ShieldBooster> shieldBoosters;
     private Hangar hangar;
@@ -105,50 +68,10 @@ public class SpaceStation {
     }
 
     public void discardShieldBooster(int i) {   // P3
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
         throw new UnsupportedOperationException();
     }
 
     public void discardShieldBoosterInHangar(int i) {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException();
-    }
-
-    public float fire() {
-        throw new UnsupportedOperationException();
-    }
-
-    public float getAmmoPower() {
-        throw new UnsupportedOperationException();
-    }
-
-    public float getFuelUnits() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Hangar getHangar() {
-        throw new UnsupportedOperationException();
-    }
-
-    public String getName() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int getNMedals() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Damage getPendingDamage() {
-        throw new UnsupportedOperationException();
-    }
-
-    public ArrayList<ShieldBooster> getShieldBoosters() {
-        throw new UnsupportedOperationException();
-    }
-
-    public float getShieldPower() {
-        throw new UnsupportedOperationException();
-=======
         if (hangar != null) 
             hangar.removeShieldBooster(i);
     }
@@ -198,7 +121,6 @@ public class SpaceStation {
 
     public float getShieldPower() {
         return shieldPower;
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
     }
 
     public float getSpeed() {
@@ -206,24 +128,6 @@ public class SpaceStation {
     }
 
     public SpaceStationToUI getUIversion() {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException();
-    }
-
-    public ArrayList<Weapon> getWeapons() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void mountWeapon(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void move() {
-        throw new UnsupportedOperationException();
-    }
-
-    public float protection() {
-=======
         return new SpaceStationToUI(this);
     }
 
@@ -259,18 +163,10 @@ public class SpaceStation {
     }
 
     public float protection() { //P3
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
         throw new UnsupportedOperationException();
     }
 
     public void receiveHangar(Hangar h) {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean receiveShieldBooster(ShieldBooster s) {
-        throw new UnsupportedOperationException();
-=======
         if (hangar == null) {
             hangar = new Hangar(h);
         }
@@ -281,37 +177,17 @@ public class SpaceStation {
             return hangar.addShieldBooster(s);
         else 
             return false;
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
     }
 
     public ShotResult receiveShot(float shot) {
         throw new UnsupportedOperationException();
     }
 
-<<<<<<< HEAD
-    public void receiveSupplies(SuppliesPackage s) {
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean receiveWeapon(Weapon w) {
-        throw new UnsupportedOperationException();
-    }
-
-=======
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
     public void setLoot(Loot loot) {
         throw new UnsupportedOperationException();
     }
 
     public void setPendingDamage(Damage d) {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean validState() {
-        throw new UnsupportedOperationException();
-    }
-=======
         if (d != null)
             pendingDamage = d.adjust(weapons, shieldBoosters);
     }
@@ -320,5 +196,4 @@ public class SpaceStation {
         return (pendingDamage == null) || (pendingDamage.hasNoEffect());
     }
 
->>>>>>> 9500dac1b78110166374204a286a24fc594d230c
 }
