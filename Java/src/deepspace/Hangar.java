@@ -19,46 +19,83 @@ public class Hangar {
      */
     Hangar(int capacity) {
         maxElements = capacity;
+        weapons = new ArrayList<Weapon>();
+        shieldBoosters = new ArrayList<ShieldBooster>();
     }
 
     Hangar(Hangar one) {
         this.maxElements = one.maxElements;
+        this.weapons = new ArrayList<Weapon>(one.weapons);
+        this.shieldBoosters = new ArrayList<ShieldBooster>(one.shieldBoosters);
     }
 
-    // TODO
     public HangarToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new HangarToUI(this);
     }
 
     private boolean spaceAvailable() {
-        throw new UnsupportedOperationException();
+        return (this.weapons.size() + this.shieldBoosters.size()) < this.maxElements;
     }
 
     public boolean addWeapon(Weapon w) {
-        throw new UnsupportedOperationException();
+        if (this.spaceAvailable()) {
+            this.weapons.add(w);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean addShieldBooster(ShieldBooster s) {
-        throw new UnsupportedOperationException();
+        if (this.spaceAvailable()) {
+            this.shieldBoosters.add(s);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getMaxElements() {
-        return maxElements;
+        return this.maxElements;
     }
 
     public ArrayList<ShieldBooster> getShieldBoosters() {
-        throw new UnsupportedOperationException();
+        return new ArrayList<ShieldBooster>(this.shieldBoosters);
     }
 
     public ArrayList<Weapon> getWeapons() {
-        throw new UnsupportedOperationException();
+        return new ArrayList<Weapon>(this.weapons);
     }
 
     public ShieldBooster removeShieldBooster(int s) {
-        throw new UnsupportedOperationException();
+        if (s < this.shieldBoosters.size()) {
+            ShieldBooster removedShieldBooster = new ShieldBooster(this.shieldBoosters.get(s));
+            this.shieldBoosters.remove(s);
+
+            return removedShieldBooster;
+        } else {
+            return null;
+        }
     }
 
     public Weapon removeWeapon(int w) {
-        throw new UnsupportedOperationException();
+        if (w < this.weapons.size()) {
+            Weapon removedWeapon = new Weapon(this.weapons.get(w));
+            this.weapons.remove(w);
+
+            return removedWeapon;
+        } else {
+            return null;
+        }
+    }
+
+    public String toString() {
+        String data = "";
+
+        data += "Max Elements: " + this.maxElements + "\n";
+        data += "Weapons: " + this.weapons.toString() + "\n";
+        data += "ShieldBoosters: " + this.shieldBoosters.toString() + "\n";
+
+        return data;
     }
 }
