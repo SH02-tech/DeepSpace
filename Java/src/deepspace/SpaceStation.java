@@ -76,6 +76,15 @@ public class SpaceStation {
             hangar.removeShieldBooster(i);
     }
 
+    public void discardWeapon(int i) {   // P3
+        throw new UnsupportedOperationException();
+    }
+
+    public void discardWeaponInHangar(int i) {
+        if (hangar != null) 
+            hangar.removeWeapon(i);
+    }
+
     public float fire() {   //P3
         throw new UnsupportedOperationException();
     }
