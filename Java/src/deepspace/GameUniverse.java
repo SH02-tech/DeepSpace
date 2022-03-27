@@ -6,19 +6,24 @@ public class GameUniverse {
     // Atributes
 
     private static final int WIN = 10;
-    private int currentStationIndex;
     private int turns; 
     private GameStateController gameState;
     private Dice dice;
     private EnemyStarShip currentEnemy;
-    private SpaceStation spaceStations;
-    private SpaceStation SpaceStation;
-
+    private int currentStationIndex;
+    private ArrayList<SpaceStation> spaceStations;
+    private SpaceStation currentStation;
 
     // Constructors
 
     public GameUniverse() {
-        throw new UnsupportedOperationException();
+        gameState           = new GameStateController();
+        dice                = new Dice();
+        turns               = 0;
+        currentStationIndex = -1;
+        currentEnemy        = null;
+        currentStation      = null;
+        spaceStations       = null;
     }
 
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
@@ -30,46 +35,64 @@ public class GameUniverse {
     }
 
     public void discardHangar() {
-        throw new UnsupportedOperationException();
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.discardHangar();
     } 
 
     public void discardShieldBooster(int i) {
-        throw new UnsupportedOperationException();
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.discardShieldBooster(i);
     }
 
-    public void discardShieldBoosterHangar(int i) {
-        throw new UnsupportedOperationException();
+    public void discardShieldBoosterInHangar(int i) {
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.discardShieldBoosterInHangar(i);
     }
 
     public void discardWeapon(int i) {
-        throw new UnsupportedOperationException();
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.discardShieldBooster(i);
     }
 
     public void discardWeaponInHangar(int i) {
-        throw new UnsupportedOperationException();
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.discardWeapon(i);;
     }
 
     public GameState getState() {
-        throw new UnsupportedOperationException();
+        return gameState.getState();
+    }
+
+    public GameUniverseToUI getUIversion() {
+        return new GameUniverseToUI(currentStation, currentEnemy);
     }
 
     public boolean haveAWinner() {
+        return currentStation.getNMedals() >= WIN;
+    }
+
+    public void init(ArrayList<String> names) { //P3
         throw new UnsupportedOperationException();
     }
 
-    public void init(ArrayList<String> names) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void mountShieldBooster(int i) {
-        throw new UnsupportedOperationException();
+    public void mountShieldBooster(int i) { 
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.mountShieldBooster(i);
     }
 
     public void mountWeapon(int i) {
-        throw new UnsupportedOperationException();
+        GameState state = getState();
+        if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
+            currentStation.mountWeapon(i);
     }
 
-    public boolean nextTurn() {
+    public boolean nextTurn() { // P3
         throw new UnsupportedOperationException();
     }
 }
