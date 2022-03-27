@@ -2,8 +2,8 @@ package deepspace;
 import java.util.ArrayList;
 
 public class SpaceStation {
-    private final int MAXFUEL = 100;
-    private final float SHIELDLOSSPERUNITSHOT = 0.1f;
+    private static int MAXFUEL = 100;
+    private static float SHIELDLOSSPERUNITSHOT = 0.1f;
 
     private int ammoPower;
     private float fuelUnits;
