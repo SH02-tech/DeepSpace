@@ -68,4 +68,14 @@ class ShieldBooster {
     public int getUses() {
         return this.uses;
     }
+
+    public String toString() {
+        String data = "";
+
+        data += "Name:" + this.name + "; ";
+        data += "Boost:" + this.boost + "; ";
+        data += "Uses:" + this.uses;
+
+        return data;
+    }
 }

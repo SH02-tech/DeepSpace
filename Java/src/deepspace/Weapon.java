@@ -76,4 +76,14 @@ class Weapon {
             return 1.0f;
         }
     } 
+
+    public String toString() {
+        String data = "";
+
+        data += "Name:" + this.name + "; ";
+        data += "WeaponType:" + this.type + "; ";
+        data += "Uses:" + this.uses;
+        
+        return data;
+    }
 }
