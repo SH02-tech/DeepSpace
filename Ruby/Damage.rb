@@ -97,9 +97,9 @@ module Deepspace
             end
         end
 
-        def discardWeapon(w)
+        def discardWeapon(w)    # w : weaponn
             if @nWeapons == -1 && @weapons.length > 0 # Caso vector
-                @weapons.delete(w)
+                @weapons.delete(w.type)
             elsif @nWeapons > 0                       # Caso numérico
                 @nWeapons -= 1
             end
