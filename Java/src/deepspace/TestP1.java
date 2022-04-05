@@ -97,5 +97,8 @@ public class TestP1 {
         System.out.println("6. Will the space station move? YES(" + possibilityOfMove[0] + "), NO(" + possibilityOfMove[1] + ")");
 
         System.out.println("Datos del dado: \n" + dice.toString());
+
+        // Supplies Package
+        System.out.println("SuppliesPackage: " + supplies.toString());
     }
 }
