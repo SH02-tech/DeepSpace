@@ -58,4 +58,13 @@ public class EnemyStarShip {
             return ShotResult.RESIST;
         }
     }
+
+    public String toString() {
+        String data = "";
+
+        data += "[ammoPower: " + this.ammoPower + ", name: " + this.name + ", shielPower: " + this.shieldPower;
+        data += ", loot: " + this.loot.toString() + ", damage: " + this.damage.toString() + "]";
+
+        return data;
+    }
 }
