@@ -24,7 +24,7 @@ public class EnemyStarShip {
     }
 
     public float fire() {
-        return this.getAmmoPower();
+        return this.ammoPower;
     }
 
     public float getAmmoPower() {
@@ -48,7 +48,7 @@ public class EnemyStarShip {
     }
 
     public float protection() {
-        return this.getShieldPower();
+        return this.shieldPower;
     }
 
     public ShotResult receiveShot(float shot) {
