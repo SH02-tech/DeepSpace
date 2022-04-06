@@ -152,7 +152,7 @@ module Deepspace
 
     ### TEST PROGRAM
 
-
+=begin 
 
     # Declarations
 
@@ -212,6 +212,8 @@ module Deepspace
     puts "Probando el constructor de copia: "
     d5=Damage.newCopy(d4)
     puts "Este es el objeto copia:"
-    puts d5.to_s
+    puts d5.to_s 
+    
+=end
 
-end
+end # Deepspace
