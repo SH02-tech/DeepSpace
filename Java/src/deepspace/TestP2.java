@@ -65,5 +65,107 @@ public class TestP2 {
         System.out.println("Hangar (should be equal to last one): ");
         System.out.println(hangar.toString());
 
+
+        System.out.println("=============================================");
+        System.out.println("DAMAGE 1");
+        System.out.println("=============================================");
+
+        Damage dam = new Damage(4,3);
+
+        System.out.println("ArrayContains: " + dam.toString());
+        System.out.println("ArrayContains (number should be equal): " + dam.getNShields() + " " + dam.getNWeapons());
+
+        Damage copy = new Damage(dam);
+
+        System.out.println("Copy Damage: " + copy.toString());
+
+        ArrayList<Weapon> arr_w = new ArrayList<Weapon>();
+        arr_w.add(w1);
+        arr_w.add(w2);
+        
+        ArrayList<ShieldBooster> arr_s = new ArrayList<ShieldBooster>();
+        arr_s.add(s1);
+        arr_s.add(s2);
+
+        Damage new_damage = dam.adjust(arr_w, arr_s);
+        System.out.println("Adjusted damage: " + new_damage.toString());
+
+        new_damage.discardWeapon(w1);
+        new_damage.discardWeapon(w2);
+        new_damage.discardShieldBooster();
+
+        System.out.println("New damage with discards: " + new_damage.toString());
+        
+        if (new_damage.hasNoEffect()) {
+            System.out.println("No effect (as expected).");
+        }
+
+        System.out.println("=============================================");
+        System.out.println("DAMAGE 2");
+        System.out.println("=============================================");
+
+        ArrayList<WeaponType> arr_wt = new ArrayList<WeaponType>();
+
+        arr_wt.add(WeaponType.LASER);
+        arr_wt.add(WeaponType.LASER);
+        arr_wt.add(WeaponType.LASER);
+
+        arr_wt.add(WeaponType.MISSILE);
+
+        arr_wt.add(WeaponType.PLASMA);
+        arr_wt.add(WeaponType.PLASMA);
+
+
+        Damage dam2 = new Damage(arr_wt,3);
+
+        System.out.println("ArrayContains: " + dam2.toString());
+        System.out.println("ArrayContains (nweapons should be -1): " + dam2.getNShields() + " " + dam2.getNWeapons());
+
+        Damage copy2 = new Damage(dam2);
+
+        System.out.println("Copy Damage: " + copy2.toString());
+
+        Damage new_damage_2 = dam2.adjust(arr_w, arr_s);
+
+        // TODO: Neccesary toString in arr_w?
+        // System.out.println("Adjust weapons: " + arr_w.toString());
+        System.out.println("Adjusted damage: " + new_damage_2.toString());
+
+        new_damage_2.discardWeapon(w1);
+        new_damage_2.discardWeapon(w2);
+        new_damage_2.discardShieldBooster();
+
+        System.out.println("New damage with discards: " + new_damage_2.toString());
+        
+        if (new_damage_2.hasNoEffect()) {
+            System.out.println("No effect (as expected).");
+        }
+
+        System.out.println("=============================================");
+        System.out.println("EnemyStarShip");
+        System.out.println("=============================================");
+
+        Loot l = new Loot(10, 5, 5, 5, 5);
+        Damage d = new Damage(2,3);
+
+        EnemyStarShip ess = new EnemyStarShip("Diógenes", 4, 3, l, d);
+
+        System.out.println("ToString: " + ess.toString());
+        System.out.println("Fire: " + ess.fire());
+        System.out.println("AmmoPower: " + ess.getAmmoPower());
+        System.out.println("Damage: " + ess.getDamage().toString());
+        System.out.println("Loot: " + ess.getLoot().toString());
+        System.out.println("Name: " + ess.getName());
+        System.out.println("ShieldPower: " + ess.getShieldPower());
+        System.out.println("Protection: " + ess.protection());
+
+        ShotResult ess_shot = ess.receiveShot(2);
+        System.out.println("ShotResult: " + ess_shot.toString());
+
+        EnemyStarShip ess_copy = new EnemyStarShip(ess);
+        System.out.println("Copy: " + ess_copy.toString());
+
+        ShotResult sr_not = ess_copy.receiveShot(50);
+        System.out.println(sr_not);
     }
 }

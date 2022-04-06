@@ -37,7 +37,7 @@ class Loot {
     // Get methods
 
     LootToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new LootToUI(this);
     }
     
     /**
@@ -79,5 +79,14 @@ class Loot {
      */
     public int getNMedals() {
         return this.nMedals;
+    }
+
+    public String toString() {
+        String data = "";
+
+        data += "[nSupplies: " + this.nSupplies + ", nWeapons: " + this.nWeapons + ", nShields: " + this.nShields;
+        data += ", nHangars: " + this.nHangars + ", nMedals: " + this.nMedals + "]";
+
+        return data;
     }
 }

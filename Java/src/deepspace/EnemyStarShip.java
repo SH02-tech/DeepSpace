@@ -24,7 +24,7 @@ public class EnemyStarShip {
     }
 
     public float fire() {
-        return this.getAmmoPower();
+        return this.ammoPower;
     }
 
     public float getAmmoPower() {
@@ -48,7 +48,7 @@ public class EnemyStarShip {
     }
 
     public float protection() {
-        return this.getShieldPower();
+        return this.shieldPower;
     }
 
     public ShotResult receiveShot(float shot) {
@@ -57,5 +57,14 @@ public class EnemyStarShip {
         } else {
             return ShotResult.RESIST;
         }
+    }
+
+    public String toString() {
+        String data = "";
+
+        data += "[ammoPower: " + this.ammoPower + ", name: " + this.name + ", shielPower: " + this.shieldPower;
+        data += ", loot: " + this.loot.toString() + ", damage: " + this.damage.toString() + "]";
+
+        return data;
     }
 }
