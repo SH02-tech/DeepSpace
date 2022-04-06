@@ -144,6 +144,12 @@ module Deepspace
             puts "Probando has no effect en Damage 1(Debe devolver false)..."
             puts d1.hasNoEffect
             puts
+
+            puts
+            puts "------------------------------------"
+            puts "------Probando la clase EnemyS------"
+            puts "------------------------------------"
+            puts
             
         end
 

@@ -21,7 +21,7 @@ module Deepspace
         def initialize(w, s, wl)
             @nWeapons = w
             @nShields = s
-            @weapons  = wl
+            @weapons  = wl.clone
         end
 
         attr_reader :nShields, :nWeapons, :weapons
@@ -69,14 +69,15 @@ module Deepspace
 
             if nWeapons == @@NOTUSED   # Caso vector
                 
-                weaponsCopy = weapons
+                weaponsCopy = weapons.clone
+                wCopy = w.clone
                 index = 0
 
                 while index < weaponsCopy.length
                     weaponType = weaponsCopy[index]
-                    pos = arrayContainsType(w,weaponType)
+                    pos = arrayContainsType(wCopy,weaponType)
                     if pos >= 0
-                        w.delete_at(pos)
+                        wCopy.delete_at(pos)
                         weaponsCopy.delete(weaponType)
                     else
                         index += 1
