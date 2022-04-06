@@ -175,7 +175,15 @@ module Deepspace
         end
 
         def validState
-            (@pendingDamage != nil || @pendingDamage.hasNoEffect) # Especial cuidado
+            state = true
+
+            if (@pendingDamage != nil)
+                if (!@pendingDamage.hasNoEffect)
+                    state = false
+                end
+            end
+            
+            return state
         end 
 
         def to_s
@@ -257,6 +265,38 @@ if $0 == __FILE__ then
 
     space_station.receiveShieldBooster(s1)
     space_station.receiveWeapon(w1)
+    space_station.receiveSupplies(supplies_package)
 
     puts space_station.to_s
+
+    puts "###############################"
+    puts "Eliminación de elementos al Hangar"
+    puts "###############################"
+
+    space_station.discardShieldBooster(1)
+    space_station.discardHangar
+
+    puts space_station.to_s
+
+    puts "###############################"
+    puts "Damage implementado"
+    puts "###############################"
+    damage = Deepspace::Damage.newNumericWeapons(2,3)
+    puts space_station.to_s
+
+    if (space_station.validState)
+        puts "Correct state"
+    else
+        puts "Incorrect state"
+    end
+
+    space_station.setPendingDamage(damage)
+    puts space_station.to_s
+
+    if (space_station.validState)
+        puts "Correct state"
+    else
+        puts "Incorrect state"
+    end
+    
 end
