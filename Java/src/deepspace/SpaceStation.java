@@ -133,7 +133,7 @@ public class SpaceStation {
     }
 
     public float getSpeed() {
-        throw new UnsupportedOperationException();
+        return (fuelUnits/((float)MAXFUEL));
     }
 
     public SpaceStationToUI getUIversion() {

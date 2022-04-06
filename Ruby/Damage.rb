@@ -14,6 +14,8 @@ module Deepspace
 
     class Damage
 
+        @@NOTUSED = -1
+
         # Constructors
 
         def initialize(w, s, wl)
@@ -29,13 +31,13 @@ module Deepspace
         end
 
         def self.newSpecificWeapons(wl, s)
-            new(-1, s, wl)
+            new(@@NOTUSED, s, wl)
         end
 
         private_class_method :new
 
         def self.newCopy(d)
-            if d.nWeapons == -1   # Usamos array
+            if d.nWeapons == @@NOTUSED   # Usamos array
                 newSpecificWeapons(d.weapons, d.nShields)
             else                  # Usamos array the weapons
                 newNumericWeapons(d.nWeapons, d.nShields)
@@ -65,7 +67,7 @@ module Deepspace
 
         def adjust(w, s)
 
-            if nWeapons == -1   # Caso vector
+            if nWeapons == @@NOTUSED   # Caso vector
                 
                 weaponsCopy = weapons
                 w.each do |element|
@@ -98,7 +100,7 @@ module Deepspace
         end
 
         def discardWeapon(w)    # w : weaponn
-            if @nWeapons == -1 && @weapons.length > 0 # Caso vector
+            if @nWeapons == @@NOTUSED && @weapons.length > 0 # Caso vector
                 @weapons.delete(w.type)
             elsif @nWeapons > 0                       # Caso numérico
                 @nWeapons -= 1
@@ -114,7 +116,7 @@ module Deepspace
         end
 
         def hasNoEffect
-            if nWeapons == -1       # Caso vector
+            if nWeapons == @@NOTUSED       # Caso vector
                 nShields == 0 && weapons.length == 0
             else                    # Caso numérico
                 nShields == 0 && nWeapons == 0
@@ -123,7 +125,7 @@ module Deepspace
 
         def to_s
 
-            if nWeapons == -1
+            if nWeapons == @@NOTUSED
 
                 weaponsString = ""
                 @weapons.each do |w|
