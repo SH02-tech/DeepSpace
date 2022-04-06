@@ -52,8 +52,8 @@ end # end of Deepspace
 
 # if __FILE__ == $0
     
-#     supplies = SuppliesPackage.new(15,18,20)
-#     supplies_2 = SuppliesPackage.newCopy(supplies) 
+#     supplies = Deepspace::SuppliesPackage.new(15,18,20)
+#     supplies_2 = Deepspace::SuppliesPackage.newCopy(supplies) 
 
 #     puts "info primer objeto:"
 #     puts supplies.ammoPower

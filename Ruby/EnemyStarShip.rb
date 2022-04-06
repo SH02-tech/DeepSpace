@@ -84,5 +84,6 @@ module Deepspace
     puts "¿Se puede modificar fire desde fuera? #{e.fire}"
     puts
 
+=end
 
-end
+end # Deepspace

@@ -31,7 +31,7 @@ module Deepspace
 
         # Copy constructor
         def self.newCopy(h)
-            new(h.capacity, h.shieldBoosters, h.weapons)
+            new(h.maxElements, h.shieldBoosters, h.weapons)
         end
 
         
