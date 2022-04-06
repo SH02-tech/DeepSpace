@@ -27,7 +27,7 @@ module Deepspace
         attr_reader :nShields, :nWeapons, :weapons
 
         def self.newNumericWeapons(w, s)
-            new(w, s, nil)
+            new(w, s, [])
         end
 
         def self.newSpecificWeapons(wl, s)
@@ -53,7 +53,7 @@ module Deepspace
             count = 0
             found = false
             while count < w.length && !found
-                if (w[count] == t)
+                if (w[count].type == t)
                     index = count
                     found = true
                 end
@@ -70,10 +70,16 @@ module Deepspace
             if nWeapons == @@NOTUSED   # Caso vector
                 
                 weaponsCopy = weapons
-                w.each do |element|
-                    pos = arrayContainsType(weaponsCopy, element) 
-                    if pos != -1
-                        weaponsCopy.delete_at(pos)
+                index = 0
+
+                while index < weaponsCopy.length
+                    weaponType = weaponsCopy[index]
+                    pos = arrayContainsType(w,weaponType)
+                    if pos >= 0
+                        w.delete_at(pos)
+                        weaponsCopy.delete(weaponType)
+                    else
+                        index += 1
                     end
                 end
 
@@ -82,7 +88,7 @@ module Deepspace
                     nShieldsCopy = 0
                 end
                 
-                Damage.newSpecificWeapons(weaponsCopy, nShieldsCopy)
+                return Damage.newSpecificWeapons(weaponsCopy, nShieldsCopy)
 
             else    # Caso númerico
                 nWeaponsCopy = nWeapons - w.length
@@ -95,7 +101,7 @@ module Deepspace
                     nShieldsCopy = 0
                 end
 
-                Damage.newNumericWeapons(nWeaponsCopy, nShieldsCopy)
+                return Damage.newNumericWeapons(nWeaponsCopy, nShieldsCopy)
             end
         end
 
