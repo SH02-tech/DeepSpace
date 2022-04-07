@@ -9,9 +9,9 @@
 
 module Deepspace
 
-module GameCharacter
-    ENEMYSTARSHIP = :enemystarship
-    SPACESTATION  = :spacestation
-end
+    module GameCharacter
+        ENEMYSTARSHIP = :enemystarship
+        SPACESTATION  = :spacestation
+    end
 
 end # end of Deepspace

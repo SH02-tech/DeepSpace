@@ -10,71 +10,43 @@
 
 module Deepspace
 
-class ShieldBooster
+    class ShieldBooster
 
-    # Constructor 
-    def initialize (the_name, the_boost, the_uses)
-        @name  = the_name
-        @boost = the_boost
-        @uses  = the_uses
-    end
-    
-    # Copy constructor
-    def self.newCopy (instance)
-        new(instance.name, instance.boost, instance.uses)
-    end
-
-    # Getters
-
-    def name
-        @name
-    end
-
-    def boost
-        @boost
-    end
-
-    def uses
-        @uses
-    end
-
-    # Decrease the uses of the shield
-    def useIt 
-        if @uses > 0
-            @uses = @uses - 1
-            @boost
-        else
-            return 1
+        # Constructor 
+        def initialize (the_name, the_boost, the_uses)
+            @name  = the_name
+            @boost = the_boost
+            @uses  = the_uses
         end
-    end
+        
+        # Copy constructor
+        def self.newCopy(instance)
+            new(instance.name, instance.boost, instance.uses)
+        end
 
-    def getUIversion
-        return ShieldToUI.new(self)
-    end
+        # Getters
 
-    # to_s method
-    def to_s
-        return "ShieldBooster => Name: #{name}, Boost: #{boost}, Uses: #{uses}."
-    end
-end
+        attr_reader :name, :boost, :uses
 
-    # ### Test program
-    # s = ShieldBooster.new("Shield men", 4, 5)
-    # puts s.to_s
+        # Decrease the uses of the shield
+        def useIt 
+            if @uses > 0
+                @uses =- 1
+                boost
+            else
+                return 1.0
+            end
+        end
+
+        def getUIversion
+            return ShieldToUI.new(self)
+        end
+
+        # to_s method
+        def to_s
+            return "ShieldBooster => Name: #{name}, Boost: #{boost}, Uses: #{uses}."
+        end
+
+    end # end of class ShiedlBooster
 
 end # end of Deepspace
-
-=begin TEST
-test = ShieldBooster.new("Escudo", 14, -1)
-puts test.inspect
-puts (test.useIt)
-puts (test.uses)
-
-
-test2 = ShieldBooster.new("Caja", 12, 12)
-puts test2.inspect
-test2 = ShieldBooster.newCopy(test)
-puts test2.inspect
-
-puts test2.boost
-=end

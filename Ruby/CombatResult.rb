@@ -9,11 +9,11 @@
 
 module Deepspace
 
-module CombatResult
-    ENEMYWINS      = :enemywins
-    NOCOMBAT       = :nocombat
-    STATIONESCAPES = :stationescapes
-    STATIONWINS    = :stationwins
-end
+    module CombatResult
+        ENEMYWINS      = :enemywins
+        NOCOMBAT       = :nocombat
+        STATIONESCAPES = :stationescapes
+        STATIONWINS    = :stationwins
+    end
 
 end # end of Deepspace

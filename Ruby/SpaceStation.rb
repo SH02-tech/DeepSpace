@@ -27,15 +27,15 @@ module Deepspace
         # n. String that represents name.
         # supplies. SuppliesPackage with supplies given. 
         def initialize(n, supplies)
-            @ammoPower = supplies.ammoPower
-            @fuelUnits = supplies.fuelUnits
-            @name = n
-            @nMedals = 0
-            @shieldPower = supplies.shieldPower
-            @pendingDamage = nil
-            @weapons = Array.new
+            @ammoPower      = supplies.ammoPower
+            @fuelUnits      = supplies.fuelUnits
+            @name           = n
+            @nMedals        = 0
+            @shieldPower    = supplies.shieldPower
+            @pendingDamage  = nil
+            @weapons        = Array.new
             @shieldBoosters = Array.new
-            @hangar = nil
+            @hangar         = nil
         end
 
         attr_reader :ammoPower, :fuelUnits, :hangar, :name, :nMedals, :pendingDamage, :shieldPower, :shieldBoosters, :weapons

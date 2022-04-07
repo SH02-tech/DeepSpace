@@ -24,12 +24,12 @@ module GameUniverse
 
     def initialize()
         @currentStationIndex = -1 # TODO
-        @turns = 0
-        @dice = Dice.new
-        @gameState = GameStateController.new
-        @currentEnemy = nil
-        @spaceStations = nil
-        @currentStation = nil
+        @turns               = 0
+        @dice                = Dice.new
+        @gameState           = GameStateController.new
+        @currentEnemy        = nil
+        @spaceStations       = nil
+        @currentStation      = nil
     end
 
     def combatGo(station, enemy)

@@ -15,26 +15,19 @@ module Deepspace
     class Hangar
 
         # Initialize
-        def initialize(capacity, theShieldBoosters, theWeapons)
+        def initialize(capacity)
             @maxElements    = capacity
-            @shieldBoosters = theShieldBoosters
-            @weapons        = theWeapons
+            @shieldBoosters = Array.new
+            @weapons        = Array.new
         end
 
         attr_reader :maxElements, :shieldBoosters, :weapons
-        private_class_method :new
-
-        # Constructor with one paraemter
-        def self.newHangar(capacity)
-            new(capacity, [], [])
-        end
 
         # Copy constructor
         def self.newCopy(h)
-            new(h.maxElements, h.shieldBoosters, h.weapons)
+            new(h.maxElements)
         end
 
-        
         def getUIversion
             HangarToUI.new(self)
         end
@@ -87,38 +80,6 @@ module Deepspace
             "Maximum of elements: #{maxElements}\n#{shieldString}#{weaponString}"
         end
 
-    end
-
-    ### TESTING
-
-    # s1 = ShieldBooster.new("Potenciador1", 10.5, 5)
-    # s2 = ShieldBooster.new("Potenciador2", 10.5, 5)
-    # w1 = Weapon.new("arma1", WeaponType::LASER, 5)
-
-    # h = Hangar.new(3)
-
-    # h.addShieldBooster(s1)
-    # h.addShieldBooster(s2)
-    # h.addWeapon(w1)
-
-    # puts h.to_s
-    # puts
-
-    # var = h.removeShieldBooster(1)
-    # puts "Escudo eliminado: #{var}"
-
-    # var2 = h.removeWeapon(1)
-    # if var2 == nil
-    #     puts "El arma a eliminar no existe"
-    # end
-
-    # puts
-    # puts h.to_s
-    # puts
-
-    # weapons = h.weapons
-    # weapons.each do |w|
-    #     puts "#{w.to_s}\n"
-    # end
+    end # end of Hangar
  
-end
+end # end of Deepspace

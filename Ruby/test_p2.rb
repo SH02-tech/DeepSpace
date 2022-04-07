@@ -31,6 +31,8 @@ module Deepspace
             t1 = WeaponType::LASER
             t2 = WeaponType::MISSILE
             t3 = WeaponType::PLASMA
+            l1 = Loot.new(10,5,4,5,6)
+            l2 = Loot.new(4,5,6,7,8)
             escudos = [s1, s2, s3]
             armas = [w1, w2, w3]
             tipoArmas = [t1,t2,t3]
@@ -42,7 +44,7 @@ module Deepspace
             puts
 
             puts "Construyendo Hangar 1 con el constructor con un solo parámetro (capacidad)..."
-            h1 = Hangar.newHangar(10)
+            h1 = Hangar.new(10)
             puts "Hangar 1..."
             puts h1.to_s
             puts
@@ -52,6 +54,7 @@ module Deepspace
             h1.addWeapon(w1)
             puts "Hangar 1..."
             puts h1.to_s
+            puts
             puts "Quitando un escudo y un arma..."
             h1.removeShieldBooster(1)
             h1.removeWeapon(0)
@@ -63,7 +66,7 @@ module Deepspace
             puts h2.to_s
             puts
             puts "Construyendo un hangar 3 con capacidad 1..."
-            h3 = Hangar.newHangar(1)
+            h3 = Hangar.new(1)
             puts "Hangar 3..."
             puts h3.to_s
             puts "Añadiendo un arma a hangar 3..."
@@ -147,8 +150,17 @@ module Deepspace
 
             puts
             puts "------------------------------------"
-            puts "------Probando la clase EnemyS------"
+            puts "--Probando la clase EnemyStarchip---"
             puts "------------------------------------"
+            puts
+
+            puts "Creando EnemyStarShip 1..."
+            e1 = EnemyStarShip.new(10,45,60,l1,d1)
+            puts "EnemyStarShip 1..."
+            puts e1.to_s
+            puts
+            puts "Probando el metodo Shot..."
+            puts e1.receiveShot(12)
             puts
             
         end

@@ -56,34 +56,6 @@ module Deepspace
             "#{damage}"
         end
 
-    end
-
-=begin
-
-    ### TEST PROGRAM
-
-    l = Loot.new(10, 20 ,30, 40, 50)
-    d = Damage.newNumericWeapons(80, 90)
-    e = EnemyStarShip.new("naveEnemiga", 15, 20, l, d)
-    puts e.to_s
-    puts
-    if e.receiveShot(21) == ShotResult::DONOTRESIST
-        puts "No resiste"
-    else
-        puts "Resiste"
-    end
-    puts
-    var = e.shieldPower
-    puts "El shieldPower es: #{e.shieldPower}"
-    var = 0
-    puts "El nuevo shieldPower es: #{e.shieldPower}"
-    puts
-    fuego = e.fire
-    puts "Valor de fire: #{e.fire}"
-    fuego = -321
-    puts "¿Se puede modificar fire desde fuera? #{e.fire}"
-    puts
-
-=end
+    end # end of class EnemyStarShip
 
 end # Deepspace
