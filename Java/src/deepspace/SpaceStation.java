@@ -205,4 +205,15 @@ public class SpaceStation {
         return (pendingDamage == null) || (pendingDamage.hasNoEffect());
     }
 
+    public String toString() {
+        String s = "[";
+        s += "ammoPower: " + this.ammoPower + ", fuelUnits: " + this.fuelUnits;
+        s += ", name: " + this.name + ", nMedals: " + this.nMedals + ", shieldPower: " ;
+        s += this + ", pendingDamage: " + getPendingDamage().toString();
+        s += ", weapons: " + getWeapons()+ ", shieldBoosters: " + getShieldPower();
+        s += ", hangar: " + getHangar().toString();
+        s += "]";
+        return s;
+    }
+        
 }

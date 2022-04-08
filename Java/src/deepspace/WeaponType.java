@@ -10,14 +10,14 @@ public enum WeaponType {
     
     LASER(2.0f), MISSILE(3.0f), PLASMA(4.0f);
     
-    private final float power;
+    private final float POWER;
     
     /**
      * @brief Constructor with parameter. 
      * @param thePower Power associated to the weapon. 
      */
     WeaponType(float thePower) {
-        this.power = thePower;
+        this.POWER = thePower;
     }
     
     /**
@@ -25,6 +25,6 @@ public enum WeaponType {
      * @return Power associated to weapon. 
      */
     float getPower() {
-        return this.power;
+        return this.POWER;
     } 
 }

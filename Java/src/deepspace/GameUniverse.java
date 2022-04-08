@@ -95,4 +95,17 @@ public class GameUniverse {
     public boolean nextTurn() { // P3
         throw new UnsupportedOperationException();
     }
+
+    public String toString() {
+        String s = "[";
+        s += "game state: " + this.gameState.getState();
+        s += "current station index: " + this.currentStationIndex;
+        s += "current station: " + this.currentStation.toString();
+        s += "current enemy: " + this.currentEnemy.toString();
+        for (SpaceStation spaceStation : spaceStations) {
+            s += spaceStation.toString();
+        }
+        s += "]";
+        return s;
+    }
 }
