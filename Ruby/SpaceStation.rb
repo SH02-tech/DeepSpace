@@ -40,7 +40,7 @@ module Deepspace
 
         attr_reader :ammoPower, :fuelUnits, :hangar, :name, :nMedals, :pendingDamage, :shieldPower, :shieldBoosters, :weapons
 
-        def speed # TODO: This name?
+        def getSpeed
             @fuelUnits / @@MAXFUEL.to_f
         end
 
@@ -127,7 +127,7 @@ module Deepspace
         end
 
         def move
-            @fuelUnits = (1 - self.speed) * @fuelUnits # Non-negative
+            @fuelUnits = (1 - self.getSpeed) * @fuelUnits # Non-negative
         end
 
         def protection
@@ -170,7 +170,7 @@ module Deepspace
             # TODO in P3
         end
 
-        def setPendingDamage(d) # TODO: Name?
+        def setPendingDamage(d)
             @pendingDamage = d.adjust(@weapons, @shieldBoosters)
         end
 
@@ -210,7 +210,7 @@ if $0 == __FILE__ then
     s1 = Deepspace::ShieldBooster.new("Potenciador1", 10.5, 5)
     s2 = Deepspace::ShieldBooster.new("Potenciador2", 10.5, 5)
     w1 = Deepspace::Weapon.new("arma1", Deepspace::WeaponType::LASER, 5)
-    h = Deepspace::Hangar.newHangar(3)
+    h = Deepspace::Hangar.new(3)
     h.addShieldBooster(s1)
     h.addShieldBooster(s2)
     h.addWeapon(w1)

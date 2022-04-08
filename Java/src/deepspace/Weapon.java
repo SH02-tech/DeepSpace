@@ -34,10 +34,8 @@ class Weapon {
         this.uses = instance.uses;
     }
 
-    // TODO
-
     WeaponToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new WeaponToUI(this);
     }
     
     /**
