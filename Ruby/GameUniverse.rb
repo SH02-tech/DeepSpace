@@ -21,9 +21,10 @@ require_relative "CardDealer.rb"
 module GameUniverse
 
     @@WIN = 10
+    @@INVALIDSTATIONINDEX = -1
 
     def initialize()
-        @currentStationIndex = -1 # TODO
+        @currentStationIndex = @@INVALIDSTATIONINDEX
         @turns               = 0
         @dice                = Dice.new
         @gameState           = GameStateController.new
