@@ -27,8 +27,8 @@ public class SpaceStation {
         fuelUnits      = supplies.getFuelUnits();
         shieldPower    = supplies.getShieldPower();
         nMedals        = 0;
-        weapons        = null;
-        shieldBoosters = null;
+        weapons        = new ArrayList<Weapon>();
+        shieldBoosters = new ArrayList<ShieldBooster>();
         hangar         = null;
         pendingDamage  = null;
     }
@@ -117,13 +117,17 @@ public class SpaceStation {
     }
 
     public Damage getPendingDamage() {
-        Damage copyDamage = new Damage(pendingDamage);
-        return copyDamage;
+        if (pendingDamage == null)
+            return null;
+        else {
+            Damage copyDamage = new Damage(pendingDamage);
+            return copyDamage;
+        }
     }
 
     public ArrayList<ShieldBooster> getShieldBoosters() {
-        if (shieldBoosters == null)
-            return null;
+        if (shieldBoosters.isEmpty())
+            return new ArrayList<ShieldBooster>(); 
         else
             return new ArrayList<ShieldBooster>(shieldBoosters);
     }
@@ -141,7 +145,7 @@ public class SpaceStation {
     }
 
     public ArrayList<Weapon> getWeapons() {
-        if (weapons == null)
+        if (weapons.isEmpty())
             return null;
         else
             return new ArrayList<Weapon>(weapons);
@@ -188,6 +192,13 @@ public class SpaceStation {
             return false;
     }
 
+    public boolean receiveWeapon(Weapon w) {
+        if (hangar != null) 
+            return hangar.addWeapon(w);
+        else 
+            return false;
+    }
+
     public ShotResult receiveShot(float shot) {
         throw new UnsupportedOperationException();
     }
@@ -206,12 +217,24 @@ public class SpaceStation {
     }
 
     public String toString() {
+        
+        String weaponsCad = "";
+        String shieldBoostersCad = "";
+        for (Weapon weapon : this.weapons) {
+            weaponsCad += weapon.toString();
+        }
+        for (ShieldBooster shield : this.shieldBoosters) {
+            shieldBoostersCad += shield.toString();
+        }
+       
+        
+        
         String s = "[";
         s += "ammoPower: " + this.ammoPower + ", fuelUnits: " + this.fuelUnits;
-        s += ", name: " + this.name + ", nMedals: " + this.nMedals + ", shieldPower: " ;
-        s += this + ", pendingDamage: " + getPendingDamage().toString();
-        s += ", weapons: " + getWeapons()+ ", shieldBoosters: " + getShieldPower();
-        s += ", hangar: " + getHangar().toString();
+        s += ", name: " + this.name + ", nMedals: " + this.nMedals+ ", shieldPower: " ;
+        s += this.shieldPower + ", pendingDamage: " + this.pendingDamage.toString();
+        s += ", weapons: " + weaponsCad + ", shieldBoosters: " + shieldBoostersCad;
+        s += ", hangar: " + this.hangar.toString();
         s += "]";
         return s;
     }

@@ -167,5 +167,52 @@ public class TestP2 {
 
         ShotResult sr_not = ess_copy.receiveShot(50);
         System.out.println(sr_not);
+
+        System.out.println("=============================================");
+        System.out.println("SpaceSatation");
+        System.out.println("=============================================");
+
+        // Construiremos el objeto, probaremos los getters, discards, mount
+        // receive
+
+        Weapon w3 = new Weapon("AR3", WeaponType.LASER, 4);
+        Weapon w4 = new Weapon("AR4", WeaponType.MISSILE, 2);
+
+        ShieldBooster s3 = new ShieldBooster("ES3", 1.5f, 3);
+        ShieldBooster s4 = new ShieldBooster("ES4", 4f, 2);
+
+        SuppliesPackage supplies = new SuppliesPackage(5,10,10.5f);
+        Hangar hangar2 = new Hangar(10);
+        SpaceStation station1 = new SpaceStation("Estación_1", supplies);
+
+        System.out.println("Space station 1: " + station1.toString());
+        station1.receiveHangar(hangar2);
+        System.out.println("Space station 1: " + station1.toString());
+        station1.receiveShieldBooster(s3);
+        station1.receiveShieldBooster(s4);
+        station1.receiveWeapon(w3);
+        station1.receiveWeapon(w4);
+        System.out.println("Testing the getters methods: ");
+        System.out.println("Ammo Power: " + station1.getAmmoPower());
+        System.out.println("Fuel Units: " + station1.getFuelUnits());
+        System.out.println("Hangar: " + station1.getHangar().toString());
+        System.out.println("Name: " + station1.getName());
+        System.out.println("N medals: " + station1.getNMedals());
+        System.out.println("Pending damage: " + station1.getPendingDamage().toString());
+        System.out.println("Shield Booosters: " + station1.getShieldBoosters().toString());
+        System.out.println("Shield power: " + station1.getShieldPower());
+        System.out.println("Speed: " + station1.getSpeed());
+        System.out.println("Weapons: " + station1.getWeapons().toString());
+        System.out.println("Trying to modified some atributes to see if the object state changes...");
+        float ammo = station1.getAmmoPower();
+        ammo = -10000f;
+        System.out.println("Space station 1: " + station1.toString());
+
+        
+        
+
+
+
+
     }
 }
