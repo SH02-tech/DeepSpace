@@ -24,7 +24,7 @@ public class GameUniverse {
         currentStationIndex = INVALIDSTATIONINDEX;
         currentEnemy        = null;
         currentStation      = null;
-        spaceStations       = null;
+        spaceStations       = new ArrayList<>();
     }
 
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
