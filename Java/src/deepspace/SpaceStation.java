@@ -27,8 +27,8 @@ public class SpaceStation {
         fuelUnits      = supplies.getFuelUnits();
         shieldPower    = supplies.getShieldPower();
         nMedals        = 0;
-        weapons        = new ArrayList<Weapon>();
-        shieldBoosters = new ArrayList<ShieldBooster>();
+        weapons        = new ArrayList<>();
+        shieldBoosters = new ArrayList<>();
         hangar         = null;
         pendingDamage  = null;
     }
@@ -44,21 +44,19 @@ public class SpaceStation {
     } 
 
     public void cleanUpMountedItems() {
-        if (weapons != null) {
-            ArrayList<Weapon> localWeapons = new ArrayList<Weapon>();
-            for (int i = 0; i < weapons.size(); i++) {
-                if (weapons.get(i).getUses() != 0)
-                    localWeapons.add(weapons.get(i));
-            }
-            weapons = localWeapons;
+        int pos = 0;
+        while (pos < weapons.size()) {
+            if (weapons.get(pos).getUses() == 0) 
+                weapons.remove(pos);
+            else
+                pos++;
         }
-        if (shieldBoosters != null) {
-            ArrayList<ShieldBooster> localShieldBoosters = new ArrayList<ShieldBooster>();
-            for (int i = 0; i < shieldBoosters.size(); i++) {
-                if(shieldBoosters.get(i).getUses() != 0)
-                    localShieldBoosters.add(localShieldBoosters.get(i));
-            }
-            shieldBoosters = localShieldBoosters;
+        pos = 0;
+        while (pos < shieldBoosters.size()) {
+            if (shieldBoosters.get(pos).getUses() == 0) 
+                shieldBoosters.remove(pos);
+            else
+                pos++;
         }
     }
 

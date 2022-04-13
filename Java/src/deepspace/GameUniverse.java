@@ -6,6 +6,7 @@ public class GameUniverse {
     // Atributes
 
     private static final int WIN = 10;
+    private static final int INVALIDSTATIONINDEX = -1;
     private int turns; 
     private GameStateController gameState;
     private Dice dice;
@@ -20,7 +21,7 @@ public class GameUniverse {
         gameState           = new GameStateController();
         dice                = new Dice();
         turns               = 0;
-        currentStationIndex = -1;
+        currentStationIndex = INVALIDSTATIONINDEX;
         currentEnemy        = null;
         currentStation      = null;
         spaceStations       = null;
