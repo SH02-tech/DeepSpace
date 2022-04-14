@@ -101,8 +101,7 @@ public class SpaceStation {
         if (hangar == null)
             return null;
         else {
-            Hangar copyHangar = new Hangar(hangar);
-            return copyHangar;
+            return new Hangar(hangar);
         }
     }
 
@@ -143,10 +142,7 @@ public class SpaceStation {
     }
 
     public ArrayList<Weapon> getWeapons() {
-        if (weapons.isEmpty())
-            return null;
-        else
-            return new ArrayList<Weapon>(weapons);
+        return new ArrayList<Weapon>(weapons);
     }
 
     public void mountShieldBooster(int i) {
@@ -216,23 +212,25 @@ public class SpaceStation {
 
     public String toString() {
         
-        String weaponsCad = "";
-        String shieldBoostersCad = "";
-        for (Weapon weapon : this.weapons) {
-            weaponsCad += weapon.toString();
-        }
-        for (ShieldBooster shield : this.shieldBoosters) {
-            shieldBoostersCad += shield.toString();
-        }
-       
-        
-        
         String s = "[";
         s += "ammoPower: " + this.ammoPower + ", fuelUnits: " + this.fuelUnits;
         s += ", name: " + this.name + ", nMedals: " + this.nMedals+ ", shieldPower: " ;
-        s += this.shieldPower + ", pendingDamage: " + this.pendingDamage.toString();
-        s += ", weapons: " + weaponsCad + ", shieldBoosters: " + shieldBoostersCad;
-        s += ", hangar: " + this.hangar.toString();
+        s += this.shieldPower;
+
+        if (this.pendingDamage != null) {
+            s += ", pendingDamage: " + this.pendingDamage.toString();
+        } else {
+            s += ", pendingDamage: NULL";
+        }
+
+        s += ", weapons: " + weapons.toString() + ", shieldBoosters: " + shieldBoosters.toString();
+
+        if (this.hangar != null) {
+            s += ", hangar: " + this.hangar.toString();
+        } else {
+            s += ", hangar: NULL";
+        }
+
         s += "]";
         return s;
     }

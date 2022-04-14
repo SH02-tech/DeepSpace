@@ -128,7 +128,7 @@ public class TestP2 {
         Damage new_damage_2 = dam2.adjust(arr_w, arr_s);
 
         // TODO: Neccesary toString in arr_w?
-        // System.out.println("Adjust weapons: " + arr_w.toString());
+        System.out.println("Adjust weapons: " + arr_w.toString());
         System.out.println("Adjusted damage: " + new_damage_2.toString());
 
         new_damage_2.discardWeapon(w1);
@@ -198,7 +198,7 @@ public class TestP2 {
         System.out.println("Hangar: " + station1.getHangar().toString());
         System.out.println("Name: " + station1.getName());
         System.out.println("N medals: " + station1.getNMedals());
-        System.out.println("Pending damage: " + station1.getPendingDamage().toString());
+        // System.out.println("Pending damage: " + station1.getPendingDamage().toString()); // null
         System.out.println("Shield Booosters: " + station1.getShieldBoosters().toString());
         System.out.println("Shield power: " + station1.getShieldPower());
         System.out.println("Speed: " + station1.getSpeed());
