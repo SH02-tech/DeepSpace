@@ -29,7 +29,7 @@ module GameUniverse
         @dice                = Dice.new
         @gameState           = GameStateController.new
         @currentEnemy        = nil
-        @spaceStations       = nil
+        @spaceStations       = Array.new
         @currentStation      = nil
     end
 
