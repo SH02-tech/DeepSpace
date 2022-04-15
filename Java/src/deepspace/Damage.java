@@ -38,9 +38,7 @@ public class Damage {
      * @brief Copy constructor
      * @param d Instance of Damage
      */
-    Damage(Damage d) {
-        // (d.weapons != null) ? this(d.weapons, d.nShields):this(d.nWeapons, d.nShields);
-        
+    Damage(Damage d) {        
         nWeapons = d.nWeapons;
         nShields = d.nShields;
 
@@ -91,14 +89,15 @@ public class Damage {
 
         if (newDamage.nWeapons == NOTUSED) {     // Array Case
             int pos = 0;
+            ArrayList<Weapon> wCopy = new ArrayList<Weapon>(w);
 
             while (pos < newDamage.weapons.size()) {
                 WeaponType weapon = newDamage.weapons.get(pos);
 
-                int pos_encountered = this.arrayContainsType(w, weapon);
+                int pos_encountered = this.arrayContainsType(wCopy, weapon);
 
                 if (pos_encountered >= 0) {
-                    w.remove(pos_encountered);
+                    wCopy.remove(pos_encountered);
                     newDamage.weapons.remove(weapon);
                 } else {
                     ++pos;
@@ -130,7 +129,11 @@ public class Damage {
     }
 
     public boolean hasNoEffect() {
-        return ((this.nWeapons == 0 || this.weapons.isEmpty()) && this.nShields == 0);
+        if (this.nWeapons == NOTUSED) {
+            return (this.nShields == 0 && this.weapons.isEmpty());
+        } else {
+            return (this.nShields == 0 && this.nWeapons == 0);
+        }
     }
 
     public int getNShields() {
@@ -156,8 +159,10 @@ public class Damage {
         if (this.nWeapons == NOTUSED) {
             info += this.weapons.toString();
         } else {
-            info += "NULL]";
+            info += "NULL";
         }
+
+        info += "]";
 
         return info;
     }

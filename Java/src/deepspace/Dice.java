@@ -118,6 +118,7 @@ class Dice {
         data += "Probability of nº Hangars: " + NHANGARSPROB + "\n";
         data += "Probability of nº Shields: " + NSHIELDSPROB + "\n";
         data += "Probability of nº Weapons: " + NWEAPONSPROB + "\n";
+        data += "Probability of First Shot: " + FIRSTSHOTPROB + "\n";
 
         return data;
     }

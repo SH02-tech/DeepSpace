@@ -46,6 +46,7 @@ class TestP1
         puts 'Shields: ' + loot.nShields.to_s
         puts 'Hangars: ' + loot.nHangars.to_s
         puts 'Medals: ' + loot.nMedals.to_s
+        puts 'to_s: ' + loot.to_s
         puts 'Inspección: ' + loot.inspect
 
         puts '\nProbando SHIELDBOOSTER:'

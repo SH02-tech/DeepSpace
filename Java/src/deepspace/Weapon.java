@@ -76,11 +76,13 @@ class Weapon {
     } 
 
     public String toString() {
-        String data = "";
+        String data = "[";
 
         data += "Name:" + this.name + "; ";
         data += "WeaponType:" + this.type + "; ";
         data += "Uses:" + this.uses;
+
+        data += "]";
         
         return data;
     }

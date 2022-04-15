@@ -36,7 +36,7 @@ class ShieldBooster {
     }
 
     ShieldToUI getUIversion() {
-        throw new UnsupportedOperationException();
+        return new ShieldToUI(this);
     }
 
     /**
@@ -70,11 +70,12 @@ class ShieldBooster {
     }
 
     public String toString() {
-        String data = "";
+        String data = "[";
 
         data += "Name:" + this.name + "; ";
         data += "Boost:" + this.boost + "; ";
         data += "Uses:" + this.uses;
+        data += "]";
 
         return data;
     }

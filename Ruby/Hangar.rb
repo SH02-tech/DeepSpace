@@ -4,7 +4,7 @@
 # | DEEPSPACE (Ruby)                                                  | #
 # | Authors: Shao Jie Hu Chen and Mario Megías Mateo                  | #
 # +-------------------------------------------------------------------+ #
-# | Description...                                                    | #
+# | This class specifies the characteristics of an Hangar.            | #
 # +-------------------------------------------------------------------+ #
 
 module Deepspace
@@ -15,17 +15,23 @@ module Deepspace
     class Hangar
 
         # Initialize
-        def initialize(capacity)
+        def initialize(capacity, theShieldBoosters, theWeapons)
             @maxElements    = capacity
-            @shieldBoosters = Array.new
-            @weapons        = Array.new
+            @shieldBoosters = theShieldBoosters
+            @weapons        = theWeapons
         end
 
         attr_reader :maxElements, :shieldBoosters, :weapons
+        private_class_method :new
+
+        # Constructor with one paraemter
+        def self.newHangar(capacity)
+            new(capacity, [], [])
+        end
 
         # Copy constructor
         def self.newCopy(h)
-            new(h.maxElements)
+            new(h.maxElements, h.shieldBoosters, h.weapons)
         end
 
         def getUIversion
@@ -40,16 +46,16 @@ module Deepspace
 
         def addWeapon(w)
             if spaceAvailable()
-                @weapons << w
+                @weapons << Weapon.newCopy(w)
                 return true
             else
                 return false
             end
         end
 
-        def addShieldBooster(w)
+        def addShieldBooster(s)
             if spaceAvailable()
-                @shieldBoosters << w 
+                @shieldBoosters << ShieldBooster.newCopy(s)
                 return true
             else
                 return false
@@ -65,19 +71,13 @@ module Deepspace
         end
 
         def to_s
-            shieldString = ""
-            weaponString = ""
+            s = "["
+            s += "maxElements: " + @maxElements.to_s
+            s += "; shieldBoosters: " + @shieldBoosters.to_s
+            s += "; weapons: " + @weaopns.to_s
+            s += "]"
 
-            shieldBoosters.each do |s|
-                shieldString = shieldString + "#{s.to_s}\n"
-            end
-
-            weapons.each do |w|
-                weaponString = weaponString + "#{w.to_s}\n"
-            end
-
-            "HANGAR:\n" + \
-            "Maximum of elements: #{maxElements}\n#{shieldString}#{weaponString}"
+            return s
         end
 
     end # end of Hangar

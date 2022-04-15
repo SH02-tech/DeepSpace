@@ -29,7 +29,7 @@ module Deepspace
         def initialize(n, supplies)
             @ammoPower      = supplies.ammoPower
             @fuelUnits      = supplies.fuelUnits
-            @name           = n
+            @name           = n # TODO: Se modifica?
             @nMedals        = 0
             @shieldPower    = supplies.shieldPower
             @pendingDamage  = nil
@@ -50,6 +50,7 @@ module Deepspace
 
         def assignFuelValue(f)
             @fuelUnits = [f, @@MAXFUEL].min
+            return nil
         end
 
         private :assignFuelValue
@@ -58,6 +59,7 @@ module Deepspace
             if (@pendingDamage.hasNoEffect)
                 @pendingDamage = nil
             end
+            return nil
         end
 
         private :pendingDamage
@@ -80,10 +82,12 @@ module Deepspace
                     pos += 1
                 end
             end
+            return nil
         end
 
         def discardHangar
             @hangar = nil
+            return nil
         end
 
         def discardShieldBooster(i)
@@ -94,6 +98,7 @@ module Deepspace
             if (@hangar != nil)
                 @hangar.removeShieldBooster(i)
             end
+            return nil
         end
 
         def discardWeapon(i)
@@ -104,6 +109,7 @@ module Deepspace
             if (@hangar != nil)
                 @hangar.removeWeapon(i)
             end
+            return nil
         end
 
         def fire
@@ -111,23 +117,29 @@ module Deepspace
         end       
 
         def mountShieldBooster(i)
-            candidate = @hangar.removeShieldBooster(i)
+            if (@hangar != nil)
+                candidate = @hangar.removeShieldBooster(i)
 
-            if (candidate != nil)
-                @shieldBoosters.push(candidate)
+                if (candidate != nil)
+                    @shieldBoosters.push(candidate)
+                end
             end
+            return nil
         end
 
         def mountWeapon(i)
-            candidate_weapon = @hangar.removeWeapon(i)
+            if (@hangar != nil)
+                candidate_weapon = @hangar.removeWeapon(i)
 
-            if (candidate_weapon != nil)
-                @weapons.push(candidate_weapon)
+                if (candidate_weapon != nil)
+                    @weapons.push(candidate_weapon)
+                end
             end
+            return nil
         end
 
         def move
-            @fuelUnits = (1 - self.getSpeed) * @fuelUnits # Non-negative
+            @fuelUnits = (1 - self.getSpeed) * @fuelUnits # Non-negative always
         end
 
         def protection
@@ -171,7 +183,10 @@ module Deepspace
         end
 
         def setPendingDamage(d)
-            @pendingDamage = d.adjust(@weapons, @shieldBoosters)
+            if (d != nil)
+                @pendingDamage = d.adjust(@weapons, @shieldBoosters)
+            end
+            return nil
         end
 
         def validState
@@ -210,7 +225,7 @@ if $0 == __FILE__ then
     s1 = Deepspace::ShieldBooster.new("Potenciador1", 10.5, 5)
     s2 = Deepspace::ShieldBooster.new("Potenciador2", 10.5, 5)
     w1 = Deepspace::Weapon.new("arma1", Deepspace::WeaponType::LASER, 5)
-    h = Deepspace::Hangar.new(3)
+    h = Deepspace::Hangar.newHangar(5)
     h.addShieldBooster(s1)
     h.addShieldBooster(s2)
     h.addWeapon(w1)
@@ -221,9 +236,10 @@ if $0 == __FILE__ then
     puts "Inicio"
     puts "###############################"
 
-    space_station = Deepspace::SpaceStation.new("Casanova", supplies_package)
+    name = "Casanova"
+    space_station = Deepspace::SpaceStation.new(name, supplies_package)
     space_station.receiveHangar(h)
-    puts space_station.to_s
+    puts "SpaceStation state: " + space_station.to_s
 
     puts "ammoPower: " + space_station.ammoPower.to_s
 
@@ -236,7 +252,7 @@ if $0 == __FILE__ then
     space_station.mountWeapon(0)
     space_station.mountWeapon(2) # No existe. 
 
-    puts "Mounted values: " + space_station.to_s
+    puts "SpaceStation with mounted values: " + space_station.to_s
     puts "Weapons: " + space_station.weapons.to_s
     puts "ShieldBoosters: " + space_station.shieldBoosters.to_s
 

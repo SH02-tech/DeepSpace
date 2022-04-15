@@ -34,8 +34,10 @@ public class SpaceStation {
     }
 
     private void assignFuelValue(float f) {
-        if ((f + getFuelUnits()) <= MAXFUEL) 
-            fuelUnits += f;
+        if (f <= MAXFUEL)
+            this.fuelUnits = f;
+        else
+            this.fuelUnits = MAXFUEL;
     }
 
     private void cleanPendingDamage() {
@@ -207,7 +209,14 @@ public class SpaceStation {
     }
 
     public boolean validState() {
-        return (pendingDamage == null) || (pendingDamage.hasNoEffect());
+        boolean state = true;
+
+        if (this.pendingDamage != null) {
+            if (!this.pendingDamage.hasNoEffect())
+                state = false;
+        }
+
+        return state;
     }
 
     public String toString() {

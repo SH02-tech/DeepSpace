@@ -62,7 +62,7 @@ public class GameUniverse {
     public void discardWeaponInHangar(int i) {
         GameState state = getState();
         if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
-            currentStation.discardWeapon(i);;
+            currentStation.discardWeapon(i);
     }
 
     public GameState getState() {
@@ -100,12 +100,21 @@ public class GameUniverse {
     public String toString() {
         String s = "[";
         s += "game state: " + this.gameState.getState();
-        s += "current station index: " + this.currentStationIndex;
-        s += "current station: " + this.currentStation.toString();
-        s += "current enemy: " + this.currentEnemy.toString();
-        for (SpaceStation spaceStation : spaceStations) {
-            s += spaceStation.toString();
-        }
+        s += "; dice: " + this.dice.toString();
+        s += "; turns: " + this.turns;
+        s += "; currentStationIndex: " + this.currentStationIndex;
+        
+        if (this.currentEnemy != null)
+            s += "; currentEnemy: " + this.currentStation.toString();
+        else
+            s += "; currentEnemy: NULL";
+        
+        if (this.currentStation != null)
+            s += "; currentStation: " + this.currentStation.toString();
+        else 
+            s += "; currentStation: NULL";
+
+        s += "; spaceStations: " + this.spaceStations.toString(); 
         s += "]";
         return s;
     }

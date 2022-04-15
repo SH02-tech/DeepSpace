@@ -13,7 +13,6 @@ public class TestP2 {
         hangar.addShieldBooster(s1);
         hangar.addShieldBooster(s2);
         hangar.addWeapon(w1);
-        hangar.addWeapon(w1);
 
         ArrayList<Weapon> listWeapons = hangar.getWeapons();
         ArrayList<ShieldBooster> listShieldBoosters = hangar.getShieldBoosters();
@@ -42,6 +41,11 @@ public class TestP2 {
         System.out.println(hangar.toString());
         System.out.println("List of Weapons: ");
         System.out.print(listWeapons.toString());
+
+        w2.useIt();
+
+        System.out.println("Hangar (should be equal to last one) after using weapon: ");
+        System.out.println(hangar.toString());
 
         System.out.println("\n---------------------------------------------");
         System.out.println("STAGE 3");
@@ -72,7 +76,7 @@ public class TestP2 {
 
         Damage dam = new Damage(4,3);
 
-        System.out.println("ArrayContains: " + dam.toString());
+        System.out.println("Damage: " + dam.toString());
         System.out.println("ArrayContains (number should be equal): " + dam.getNShields() + " " + dam.getNWeapons());
 
         Damage copy = new Damage(dam);
@@ -81,6 +85,7 @@ public class TestP2 {
 
         ArrayList<Weapon> arr_w = new ArrayList<Weapon>();
         arr_w.add(w1);
+        arr_w.add(w2);
         arr_w.add(w2);
         
         ArrayList<ShieldBooster> arr_s = new ArrayList<ShieldBooster>();
@@ -93,7 +98,10 @@ public class TestP2 {
         new_damage.discardWeapon(w1);
         new_damage.discardWeapon(w2);
         new_damage.discardShieldBooster();
+        new_damage.discardShieldBooster();
 
+        System.out.println("Copy damage (not modified): " + copy.toString());
+        System.out.println("Old damage (should be equal): " + dam.toString());
         System.out.println("New damage with discards: " + new_damage.toString());
         
         if (new_damage.hasNoEffect()) {
@@ -123,11 +131,10 @@ public class TestP2 {
 
         Damage copy2 = new Damage(dam2);
 
-        System.out.println("Copy Damage: " + copy2.toString());
-
         Damage new_damage_2 = dam2.adjust(arr_w, arr_s);
 
         // TODO: Neccesary toString in arr_w?
+        System.out.println("Copy Damage: " + copy2.toString());
         System.out.println("Adjust weapons: " + arr_w.toString());
         System.out.println("Adjusted damage: " + new_damage_2.toString());
 
@@ -135,6 +142,7 @@ public class TestP2 {
         new_damage_2.discardWeapon(w2);
         new_damage_2.discardShieldBooster();
 
+        System.out.println("Old damage (should be equal): " + dam2.toString());
         System.out.println("New damage with discards: " + new_damage_2.toString());
         
         if (new_damage_2.hasNoEffect()) {
@@ -169,7 +177,7 @@ public class TestP2 {
         System.out.println(sr_not);
 
         System.out.println("=============================================");
-        System.out.println("SpaceSatation");
+        System.out.println("SpaceStation");
         System.out.println("=============================================");
 
         // Construiremos el objeto, probaremos los getters, discards, mount
@@ -209,8 +217,13 @@ public class TestP2 {
         System.out.println("Space station 1: " + station1.toString());
 
         
-        
+        System.out.println("=============================================");
+        System.out.println("GameUniverse");
+        System.out.println("=============================================");
 
+        GameUniverse gu = new GameUniverse();
+
+        System.out.println(gu.toString());
 
 
 

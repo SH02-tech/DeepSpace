@@ -27,7 +27,8 @@ public class TestP1 {
         System.out.println("\tNumber of hangars: " + loot.getNHangars());
         System.out.println("\tNumber of medals: " + loot.getNMedals());
         System.out.println("\tNumber of shields: " + loot.getNShields());
-        
+        System.out.println("ToString: " + loot.toString());
+
         // Information of supplies 
         
         System.out.println("Attributes of supplies:");
@@ -39,6 +40,13 @@ public class TestP1 {
         
         System.out.println("Attributes of shield:");
         System.out.println("\tBoost: " + shiled.getBoost());
+        System.out.println("\tUses: " + shiled.getUses());
+        shiled.useIt();
+        shiled.useIt();
+        shiled.useIt();
+        shiled.useIt();
+        shiled.useIt();
+        shiled.useIt();
         System.out.println("\tUses: " + shiled.getUses());
         System.out.println("\tOutput of useIt(): " + shiled.useIt());
         System.out.println("\tUses after useIt(): " + shiled.getUses());

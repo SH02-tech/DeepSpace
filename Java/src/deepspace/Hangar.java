@@ -39,7 +39,7 @@ public class Hangar {
 
     public boolean addWeapon(Weapon w) {
         if (this.spaceAvailable()) {
-            this.weapons.add(w);
+            this.weapons.add(new Weapon(w));
             return true;
         } else {
             return false;
@@ -48,7 +48,7 @@ public class Hangar {
 
     public boolean addShieldBooster(ShieldBooster s) {
         if (this.spaceAvailable()) {
-            this.shieldBoosters.add(s);
+            this.shieldBoosters.add(new ShieldBooster(s));
             return true;
         } else {
             return false;
@@ -68,7 +68,7 @@ public class Hangar {
     }
 
     public ShieldBooster removeShieldBooster(int s) {
-        if (s < this.shieldBoosters.size()) {
+        if (0 <= s && s < this.shieldBoosters.size()) {
             ShieldBooster removedShieldBooster = new ShieldBooster(this.shieldBoosters.get(s));
             this.shieldBoosters.remove(s);
 
@@ -79,7 +79,7 @@ public class Hangar {
     }
 
     public Weapon removeWeapon(int w) {
-        if (w < this.weapons.size()) {
+        if (0 <= w && w < this.weapons.size()) {
             Weapon removedWeapon = new Weapon(this.weapons.get(w));
             this.weapons.remove(w);
 
