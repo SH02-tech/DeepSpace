@@ -1,5 +1,6 @@
 package deepspace;
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class SpaceStation {
     
@@ -77,16 +78,26 @@ public class SpaceStation {
     }
 
     public void discardWeapon(int i) {   // P3
-        throw new UnsupportedOperationException();
+        if( i >= 0 && i < weapons.size()) {
+            Weapon w = new Weapon(weapons.remove(i));
+            if (this.pendingDamage != null) {
+                this.pendingDamage.discardWeapon(w);
+                this.cleanPendingDamage();
+            }
+        }
     }
 
     public void discardWeaponInHangar(int i) {
         if (hangar != null) 
             hangar.removeWeapon(i);
     }
-
+    
     public float fire() {   //P3
-        throw new UnsupportedOperationException();
+        float factor = 1f;
+        for (Weapon weapon : weapons) {
+            factor *= weapon.useIt();
+        }
+        return (this.ammoPower * factor);
     }
 
     // Getters
@@ -170,9 +181,13 @@ public class SpaceStation {
         if (fuelUnits < 0)
             fuelUnits = 0; 
     }
-
+ 
     public float protection() { //P3
-        throw new UnsupportedOperationException();
+        float factor = 1f;
+        for (ShieldBooster shieldBooster : shieldBoosters) {
+            factor *= shieldBooster.useIt();
+        }
+        return (this.ammoPower * factor);
     }
 
     public void receiveHangar(Hangar h) {
@@ -188,19 +203,55 @@ public class SpaceStation {
             return false;
     }
 
+    public void receiveSupplies(SuppliesPackage s) {
+        this.ammoPower   = s.getAmmoPower();
+        this.fuelUnits   = s.getFuelUnits();
+        this.shieldPower = s.getShieldPower();
+    }
+
     public boolean receiveWeapon(Weapon w) {
         if (hangar != null) 
             return hangar.addWeapon(w);
         else 
             return false;
     }
-
-    public ShotResult receiveShot(float shot) {
-        throw new UnsupportedOperationException();
+    
+    public ShotResult receiveShot(float shot) { // P3
+        float myProtection = this.protection();
+        if (myProtection >= shot) {
+            this.shieldPower -= this.SHIELDLOSSPERUNITSHOT * shot;
+            shieldPower = Math.max(0f, this.shieldPower);
+            return ShotResult.RESIST;
+        } else {
+            this.shieldPower = 0f;
+            return ShotResult.DONOTRESIST;
+        }
     }
+    
+    public void setLoot(Loot loot) { // P3
+        CardDealer dealer = CardDealer.getInstance();
+        int h = loot.getNHangars();
+        int elements = loot.getNSupplies();
 
-    public void setLoot(Loot loot) {
-        throw new UnsupportedOperationException();
+        if (h > 0) {
+            this.receiveHangar(dealer.nextHangar()); 
+        } 
+
+        for (int i = 0; i < elements; i++) {
+            this.receiveSupplies(dealer.nextSuppliesPackage());
+        }
+
+        elements = loot.getNWeapons();
+        for (int i = 0; i < elements; i++) {
+            this.receiveWeapon(dealer.nextWeapon()); // BOOL, revisar
+        }
+
+        elements = loot.getNShields();
+        for (int i = 0; i < elements; i++) {
+            this.receiveShieldBooster(dealer.nextShieldBooster()); // BOOL, revisar
+        }
+
+        this.nMedals += loot.getNMedals();
     }
 
     public void setPendingDamage(Damage d) {
