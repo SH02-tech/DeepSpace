@@ -69,7 +69,13 @@ public class SpaceStation {
     }
 
     public void discardShieldBooster(int i) {   // P3
-        throw new UnsupportedOperationException();
+        if( i >= 0 && i < shieldBoosters.size()) {
+            ShieldBooster s = new ShieldBooster(shieldBoosters.remove(i));
+            if (this.pendingDamage != null) {
+                this.pendingDamage.discardShieldBooster();
+                this.cleanPendingDamage();
+            }
+        }
     }
 
     public void discardShieldBoosterInHangar(int i) {
