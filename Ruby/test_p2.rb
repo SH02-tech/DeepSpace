@@ -45,7 +45,7 @@ module Deepspace
             puts
 
             puts "Construyendo Hangar 1 con el constructor con un solo parámetro (capacidad)..."
-            h1 = Hangar.newHangar(10)
+            h1 = Hangar.new(10)
             puts "Hangar 1..."
             puts h1.to_s
             puts "Inspect: " + h1.inspect
@@ -69,7 +69,7 @@ module Deepspace
             puts h2.to_s
             puts
             puts "Construyendo un hangar 3 con capacidad 1..."
-            h3 = Hangar.newHangar(1)
+            h3 = Hangar.new(1)
             puts "Hangar 3..."
             puts h3.to_s
             puts "Añadiendo un arma a hangar 3..."
