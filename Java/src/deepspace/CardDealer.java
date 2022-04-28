@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author Profe
  */
 class CardDealer {
-    private static final CardDealer instance=new CardDealer();
+    private static final CardDealer instance=new CardDealer(); // Singleton
     
     CardDeck<SuppliesPackage> suppliesPackages;
     CardDeck<ShieldBooster> shieldBoosters;
@@ -84,6 +84,7 @@ class CardDealer {
         suppliesPackages.add(new SuppliesPackage(3,50,3));    
         suppliesPackages.add(new SuppliesPackage(40,100,40));
         suppliesPackages.add(new SuppliesPackage(100,100,100));
+        suppliesPackages.add(new SuppliesPackage(120,120,120));
     }
     private void createWeapons() {
        weapons.add(new Weapon("Láser infinito",WeaponType.LASER,100));
@@ -110,7 +111,8 @@ class CardDealer {
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
        weapons.add(new Weapon("Cañón ACME",WeaponType.PLASMA,1)); 
-       weapons.add(new Weapon("Cañón mejorado",WeaponType.PLASMA,2));       
+       weapons.add(new Weapon("Cañón mejorado",WeaponType.PLASMA,2)); 
+       weapons.add(new Weapon("Cañón Bazuka",WeaponType.PLASMA,20));       
        
     }
     private void createShieldBoosters() {
@@ -125,8 +127,10 @@ class CardDealer {
        shieldBoosters.add(new ShieldBooster("Escudo ACME",1.5f,2));
        shieldBoosters.add(new ShieldBooster("Escudo normal",3.0f,2));
        shieldBoosters.add(new ShieldBooster("Escudo normal",4.0f,2));
+       shieldBoosters.add(new ShieldBooster("Escudo super",10.0f,8));
     }
     private void createHangars() {
+        hangars.add(new Hangar(6));
         hangars.add(new Hangar(4));
         hangars.add(new Hangar(4));
         hangars.add(new Hangar(3));
@@ -200,11 +204,12 @@ class CardDealer {
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));   
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));
         enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));        
-          
+        enemies.add(new EnemyStarShip("Enemigo normal 3",150,70,regularLoot0,regularSpecificDamage0));  
+
         enemies.add(new EnemyStarShip("Enemigo difícil 0",200,100,goodLoot,hardSpecificDamage0));          
         enemies.add(new EnemyStarShip("Enemigo difícil 1",100,200,goodLoot,hardSpecificDamage0));   
         
-        enemies.add(new EnemyStarShip("Enemigo imposible",500,500,goodLoot,hardSpecificDamage0));              
+        enemies.add(new EnemyStarShip("Enemigo imposible",500,500,goodLoot,hardSpecificDamage0));  
     }
 }
 
