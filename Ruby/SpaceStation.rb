@@ -10,11 +10,13 @@
 
 module Deepspace
 
+    require_relative "CardDealer.rb"
     require_relative "Loot.rb"
     require_relative "Damage.rb"
     require_relative "Weapon.rb"
     require_relative "ShieldBooster.rb"
     require_relative "Hangar.rb"
+    require_relative "ShotResult.rb"
     require_relative "SuppliesPackage.rb"
     require_relative "SpaceStationToUI.rb"
 
@@ -91,7 +93,18 @@ module Deepspace
         end
 
         def discardShieldBooster(i)
-            # TODO in P3
+            size = @shieldBoosters.length
+
+            if (0<=i && i<size)
+                s = @shieldBoosters.delete_at(i)
+
+                if (@pendingDamage != nil)
+                    @pendingDamage.discardWeapon(s)
+                    cleanPendingDamage
+                end
+            end
+
+            return nil
         end
 
         def discardShieldBoosterInHangar(i)
@@ -102,7 +115,18 @@ module Deepspace
         end
 
         def discardWeapon(i)
-            # TODO in P3
+            size = @weapons.length
+
+            if (0<= i && i < size)
+                w = @weapons.delete_at(i)
+
+                if (@pendingDamage != nil)
+                    @pendingDamage.discardWeapon(w)
+                    cleanPendingDamage
+                end
+            end
+
+            return nil
         end
 
         def discardWeaponInHangar(i)
@@ -113,7 +137,13 @@ module Deepspace
         end
 
         def fire
-            # TODO in P3
+            factor=1.0
+
+            @weapons.each do |w|
+                factor *= w.useIt
+            end
+
+            @ammoPower*factor
         end       
 
         def mountShieldBooster(i)
@@ -143,7 +173,13 @@ module Deepspace
         end
 
         def protection
-            # TODO in P3
+            factor=1.0
+
+            @shieldBoosters.each do |s|
+                factor *= s.useIt
+            end
+
+            @shieldPower*factor
         end
 
         def receiveHangar(h)
@@ -161,7 +197,18 @@ module Deepspace
         end
 
         def receiveShot(shot)
-            # TODO in P3
+            myProtection = protection
+
+            if (myProtection >= shot)
+                @shieldPower -= @@SHIELDLOSSPERUNITSHOT*shot
+                if (@shieldPower < 0)
+                    @shieldPower = 0
+                end
+                return ShotResult::RESIST
+            else
+                @shieldPower = 0
+                return ShotResult::DONOTRESIST
+            end
         end
 
         def receiveSupplies(s)
@@ -179,7 +226,40 @@ module Deepspace
         end
 
         def setLoot(loot)
-            # TODO in P3
+            dealer = CardDealer.instance
+            h = loot.nHangars
+
+            if (h>0)
+                hangar = dealer.nextHangar
+                receiveHangar(hangar)
+            end
+
+            elements = loot.nSupplies
+
+            for i in (1..elements)
+                sup = dealer.nextSuppliesPackage
+                receiveSupplies(sup)
+            end
+
+            elements = loot.nWeapons
+
+            for i in (1..elements)
+                weap = dealer.nextWeapon
+                receiveWeapon(weap)
+            end
+
+            elements = loot.nShields
+
+            for i in (1..elements)
+                sh = dealer.nextShieldBooster
+                receiveShieldBooster(sh)
+            end
+
+            medals = loot.nMedals
+
+            @nMedals += medals
+
+            return nil
         end
 
         def setPendingDamage(d)
@@ -225,16 +305,20 @@ if $0 == __FILE__ then
     s1 = Deepspace::ShieldBooster.new("Potenciador1", 10.5, 5)
     s2 = Deepspace::ShieldBooster.new("Potenciador2", 10.5, 5)
     w1 = Deepspace::Weapon.new("arma1", Deepspace::WeaponType::LASER, 5)
-    h = Deepspace::Hangar.newHangar(5)
+    h = Deepspace::Hangar.new(5)
     h.addShieldBooster(s1)
     h.addShieldBooster(s2)
     h.addWeapon(w1)
+
+    l = Deepspace::Loot.new(2,2,2,2,2)
     
     # Caso de prueba
 
+    puts 
     puts "###############################"
     puts "Inicio"
     puts "###############################"
+    puts
 
     name = "Casanova"
     space_station = Deepspace::SpaceStation.new(name, supplies_package)
@@ -243,9 +327,11 @@ if $0 == __FILE__ then
 
     puts "ammoPower: " + space_station.ammoPower.to_s
 
+    puts 
     puts "###############################"
     puts "Modificación"
     puts "###############################"
+    puts 
 
     space_station.mountShieldBooster(0)
     space_station.mountShieldBooster(0)
@@ -256,9 +342,11 @@ if $0 == __FILE__ then
     puts "Weapons: " + space_station.weapons.to_s
     puts "ShieldBoosters: " + space_station.shieldBoosters.to_s
 
+    puts
     puts "###############################"
     puts "Modificación de move y modificación de Hangar"
     puts "###############################"
+    puts
 
     space_station.move
     space_station.move
@@ -275,9 +363,11 @@ if $0 == __FILE__ then
 
     puts "Space station: " + space_station.to_s
 
+    puts
     puts "###############################"
     puts "Adición de elementos al Hangar"
     puts "###############################"
+    puts
 
     space_station.receiveShieldBooster(s1)
     space_station.receiveWeapon(w1)
@@ -285,18 +375,47 @@ if $0 == __FILE__ then
 
     puts space_station.to_s
 
+    puts
     puts "###############################"
-    puts "Eliminación de elementos al Hangar"
+    puts "Fire y protection"
     puts "###############################"
+    puts
 
-    space_station.discardShieldBooster(1)
-    space_station.discardHangar
+    puts "Fire: " + space_station.fire.to_s
+    puts "Protection: " + space_station.protection.to_s
 
+    puts
+    puts "###############################"
+    puts "Recibimiento de disparo y Lote"
+    puts "###############################"
+    puts
+
+    puts space_station.receiveShot(2)
     puts space_station.to_s
 
+    # Declarado arriba: l = Deepspace::Loot.new(2,2,2,2,2)
+    space_station.setLoot(l)
+    puts space_station.to_s
+
+    puts
+    puts "###############################"
+    puts "Eliminación de elementos"
+    puts "###############################"
+    puts
+
+    space_station.discardShieldBooster(1)
+    space_station.discardWeapon(1)
+    puts space_station.to_s
+
+    space_station.discardHangar
+    puts space_station.to_s
+
+    puts 
     puts "###############################"
     puts "Damage implementado"
     puts "###############################"
+    puts 
+    
     damage = Deepspace::Damage.newNumericWeapons(2,3)
     puts space_station.to_s
 
