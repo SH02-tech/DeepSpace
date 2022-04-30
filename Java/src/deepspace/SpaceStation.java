@@ -36,9 +36,9 @@ public class SpaceStation {
 
     private void assignFuelValue(float f) {
         if (f <= MAXFUEL)
-            this.fuelUnits = f;
+            fuelUnits = f;
         else
-            this.fuelUnits = MAXFUEL;
+            fuelUnits = MAXFUEL;
     }
 
     private void cleanPendingDamage() {
@@ -70,10 +70,10 @@ public class SpaceStation {
 
     public void discardShieldBooster(int i) {   // P3
         if( i >= 0 && i < shieldBoosters.size()) {
-            ShieldBooster s = new ShieldBooster(shieldBoosters.remove(i));
-            if (this.pendingDamage != null) {
-                this.pendingDamage.discardShieldBooster();
-                this.cleanPendingDamage();
+            shieldBoosters.remove(i);
+            if (pendingDamage != null) {
+                pendingDamage.discardShieldBooster();
+                cleanPendingDamage();
             }
         }
     }
@@ -85,10 +85,10 @@ public class SpaceStation {
 
     public void discardWeapon(int i) {   // P3
         if( i >= 0 && i < weapons.size()) {
-            Weapon w = new Weapon(weapons.remove(i));
-            if (this.pendingDamage != null) {
-                this.pendingDamage.discardWeapon(w);
-                this.cleanPendingDamage();
+            Weapon w = new Weapon(weapons.remove(i)); // Alternativa??
+            if (pendingDamage != null) {
+                pendingDamage.discardWeapon(w);
+                cleanPendingDamage();
             }
         }
     }
@@ -103,7 +103,7 @@ public class SpaceStation {
         for (Weapon weapon : weapons) {
             factor *= weapon.useIt();
         }
-        return (this.ammoPower * factor);
+        return(ammoPower * factor);
     }
 
     // Getters
@@ -136,14 +136,13 @@ public class SpaceStation {
         if (pendingDamage == null)
             return null;
         else {
-            Damage copyDamage = new Damage(pendingDamage);
-            return copyDamage;
+            return new Damage(pendingDamage);
         }
     }
 
     public ArrayList<ShieldBooster> getShieldBoosters() {
         if (shieldBoosters.isEmpty())
-            return new ArrayList<ShieldBooster>(); 
+            return new ArrayList<>(); 
         else
             return new ArrayList<ShieldBooster>(shieldBoosters);
     }
@@ -193,7 +192,7 @@ public class SpaceStation {
         for (ShieldBooster shieldBooster : shieldBoosters) {
             factor *= shieldBooster.useIt();
         }
-        return (this.ammoPower * factor);
+        return (ammoPower * factor);
     }
 
     public void receiveHangar(Hangar h) {
@@ -208,11 +207,22 @@ public class SpaceStation {
         else 
             return false;
     }
+    
+    public ShotResult receiveShot(float shot) { // P3
+        if (protection() >= shot) {
+            shieldPower -= SHIELDLOSSPERUNITSHOT * shot;
+            shieldPower = Math.max(0f, shieldPower);
+            return ShotResult.RESIST;
+        } else {
+            shieldPower = 0f;
+            return ShotResult.DONOTRESIST;
+        }
+    }
 
     public void receiveSupplies(SuppliesPackage s) {
-        this.ammoPower   = s.getAmmoPower();
-        this.fuelUnits   = s.getFuelUnits();
-        this.shieldPower = s.getShieldPower();
+        ammoPower   = s.getAmmoPower();
+        fuelUnits   = s.getFuelUnits();
+        shieldPower = s.getShieldPower();
     }
 
     public boolean receiveWeapon(Weapon w) {
@@ -222,39 +232,27 @@ public class SpaceStation {
             return false;
     }
     
-    public ShotResult receiveShot(float shot) { // P3
-        float myProtection = this.protection();
-        if (myProtection >= shot) {
-            this.shieldPower -= this.SHIELDLOSSPERUNITSHOT * shot;
-            shieldPower = Math.max(0f, this.shieldPower);
-            return ShotResult.RESIST;
-        } else {
-            this.shieldPower = 0f;
-            return ShotResult.DONOTRESIST;
-        }
-    }
-    
     public void setLoot(Loot loot) { // P3
         CardDealer dealer = CardDealer.getInstance();
+        
         int h = loot.getNHangars();
-        int elements = loot.getNSupplies();
-
         if (h > 0) {
             this.receiveHangar(dealer.nextHangar()); 
         } 
 
+        int elements = loot.getNSupplies();
         for (int i = 0; i < elements; i++) {
             this.receiveSupplies(dealer.nextSuppliesPackage());
         }
 
         elements = loot.getNWeapons();
         for (int i = 0; i < elements; i++) {
-            this.receiveWeapon(dealer.nextWeapon()); // BOOL, revisar
+            this.receiveWeapon(dealer.nextWeapon()); 
         }
 
         elements = loot.getNShields();
         for (int i = 0; i < elements; i++) {
-            this.receiveShieldBooster(dealer.nextShieldBooster()); // BOOL, revisar
+            this.receiveShieldBooster(dealer.nextShieldBooster());
         }
 
         this.nMedals += loot.getNMedals();
@@ -267,12 +265,9 @@ public class SpaceStation {
 
     public boolean validState() {
         boolean state = true;
-
-        if (this.pendingDamage != null) {
-            if (!this.pendingDamage.hasNoEffect())
-                state = false;
-        }
-
+        if (pendingDamage != null &&  !pendingDamage.hasNoEffect())
+            state = false;
+        
         return state;
     }
 
