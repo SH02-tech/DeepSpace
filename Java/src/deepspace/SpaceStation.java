@@ -260,8 +260,10 @@ public class SpaceStation {
     }
 
     public void setPendingDamage(Damage d) {
-        if (d != null)
+        if (d != null) {
             pendingDamage = d.adjust(weapons, shieldBoosters);
+            cleanPendingDamage();
+        }
     }
 
     public boolean validState() {

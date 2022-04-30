@@ -339,19 +339,5 @@ public class TestP2 {
         System.out.println("Estacion 2 despues de cleanUp: ");
         System.out.println(station2.toString());
         
-        
-        
-        
-        
-        
-//        
-//        System.out.println("=============================================");
-//        System.out.println("GameUniverse");
-//        System.out.println("=============================================");
-//
-//        GameUniverse gu = new GameUniverse();
-//
-//        System.out.println(gu.toString());
-
     }
 }
