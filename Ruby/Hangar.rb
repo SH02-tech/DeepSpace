@@ -15,23 +15,27 @@ module Deepspace
     class Hangar
 
         # Initialize
-        def initialize(capacity, theShieldBoosters, theWeapons)
+        def initialize(capacity)
             @maxElements    = capacity
-            @shieldBoosters = theShieldBoosters
-            @weapons        = theWeapons
+            @shieldBoosters = Array.new
+            @weapons        = Array.new
         end
 
         attr_reader :maxElements, :shieldBoosters, :weapons
-        private_class_method :new
-
-        # Constructor with one paraemter
-        def self.newHangar(capacity)
-            new(capacity, [], [])
-        end
 
         # Copy constructor
         def self.newCopy(h)
-            new(h.maxElements, h.shieldBoosters, h.weapons)
+            mod = new(h.maxElements)
+
+            h.shieldBoosters.each do |s|
+                mod.addShieldBooster(s)
+            end
+
+            h.weapons.each do |w|
+                mod.addWeapon(w)
+            end
+
+            return mod
         end
 
         def getUIversion
@@ -74,7 +78,7 @@ module Deepspace
             s = "["
             s += "maxElements: " + @maxElements.to_s
             s += "; shieldBoosters: " + @shieldBoosters.to_s
-            s += "; weapons: " + @weaopns.to_s
+            s += "; weapons: " + @weapons.to_s
             s += "]"
 
             return s
