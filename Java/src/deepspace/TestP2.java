@@ -180,52 +180,178 @@ public class TestP2 {
         System.out.println("SpaceStation");
         System.out.println("=============================================");
 
-        // Construiremos el objeto, probaremos los getters, discards, mount
-        // receive
-
-        Weapon w3 = new Weapon("AR3", WeaponType.LASER, 4);
-        Weapon w4 = new Weapon("AR4", WeaponType.MISSILE, 2);
-
-        ShieldBooster s3 = new ShieldBooster("ES3", 1.5f, 3);
-        ShieldBooster s4 = new ShieldBooster("ES4", 4f, 2);
-
-        SuppliesPackage supplies = new SuppliesPackage(5,10,10.5f);
-        Hangar hangar2 = new Hangar(10);
-        SpaceStation station1 = new SpaceStation("Estación_1", supplies);
-
-        System.out.println("Space station 1: " + station1.toString());
-        station1.receiveHangar(hangar2);
-        System.out.println("Space station 1: " + station1.toString());
-        station1.receiveShieldBooster(s3);
-        station1.receiveShieldBooster(s4);
-        station1.receiveWeapon(w3);
-        station1.receiveWeapon(w4);
-        System.out.println("Testing the getters methods: ");
-        System.out.println("Ammo Power: " + station1.getAmmoPower());
-        System.out.println("Fuel Units: " + station1.getFuelUnits());
-        System.out.println("Hangar: " + station1.getHangar().toString());
-        System.out.println("Name: " + station1.getName());
-        System.out.println("N medals: " + station1.getNMedals());
-        // System.out.println("Pending damage: " + station1.getPendingDamage().toString()); // null
-        System.out.println("Shield Booosters: " + station1.getShieldBoosters().toString());
-        System.out.println("Shield power: " + station1.getShieldPower());
-        System.out.println("Speed: " + station1.getSpeed());
-        System.out.println("Weapons: " + station1.getWeapons().toString());
-        System.out.println("Trying to modified some atributes to see if the object state changes...");
-        float ammo = station1.getAmmoPower();
-        ammo = -10000f;
-        System.out.println("Space station 1: " + station1.toString());
-
+        // La prueba consistirá:
+        // 1. Crear varias instancias de SpaceStation
+        // 2. Comprobar que funcionan los receive y seters
+        // 3. Hacer cambios en los parametros reales y comprobar si se modifica
+        //  el estado interno del objeto
+        // 4. Comprobar que funcionan los getters
+        // 5. Escoger una instancia, y comprobar que los elementos obtenidos
+        //  usando los getters no modifican el estado interno del objeto.
+        // 6. Comprobar el funcionamiento del resto de métodos de la práctica 2
         
-        System.out.println("=============================================");
-        System.out.println("GameUniverse");
-        System.out.println("=============================================");
+        SuppliesPackage supplies1 = new SuppliesPackage(5,10,10.5f);
+        SuppliesPackage supplies2 = new SuppliesPackage(4,14,27.4f);
+        SuppliesPackage supplies3 = new SuppliesPackage(1,2,9.8f);
+        SuppliesPackage supplies4 = new SuppliesPackage(0,0,0f);
+        
+        w1 = new Weapon("AR1", WeaponType.LASER, 4);
+        w2 = new Weapon("AR2", WeaponType.MISSILE, 2);
+        Weapon w3 = new Weapon("AR3", WeaponType.PLASMA, 0);
+        Weapon w4 = new Weapon("AR4", WeaponType.PLASMA, 0);
+        
+        s1 = new ShieldBooster("ES1", 1.5f, 3);
+        s2 = new ShieldBooster("ES2", 4f, 2);
+        ShieldBooster s3 = new ShieldBooster("ES3", 2.8f, 0);
+        ShieldBooster s4 = new ShieldBooster("ES4", 3f, 0);
+        
+        Hangar hangar1 = new Hangar(5);
+        Hangar hangar2 = new Hangar(4);
+        hangar1.addShieldBooster(s1);
+        hangar1.addWeapon(w1);
+        hangar2.addShieldBooster(s3);
+        hangar2.addWeapon(w3);
 
-        GameUniverse gu = new GameUniverse();
-
-        System.out.println(gu.toString());
-
-
+        Damage d1 = new Damage(4,5);
+        Damage d2 = new Damage(7,8);
+        
+        SpaceStation station1 = new SpaceStation("Estación_1", supplies1);
+        SpaceStation station2 = new SpaceStation("Estación_2", supplies2);
+        SpaceStation station3 = new SpaceStation("Estación_3", supplies3);
+        SpaceStation station4 = new SpaceStation("Estación_4", supplies4);
+        
+        // receive y set aplicado a station1
+        
+        System.out.println("Estacion 1 antes de receive y set: ");
+        System.out.println(station1.toString());
+        
+        station1.receiveHangar(hangar1);
+        station1.receiveShieldBooster(s1);
+        station1.receiveWeapon(w1);
+        station1.receiveSupplies(supplies1);
+        station1.setPendingDamage(d1);
+        
+        System.out.println("Estacion 1 despues de receive y set: ");
+        System.out.println(station1.toString());
+        
+        // Modificmos los elementos anteriores
+        
+        hangar1.removeShieldBooster(0);
+        s1.useIt();
+        w1.useIt();
+        supplies1 = new SuppliesPackage(supplies2);
+        d1.discardShieldBooster();
+        
+        // Comprobamos el estado del objeto
+        
+        System.out.println("Estacion 1 despues de modificaciones en los parametros reales(debe ser la misma que en la anterior): ");
+        System.out.println(station1.toString());
+        
+        // Reestablecemos los valores modificados
+        
+        hangar1 = new Hangar(5);
+        w1 = new Weapon("AR1", WeaponType.LASER, 4);
+        w2 = new Weapon("AR2", WeaponType.MISSILE, 2);
+        supplies1 = new SuppliesPackage(5,10,10.5f);
+        d1 = new Damage(4,5);
+        
+        // Veamos si funcionan los getters. 
+        
+        float ammo_power_s1 = station1.getAmmoPower();
+        float fuel_units_s1 = station1.getFuelUnits();
+        Hangar hangar_s1 = station1.getHangar();
+        String name_s1 = station1.getName();
+        int nMedals_s1 = station1.getNMedals();
+        Damage damage_s1 = station1.getPendingDamage();
+        ArrayList<ShieldBooster> shields_s1 = station1.getShieldBoosters();
+        float shield_power_s1 = station1.getShieldPower();
+        float speed_s1 = station1.getSpeed();
+        ArrayList<Weapon> weapon_s1 = station1.getWeapons();
+        
+//        System.out.println("Elementos devueltos por los getters: ");
+//        System.out.println("Ammo power:" + ammo_power_s1);
+//        System.out.println("fuel units:" + fuel_units_s1);
+//        System.out.println("hangar:" + hangar_s1.toString());
+//        System.out.println("Name:" + name_s1);
+//        System.out.println("Medals: " + nMedals_s1);
+//        System.out.println("Damage: " + damage_s1.toString());
+//        System.out.println("Escudos: " + shields_s1.toString());
+//        System.out.println("Shield power: " + shield_power_s1);
+//        System.out.println("Velocidad: " + speed_s1);
+//        System.out.println("Weapons: " + weapon_s1.toString());
+        
+        // Modifiquemos los objetos devueltos
+        
+        ammo_power_s1 = 0f;
+        fuel_units_s1 = 0f;
+        hangar_s1 = null;
+        name_s1 = "";
+        nMedals_s1 = 2000;
+        damage_s1 = null;
+        shields_s1.add(s4);
+        shield_power_s1 = 0f;
+        speed_s1 = 0f;
+        weapon_s1.add(w4);
+        
+        // Veamos el estado del objeto
+        
+        System.out.println("Estación 1 despues de cambiar los elementos devueltos por los setters: ");
+        System.out.println(station1.toString());
+        
+        // Probemos los mount
+        
+        station1.mountShieldBooster(0);
+        station1.mountWeapon(0);
+        
+        // Veamos el estado del objeto
+        
+        System.out.println("Estación 1 despues de mount: ");
+        System.out.println(station1.toString());
+        
+        // Probemos los discard de los hangares
+        
+        station1.discardShieldBoosterInHangar(0);
+        station1.discardWeaponInHangar(0);
+        
+        // Veamos el estado del objeto
+        
+        System.out.println("Estación 1 despues de discardInHangar: ");
+        System.out.println(station1.toString());
+        
+        // Por ultimo porbamos cleanUpMountedItems en station 1 y 2
+        
+        station1.cleanUpMountedItems();
+        System.out.println("Estación 1 despues de cleanUp: ");
+        System.out.println(station1.toString());
+        
+        System.out.println("Estacion 2: ");
+        System.out.println(station2.toString());
+        
+        station2.receiveHangar(hangar2);
+        station2.mountShieldBooster(0);
+        station2.mountWeapon(0);
+        
+        System.out.println("Estacion 2 despues de añadir: ");
+        System.out.println(station2.toString());
+        
+        station2.cleanUpMountedItems();
+        
+        System.out.println("Estacion 2 despues de cleanUp: ");
+        System.out.println(station2.toString());
+        
+        
+        
+        
+        
+        
+//        
+//        System.out.println("=============================================");
+//        System.out.println("GameUniverse");
+//        System.out.println("=============================================");
+//
+//        GameUniverse gu = new GameUniverse();
+//
+//        System.out.println(gu.toString());
 
     }
 }

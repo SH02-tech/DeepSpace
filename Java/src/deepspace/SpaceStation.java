@@ -35,8 +35,10 @@ public class SpaceStation {
     }
 
     private void assignFuelValue(float f) {
-        if (f <= MAXFUEL)
+        if (0 <= f  && f <= MAXFUEL)
             fuelUnits = f;
+        else if (f < 0)
+            fuelUnits = 0;
         else
             fuelUnits = MAXFUEL;
     }
@@ -182,9 +184,8 @@ public class SpaceStation {
     }
 
     public void move() {
-        fuelUnits -= getSpeed()*fuelUnits;
-        if (fuelUnits < 0)
-            fuelUnits = 0; 
+        float fuel = fuelUnits*(1-getSpeed()); 
+        assignFuelValue(fuel);
     }
  
     public float protection() { //P3
