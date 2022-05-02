@@ -85,26 +85,23 @@ public class Damage {
     public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
         Damage newDamage = new Damage(this);
 
-        newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
+        newDamage.nShields = Math.min(s.size(), this.nShields);
 
         if (newDamage.nWeapons == NOTUSED) {     // Array Case
-            int pos = 0;
-            ArrayList<Weapon> wCopy = new ArrayList<Weapon>(w);
-
-            while (pos < newDamage.weapons.size()) {
-                WeaponType weapon = newDamage.weapons.get(pos);
-
-                int pos_encountered = this.arrayContainsType(wCopy, weapon);
-
-                if (pos_encountered >= 0) {
-                    wCopy.remove(pos_encountered);
-                    newDamage.weapons.remove(weapon);
-                } else {
-                    ++pos;
+            newDamage.weapons.clear();
+            ArrayList<Weapon> wCopy = new ArrayList<>(w);
+            
+            for (int i=0; i<this.weapons.size(); ++i) {
+                WeaponType weapon = this.weapons.get(i);
+                int pos = this.arrayContainsType(wCopy, weapon);
+                
+                if (pos >= 0) {
+                    wCopy.remove(pos);
+                    newDamage.weapons.add(weapon);
                 }
             }
         } else {                        // Numeric Case
-            newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
+            newDamage.nWeapons = Math.min(w.size(), this.nWeapons);
         }
 
         return newDamage;
@@ -127,7 +124,11 @@ public class Damage {
             --this.nShields;
         }
     }
-
+    
+    /**
+     * @brief Establishes when a Damage is inoffensive. 
+     * @return True when there are nor shields nor weapons. False otherwise. 
+     */
     public boolean hasNoEffect() {
         if (this.nWeapons == NOTUSED) {
             return (this.nShields == 0 && this.weapons.isEmpty());
