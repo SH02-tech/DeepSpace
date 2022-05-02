@@ -68,11 +68,20 @@ module Deepspace
         end
 
         def removeShieldBooster(s)
-            @shieldBoosters.delete_at(s)
+            if 0<=s && s<@shieldBoosters.size
+                @shieldBoosters.delete_at(s)
+            else
+                return nil
+            end
+            
         end
 
         def removeWeapon(w)
-            @weapons.delete_at(w)
+            if 0<=w && w<@weapons.size
+                @weapons.delete_at(w)
+            else
+                return nil
+            end
         end
 
         def to_s
