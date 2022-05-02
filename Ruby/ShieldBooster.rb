@@ -10,6 +10,8 @@
 
 module Deepspace
 
+    require_relative "ShieldToUI.rb"
+
     class ShieldBooster
 
         # Constructor 

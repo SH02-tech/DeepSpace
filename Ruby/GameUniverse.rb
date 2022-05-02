@@ -17,6 +17,7 @@ require_relative "Dice.rb"
 require_relative "ShotResult.rb"
 require_relative "SpaceStation.rb"
 require_relative "CardDealer.rb"
+require_relative "GameUniverseToUI.rb"
 
 class GameUniverse
 
@@ -33,7 +34,7 @@ class GameUniverse
         @currentStation      = nil
     end
 
-    def combatGo(station, enemy)    # P3
+    def combatGo(station, enemy) 
         ch = @dice.firstShot
         enemyWins = nil 
         combatResult = nil
@@ -72,8 +73,7 @@ class GameUniverse
         return combatResult
     end
 
-    def combat  # P3
-        state = @gameState.state
+    def combat
         if (state == GameState::BEFORECOMBAT || state == GameState::INIT)
             return combatGo(@currentStation, @currentEnemy)
         else
@@ -82,7 +82,6 @@ class GameUniverse
     end
 
     def discardHangar
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.discardHangar
         end
@@ -90,7 +89,6 @@ class GameUniverse
     end
 
     def discardShieldBooster(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.discardShieldBooster(i)
         end
@@ -98,7 +96,6 @@ class GameUniverse
     end
 
     def discardShieldBoosterInHangar(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.discardHangarInHangar(i)
         end
@@ -106,7 +103,6 @@ class GameUniverse
     end
 
     def discardWeapon(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.discardWeapon(i)
         end
@@ -114,28 +110,27 @@ class GameUniverse
     end
 
     def discardWeaponInHangar(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.discardWeaponInHangar(i)
         end
         return nil
     end
 
-    def getState
-        gameState.state
+    def state
+        @gameState.state
     end
 
     def getUIversion
-        GameUniverseToUI.new(self)
+        GameUniverseToUI.new(@currentStation, @currentEnemy)
     end
 
     def haveAWinner
         @currentStation.nMedals >= @@WIN
     end
 
-    def init(names) # P3    
-        if @gameState.state == GameState::CANNOTPLAY
-            dealer = CardDealer.new
+    def init(names) 
+        if state == GameState::CANNOTPLAY
+            dealer = CardDealer.instance
             names.each do |name|
                 supplies = dealer.nextSuppliesPackage
                 station  = SpaceStation.new(name, supplies)
@@ -146,15 +141,14 @@ class GameUniverse
                 station.setLoot(lo)
                 @spaceStations << station
             end
-            currentStationIndex = @dice.whoStarts(names.lenght)
-            currentStation      = @spaceStations.at(currentStationIndex)
-            currentEnemy        = dealer.nextEnemy
+            @currentStationIndex = @dice.whoStarts(names.length)
+            @currentStation      = @spaceStations.at(@currentStationIndex)
+            @currentEnemy        = dealer.nextEnemy
             @gameState.next(@turns, @spaceStations.length)
         end
     end
 
     def mountShieldBooster(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.mountShieldBooster(i)
         end
@@ -162,24 +156,23 @@ class GameUniverse
     end
 
     def mountWeapon(i)
-        state = @gameState.state
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
             @currentStation.mountWeapon(i)
         end
         return nil
     end
 
-    def nextTurn    # P3
+    def nextTurn
         changeTurn = false
-        if @gameState.state == GameState::AFTERCOMBAT
+        if state == GameState::AFTERCOMBAT
             if @currentStation.validState
-                @currentStationIndex = (@currentStationIndex + 1) % @spaceStations.lenght
-                turns += 1
-                @currentStation = @spaceStations.at(currentStationIndex)
+                @currentStationIndex = (@currentStationIndex + 1) % @spaceStations.length
+                @turns += 1
+                @currentStation = @spaceStations.at(@currentStationIndex)
                 @currentStation.cleanUpMountedItems
-                dealer = CardDealer.new
+                dealer = CardDealer.instance
                 @currentEnemy = dealer.nextEnemy
-                @gameState.next(turns, @spaceStations.lenght)
+                @gameState.next(@turns, @spaceStations.length)
                 changeTurn = true
             end
         end
