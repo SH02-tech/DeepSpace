@@ -209,16 +209,6 @@ module Deepspace
             puts e1copy.to_s
             puts
 
-            puts
-            puts "------------------------------------"
-            puts "---Probando la clase GameUniverse---"
-            puts "------------------------------------"
-            puts
-            
-            gu = GameUniverse.new
-
-            puts gu.to_s
-            puts gu.inspect
         end
 
     end # end of TestP2

@@ -97,7 +97,7 @@ class GameUniverse
 
     def discardShieldBoosterInHangar(i)
         if (state == GameState::INIT || state == GameState::AFTERCOMBAT)
-            @currentStation.discardHangarInHangar(i)
+            @currentStation.discardShieldBoosterInHangar(i)
         end
         return nil
     end
