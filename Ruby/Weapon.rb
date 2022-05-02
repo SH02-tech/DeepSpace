@@ -11,6 +11,7 @@
 module Deepspace
     
     require_relative 'WeaponType.rb'
+    require_relative 'WeaponToUI.rb'
 
     class Weapon
 

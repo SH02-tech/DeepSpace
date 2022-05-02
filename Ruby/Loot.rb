@@ -10,6 +10,8 @@
 
 module Deepspace
 
+    require_relative "LootToUI.rb"
+
     class Loot
 
         # Constructor 

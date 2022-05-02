@@ -64,8 +64,6 @@ module Deepspace
             return nil
         end
 
-        private :pendingDamage
-
         def cleanUpMountedItems
             pos = 0
             while pos < @weapons.length do
@@ -99,7 +97,7 @@ module Deepspace
                 s = @shieldBoosters.delete_at(i)
 
                 if (@pendingDamage != nil)
-                    @pendingDamage.discardWeapon(s)
+                    @pendingDamage.discardShieldBooster
                     cleanPendingDamage
                 end
             end

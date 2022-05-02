@@ -11,6 +11,7 @@ module Deepspace
 
 require_relative "WeaponType.rb"
 require_relative "ShieldBooster.rb"
+require_relative "DamageToUI.rb"
 
 class Damage
 

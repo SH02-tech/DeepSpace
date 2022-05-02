@@ -12,6 +12,7 @@ module Deepspace
 require_relative "Loot.rb"
 require_relative "Damage.rb"
 require_relative "ShotResult.rb"
+require_relative "EnemyToUI.rb"
 
 class EnemyStarShip
     
