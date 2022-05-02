@@ -83,29 +83,20 @@ class Damage
                 pos = arrayContainsType(wCopy,weaponType)
                 if pos >= 0
                     wCopy.delete_at(pos)
-                    weaponsCopy.delete(weaponType)
-                else
                     index += 1
+                else
+                    weaponsCopy.delete(weaponType)
                 end
             end
 
-            nShieldsCopy = nShields - s.length
-            if nShieldsCopy < 0
-                nShieldsCopy = 0
-            end
+            nShieldsCopy = [nShields,s.length].min
             
             return Damage.newSpecificWeapons(weaponsCopy, nShieldsCopy)
 
         else  # Not using an array
-            nWeaponsCopy = nWeapons - w.length
-            if nWeaponsCopy < 0
-                nWeaponsCopy = 0
-            end
+            nWeaponsCopy = [nWeapons,w.length].min
 
-            nShieldsCopy = nShields - s.length
-            if nShieldsCopy < 0
-                nShieldsCopy = 0
-            end
+            nShieldsCopy = [nShields,s.length].min
 
             return Damage.newNumericWeapons(nWeaponsCopy, nShieldsCopy)
         end
