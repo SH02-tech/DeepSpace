@@ -83,28 +83,35 @@ public class Damage {
      * @return New instance of Damage, with adjusted restrictions.
      */
     public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
+        
         Damage newDamage = new Damage(this);
 
-        newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
+        // newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
+        newDamage.nShields = Math.min(s.size(), newDamage.nShields);
 
         if (newDamage.nWeapons == NOTUSED) {     // Array Case
+            
             int pos = 0;
             ArrayList<Weapon> wCopy = new ArrayList<Weapon>(w);
 
             while (pos < newDamage.weapons.size()) {
+                
                 WeaponType weapon = newDamage.weapons.get(pos);
-
                 int pos_encountered = this.arrayContainsType(wCopy, weapon);
 
                 if (pos_encountered >= 0) {
                     wCopy.remove(pos_encountered);
-                    newDamage.weapons.remove(weapon);
-                } else {
                     ++pos;
+                    // newDamage.weapons.remove(weapon);
+                } else {
+                    newDamage.weapons.remove(weapon);
+                    // ++pos;
                 }
             }
+            
         } else {                        // Numeric Case
-            newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
+            // newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
+            newDamage.nWeapons = Math.min(w.size(), newDamage.nWeapons);
         }
 
         return newDamage;
