@@ -141,6 +141,7 @@ public class TestP2 {
         new_damage_2.discardWeapon(w1);
         new_damage_2.discardWeapon(w2);
         new_damage_2.discardShieldBooster();
+        new_damage_2.discardShieldBooster();
 
         System.out.println("Old damage (should be equal): " + dam2.toString());
         System.out.println("New damage with discards: " + new_damage_2.toString());

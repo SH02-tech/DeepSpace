@@ -83,25 +83,35 @@ public class Damage {
      * @return New instance of Damage, with adjusted restrictions.
      */
     public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s) {
+        
         Damage newDamage = new Damage(this);
 
-        newDamage.nShields = Math.min(s.size(), this.nShields);
+        // newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
+        newDamage.nShields = Math.min(s.size(), newDamage.nShields);
 
         if (newDamage.nWeapons == NOTUSED) {     // Array Case
-            newDamage.weapons.clear();
-            ArrayList<Weapon> wCopy = new ArrayList<>(w);
             
-            for (int i=0; i<this.weapons.size(); ++i) {
-                WeaponType weapon = this.weapons.get(i);
-                int pos = this.arrayContainsType(wCopy, weapon);
+            int pos = 0;
+            ArrayList<Weapon> wCopy = new ArrayList<Weapon>(w);
+
+            while (pos < newDamage.weapons.size()) {
                 
-                if (pos >= 0) {
-                    wCopy.remove(pos);
-                    newDamage.weapons.add(weapon);
+                WeaponType weapon = newDamage.weapons.get(pos);
+                int pos_encountered = this.arrayContainsType(wCopy, weapon);
+
+                if (pos_encountered >= 0) {
+                    wCopy.remove(pos_encountered);
+                    ++pos;
+                    // newDamage.weapons.remove(weapon);
+                } else {
+                    newDamage.weapons.remove(weapon);
+                    // ++pos;
                 }
             }
+            
         } else {                        // Numeric Case
-            newDamage.nWeapons = Math.min(w.size(), this.nWeapons);
+            // newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
+            newDamage.nWeapons = Math.min(w.size(), newDamage.nWeapons);
         }
 
         return newDamage;

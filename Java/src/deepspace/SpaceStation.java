@@ -85,7 +85,7 @@ public class SpaceStation {
             hangar.removeShieldBooster(i);
     }
 
-    public void discardWeapon(int i) {   // P3
+    public void discardWeapon(int i) { 
         if( i >= 0 && i < weapons.size()) {
             Weapon w = new Weapon(weapons.remove(i)); // Alternativa??
             if (pendingDamage != null) {
@@ -266,6 +266,10 @@ public class SpaceStation {
         }
     }
 
+    /**
+     * @brief This function determines the state of SpaceStation.
+     * @return False when there's pendingDamage with effect. True otherwise. 
+     */
     public boolean validState() {
         boolean state = true;
         if (pendingDamage != null &&  !pendingDamage.hasNoEffect())

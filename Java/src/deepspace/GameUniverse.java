@@ -112,13 +112,13 @@ public class GameUniverse {
     public void discardWeapon(int i) {
         GameState state = getState();
         if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
-            currentStation.discardShieldBooster(i);
+            currentStation.discardWeapon(i);
     }
 
     public void discardWeaponInHangar(int i) {
         GameState state = getState();
         if (state == GameState.INIT || state == GameState.AFTERCOMBAT)
-            currentStation.discardWeapon(i);
+            currentStation.discardWeaponInHangar(i);
     }
 
     public GameState getState() {
@@ -174,6 +174,10 @@ public class GameUniverse {
             currentStation.mountWeapon(i);
     }
 
+    /**
+     * @brief This function change the turn of the game.
+     * @return True when there's no pending damage. False otherwise. 
+     */
     public boolean nextTurn() {
         GameState state = this.gameState.getState();
 
