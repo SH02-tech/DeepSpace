@@ -54,7 +54,7 @@ module Deepspace
         # to_s method
         def to_s
             s = "["
-            s += "Name: #{name}S"
+            s += "Name: #{name}"
             s += "; Type: #{type.to_s}"
             s += "; Uses: #{uses}" 
             s += "]"
