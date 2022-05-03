@@ -30,15 +30,7 @@ require_relative "DamageToUI.rb"
             end
         end
 
-        attr_reader :nShields, :nWeapons
-
-        def weapons
-            if (@weapons != nil)
-                Array.new(@weapons)
-            else
-                nil
-            end
-        end
+        attr_reader :nShields, :nWeapons, :weapons
 
         def self.newNumericWeapons(w, s)
             new(w, s, nil)
