@@ -24,15 +24,7 @@ module Deepspace
 
         # Getters
 
-        attr_reader :maxElements
-
-        def shieldBoosters 
-            Array.new(@shieldBoosters)
-        end
-
-        def weapons
-            Array.new(@weapons)
-        end
+        attr_reader :maxElements, :shieldBoosters, :weapons
 
         # Copy constructor
         def self.newCopy(h)

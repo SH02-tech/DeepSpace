@@ -30,7 +30,15 @@ require_relative "DamageToUI.rb"
             end
         end
 
-        attr_reader :nShields, :nWeapons, :weapons
+        attr_reader :nShields, :nWeapons
+
+        def weapons
+            if (@weapons != nil)
+                Array.new(@weapons)
+            else
+                nil
+            end
+        end
 
         def self.newNumericWeapons(w, s)
             new(w, s, nil)
@@ -106,15 +114,21 @@ require_relative "DamageToUI.rb"
         def discardWeapon(w)    # w : weaponn
             if @nWeapons == @@NOTUSED && @weapons.length > 0 # Using an array
                 @weapons.delete(w.type)
-            elsif @nWeapons > 0 # Not using an array
-                @nWeapons -= 1
+            else  # Not using an array
+                if @nWeapons > 0 
+                    @nWeapons -= 1
+                else
+                    @nWeapons = 0
+                end
             end
             return nil
         end
         
         def discardShieldBooster()
             if @nShields > 0
-                @nShields -=1
+                @nShields -= 1
+            else
+                @nShields = 0
             end
             return nil
         end
