@@ -9,22 +9,31 @@
 
 module Deepspace
 
-module WeaponType
-    class Type
-        #  Constructor or Initializer
-        def initialize (the_power)
-            @power = the_power
+    module WeaponType
+
+        class Type
+
+            #  Constructor or Initializer
+            def initialize (the_power, the_name)
+                @power = the_power
+                @name  = the_name
+            end
+
+            # Get function
+            def power
+                @power
+            end
+
+            # to_s method
+            def to_s
+                "#{@name}"
+            end
+
         end
 
-        # Get function
-        def power
-            @power
-        end
+        LASER   = Type.new(2.0, "LASER")
+        MISSILE = Type.new(3.0, "MISSILE")
+        PLASMA  = Type.new(4.0, "PLASMA")
     end
-
-    LASER   = Type.new(2.0)
-    MISSILE = Type.new(3.0)
-    PLASMA  = Type.new(4.0)
-end
 
 end # end of Deepspace

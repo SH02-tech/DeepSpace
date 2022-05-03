@@ -15,6 +15,8 @@ module Deepspace
 
     class Weapon
 
+        @@defaultPower = 1.0
+
         # Constructor
         def initialize(the_name, the_type, the_uses)
             @name = the_name
@@ -39,9 +41,9 @@ module Deepspace
         def useIt
             if @uses > 0
                 @uses = @uses -1
-                self.power
+                power
             else
-                return 1
+                @@defaultPower
             end
         end
 
@@ -51,15 +53,16 @@ module Deepspace
 
         # to_s method
         def to_s
-            if type == WeaponType::LASER
-                typeName = "LASER"
-            elsif type == WeaponType::MISSILE
-                typeName = "MISSILE"
-            else
-                typeName = "PLASMA"
-            end
+            
+            # if type == WeaponType::LASER
+            #     typeName = "LASER"
+            # elsif type == WeaponType::MISSILE
+            #     typeName = "MISSILE"
+            # else
+            #     typeName = "PLASMA"
+            # end
 
-            return "Weapon => Name: #{name}, Type: #{typeName}, Uses: #{uses}."
+            return "Weapon => Name: #{name}, Type: #{type.to_s}, Uses: #{uses}."
         end
 
     end # end of class Weapon
