@@ -53,16 +53,11 @@ module Deepspace
 
         # to_s method
         def to_s
-            
-            # if type == WeaponType::LASER
-            #     typeName = "LASER"
-            # elsif type == WeaponType::MISSILE
-            #     typeName = "MISSILE"
-            # else
-            #     typeName = "PLASMA"
-            # end
-
-            return "Weapon => Name: #{name}, Type: #{type.to_s}, Uses: #{uses}."
+            s = "["
+            s += "Name: #{name}S"
+            s += "; Type: #{type.to_s}"
+            s += "; Uses: #{uses}" 
+            s += "]"
         end
 
     end # end of class Weapon

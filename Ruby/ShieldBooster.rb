@@ -48,7 +48,11 @@ module Deepspace
 
         # to_s method
         def to_s
-            return "ShieldBooster => Name: #{name}, Boost: #{boost}, Uses: #{uses}."
+            s = "["
+            s += "Name: #{name}S"
+            s += "; Boost: #{boost}"
+            s += "; Uses: #{uses}" 
+            s += "]"
         end
 
     end # end of class ShiedlBooster

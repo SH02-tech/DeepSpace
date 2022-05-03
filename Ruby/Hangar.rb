@@ -22,7 +22,17 @@ module Deepspace
             @weapons        = Array.new
         end
 
-        attr_reader :maxElements, :shieldBoosters, :weapons
+        # Getters
+
+        attr_reader :maxElements
+
+        def shieldBoosters 
+            Array.new(@shieldBoosters)
+        end
+
+        def weapons
+            Array.new(@weapons)
+        end
 
         # Copy constructor
         def self.newCopy(h)
@@ -68,7 +78,7 @@ module Deepspace
         end
 
         def removeShieldBooster(s)
-            if 0<=s && s<@shieldBoosters.size
+            if 0<=s && s<@shieldBoosters.length
                 @shieldBoosters.delete_at(s)
             else
                 return nil
@@ -77,7 +87,7 @@ module Deepspace
         end
 
         def removeWeapon(w)
-            if 0<=w && w<@weapons.size
+            if 0<=w && w<@weapons.length
                 @weapons.delete_at(w)
             else
                 return nil
@@ -85,10 +95,20 @@ module Deepspace
         end
 
         def to_s
+
+            cadShieldBoosters = ""
+            @shieldBoosters.each do |shield|
+                cadShieldBoosters += shield.to_s
+            end
+            cadWeapons = ""
+            @weapons.each do |weapon|
+                cadWeapons += weapon.to_s
+            end
+
             s = "["
             s += "maxElements: " + @maxElements.to_s
-            s += "; shieldBoosters: " + @shieldBoosters.to_s
-            s += "; weapons: " + @weapons.to_s
+            s += "; shieldBoosters: " + cadShieldBoosters
+            s += "; weapons: " + cadWeapons
             s += "]"
 
             return s
