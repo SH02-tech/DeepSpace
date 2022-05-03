@@ -233,7 +233,7 @@ public class SpaceStation {
             return false;
     }
     
-    public void setLoot(Loot loot) { // P3
+    public void setLoot(Loot loot) {
         CardDealer dealer = CardDealer.getInstance();
         
         int h = loot.getNHangars();

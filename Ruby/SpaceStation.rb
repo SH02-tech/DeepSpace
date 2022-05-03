@@ -375,6 +375,27 @@ if $0 == __FILE__ then
 
     puts
     puts "###############################"
+    puts "Descartando elementos del Hangar"
+    puts "###############################"
+    puts
+
+    space_station.discardShieldBoosterInHangar(0)
+    space_station.discardWeaponInHangar(0)
+
+    puts "SPACESTATION RESULTADO: " + space_station.to_s
+
+    # Recuperando estado anterior
+    space_station.receiveShieldBooster(s1)
+    space_station.receiveWeapon(w1)
+
+    puts
+    puts "Añadiendo arma: "  + w1.to_s
+    puts "Añadiendo escudo: " + s1.to_s
+    puts "SPACESTATION RESULTADO: " + space_station.to_s
+    puts
+
+    puts
+    puts "###############################"
     puts "Fire y protection"
     puts "###############################"
     puts
