@@ -14,7 +14,7 @@ module Deepspace
 
     class ShieldBooster
 
-        @@defaultPower = 1.0
+        @@defaultBoost = 1.0
 
         # Constructor 
         def initialize (the_name, the_boost, the_uses)
@@ -38,7 +38,7 @@ module Deepspace
                 @uses =- 1
                 boost
             else
-                @@defaultPower
+                @@defaultBoost
             end
         end
 
