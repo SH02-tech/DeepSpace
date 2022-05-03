@@ -15,6 +15,7 @@ module Deepspace
             w1 = Weapon.new("arma1", WeaponType::LASER, 5)
             w2 = Weapon.new("arma2", WeaponType::MISSILE, 6)
             w3 = Weapon.new("arma3", WeaponType::PLASMA, 7)
+            w0 = Weapon.new("arma0", WeaponType::LASER, 5)
 
             s = [s1, s2, s3]
             w = [w1, w2, w3]
@@ -43,7 +44,7 @@ module Deepspace
             puts "Escudos"
             puts escudos.to_s
 
-            armas.clear
+            armas[0] = w0
             escudos.clear
 
             puts

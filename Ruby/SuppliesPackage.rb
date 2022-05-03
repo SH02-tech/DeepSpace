@@ -28,7 +28,7 @@ module Deepspace
         
         # to_s method
         def to_s
-            return "Ammo power: #{ammoPower}, \tFuel units: #{fuelUnits}, \tShield Power: #{shieldPower}."
+            return "[Ammo power: #{ammoPower}; Fuel units: #{fuelUnits}; Shield Power: #{shieldPower}]"
         end
 
     end # end of class SuppliesPackage

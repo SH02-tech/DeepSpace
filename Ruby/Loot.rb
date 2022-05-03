@@ -32,8 +32,7 @@ module Deepspace
 
         # to_s method
         def to_s
-            "Loot => Supplies: #{nSupplies}, \tWeapons: #{nWeapons}, " + \
-            "\tShields: #{nShields}, \tHangars: #{nHangars}, \tMedals: #{nMedals}."
+            "[supplies: #{nSupplies}; weapons: #{nWeapons}; shields: #{nShields}; hangars: #{nHangars}; medals: #{nMedals}]"
         end
 
     end # end of class Loot

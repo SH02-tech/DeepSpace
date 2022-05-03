@@ -51,7 +51,15 @@ module Deepspace
         end
 
         def assignFuelValue(f)
-            @fuelUnits = [f, @@MAXFUEL].min
+            if (0 <= f  && f <= @@MAXFUEL)
+                @fuelUnits = f;
+            else
+                if (f < 0)
+                    @fuelUnits = 0;
+                else
+                    @fuelUnits = @@MAXFUEL;
+                end
+            end
             return nil
         end
 
@@ -63,6 +71,8 @@ module Deepspace
             end
             return nil
         end
+
+        private :cleanPendingDamage
 
         def cleanUpMountedItems
             pos = 0
@@ -167,7 +177,8 @@ module Deepspace
         end
 
         def move
-            @fuelUnits = (1 - self.getSpeed) * @fuelUnits # Non-negative always
+            fuel = (1 - self.getSpeed) * @fuelUnits # Non-negative always
+            assignFuelValue(fuel)
         end
 
         def protection
@@ -263,6 +274,7 @@ module Deepspace
         def setPendingDamage(d)
             if (d != nil)
                 @pendingDamage = d.adjust(@weapons, @shieldBoosters)
+                cleanPendingDamage
             end
             return nil
         end
@@ -280,11 +292,21 @@ module Deepspace
         end 
 
         def to_s
+
+            cadShieldBoosters = ""
+            @shieldBoosters.each do |shield|
+                cadShieldBoosters += shield.to_s
+            end
+            cadWeapons = ""
+            @weapons.each do |weapon|
+                cadWeapons += weapon.to_s
+            end
+
             s = "["
             s += "ammoPower: " + @ammoPower.to_s + ", fuelUnits: " + @fuelUnits.to_s
             s += ", name: " + @name + ", nMedals: " + @nMedals.to_s + ", shieldPower: " 
             s += @shieldPower.to_s + ", pendingDamage: " + @pendingDamage.to_s
-            s += ", weapons: " + @weapons.to_s + ", shieldBoosters: " + @shieldBoosters.to_s
+            s += ", weapons: " + cadWeapons + ", shieldBoosters: " + cadShieldBoosters
             s += ", hangar: " + @hangar.to_s
             s += "]"
 

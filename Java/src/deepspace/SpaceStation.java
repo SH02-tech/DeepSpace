@@ -87,7 +87,7 @@ public class SpaceStation {
 
     public void discardWeapon(int i) { 
         if( i >= 0 && i < weapons.size()) {
-            Weapon w = new Weapon(weapons.remove(i)); // Alternativa??
+            Weapon w = weapons.remove(i); 
             if (pendingDamage != null) {
                 pendingDamage.discardWeapon(w);
                 cleanPendingDamage();
@@ -193,7 +193,7 @@ public class SpaceStation {
         for (ShieldBooster shieldBooster : shieldBoosters) {
             factor *= shieldBooster.useIt();
         }
-        return (ammoPower * factor);
+        return (shieldPower * factor);
     }
 
     public void receiveHangar(Hangar h) {

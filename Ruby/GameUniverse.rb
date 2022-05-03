@@ -180,10 +180,16 @@ class GameUniverse
     end
 
     def to_s
+
+        cadSpaceStations = ""
+        @spaceStations.each do |station|
+            cadSpaceStations += station.to_s
+        end
+
         s = "["
-        s += "turns: " + @turns.to_s + ", gameState: " + @gameState.to_s + ", dice: " + @dice.to_s
+        s += "turns: " + @turns.to_s + ", gameState: " + state.to_s + ", dice: " + @dice.to_s
         s += ", currentEnemy: " + @currentEnemy.to_s + ", currentStationIndex: " + @currentStationIndex.to_s
-        s += ", spaceStations: " + @spaceStations.to_s + ", currentStation: " + @currentStation.to_s 
+        s += ", spaceStations: " + cadSpaceStations + ", currentStation: " + @currentStation.to_s 
         s += "]"
         return s
     end
