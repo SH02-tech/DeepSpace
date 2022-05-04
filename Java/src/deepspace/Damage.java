@@ -86,7 +86,6 @@ public class Damage {
         
         Damage newDamage = new Damage(this);
 
-        // newDamage.nShields -= Math.min(s.size(), newDamage.nShields);
         newDamage.nShields = Math.min(s.size(), newDamage.nShields);
 
         if (newDamage.nWeapons == NOTUSED) {     // Array Case
@@ -102,15 +101,12 @@ public class Damage {
                 if (pos_encountered >= 0) {
                     wCopy.remove(pos_encountered);
                     ++pos;
-                    // newDamage.weapons.remove(weapon);
                 } else {
                     newDamage.weapons.remove(weapon);
-                    // ++pos;
                 }
             }
             
         } else {                        // Numeric Case
-            // newDamage.nWeapons -= Math.min(w.size(), newDamage.nWeapons);
             newDamage.nWeapons = Math.min(w.size(), newDamage.nWeapons);
         }
 

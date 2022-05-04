@@ -15,7 +15,7 @@ module Deepspace
 
     class Weapon
 
-        @@defaultPower = 1.0
+        @@DEFAULTPOWER = 1.0
 
         # Constructor
         def initialize(the_name, the_type, the_uses)
@@ -43,7 +43,7 @@ module Deepspace
                 @uses = @uses -1
                 power
             else
-                @@defaultPower
+                @@DEFAULTPOWER
             end
         end
 
