@@ -36,7 +36,7 @@ module Deepspace
             l2 = Loot.new(4,5,6,7,8)
             escudos = [s1, s2, s3]
             armas = [w1, w2, w3, w3]
-            tipoArmas = [t1,t2,t3]
+            tipoArmas = [t1,t2,t2]
 
             puts
             puts "------------------------------------"

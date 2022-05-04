@@ -86,7 +86,7 @@ require_relative "DamageToUI.rb"
                         wCopy.delete_at(pos)
                         index += 1
                     else
-                        weaponsCopy.delete(weaponType)
+                        weaponsCopy.delete_at(index)
                     end
                 end
 
