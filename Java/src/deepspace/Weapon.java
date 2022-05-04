@@ -8,6 +8,8 @@ package deepspace;
 
 class Weapon {
     
+    private static final float DEFAULTPOWER = 1.0f;
+    
     private String name;
     private WeaponType type;
     private int uses;
@@ -71,7 +73,7 @@ class Weapon {
             uses--;
             return this.power();
         } else {
-            return 1.0f;
+            return DEFAULTPOWER;
         }
     } 
 

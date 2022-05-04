@@ -8,6 +8,8 @@ package deepspace;
 
 class ShieldBooster {
     
+    private static final float DEFAULTBOOST = 1.0f;
+    
     private String name;
     private float boost;
     private int uses;
@@ -49,7 +51,7 @@ class ShieldBooster {
             uses--;
             return this.boost;
         } else {
-            return 1.0f;
+            return DEFAULTBOOST;
         }
     } 
     
