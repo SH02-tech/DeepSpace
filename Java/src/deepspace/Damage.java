@@ -124,14 +124,19 @@ public class Damage {
     public void discardWeapon(Weapon w) {
         if (this.nWeapons == NOTUSED)
             this.weapons.remove(w.getType());
-        else
+        else {
             if (this.nWeapons > 0)
                 --this.nWeapons;
+            else
+                this.nWeapons = 0;
+        }
     }
 
     public void discardShieldBooster() {
         if (this.nShields > 0) {
             --this.nShields;
+        } else {
+            this.nShields = 0;
         }
     }
     

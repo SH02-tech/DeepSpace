@@ -135,7 +135,7 @@ require_relative "DamageToUI.rb"
 
         def to_s
 
-            if nWeapons == @@NOTUSED # TODO: to_s in WeaponType
+            if nWeapons == @@NOTUSED 
 
                 weaponsString = ""
                 weapons.each do |w|
