@@ -15,23 +15,47 @@ class Loot {
     private int nShields;
     private int nHangars;
     private int nMedals;
+    private boolean getEfficient;
+    private boolean spaceCity;
     
     // Constructor
     
     /**
      * @brief Constructor
-     * @param theSupplies Supplies of the loot.
-     * @param theWeapons Weapons obtained from the loot.
-     * @param theShields Number of shields obtained from the loot.
-     * @param theHangars Number of hangars winned.
-     * @param theMedals Number of medals winned.
+     * @param nsu Supplies of the loot.
+     * @param nw Weapons obtained from the loot.
+     * @param nsh Number of shields obtained from the loot.
+     * @param nh Number of hangars winned.
+     * @param nm Number of medals winned.
      */
-    Loot(int theSupplies, int theWeapons, int theShields, int theHangars, int theMedals) {
-        this.nSupplies = theSupplies;
-        this.nWeapons = theWeapons;
-        this.nShields = theShields;
-        this.nHangars = theHangars;
-        this.nMedals = theMedals;
+    Loot(int nsu, int nw, int nsh, int nh, int nm) {
+        nSupplies    = nsu;
+        nWeapons     = nw;
+        nShields     = nsh;
+        nHangars     = nh;
+        nMedals      = nm;
+        getEfficient = false;
+        spaceCity    = false;
+    }
+
+    /**
+     * @brief Constructor
+     * @param nsu Supplies of the loot.
+     * @param nw Weapons obtained from the loot.
+     * @param nsh Number of shields obtained from the loot.
+     * @param nh Number of hangars winned.
+     * @param nm Number of medals winned.
+     * @param ef indicate if there is a conversation to efficient station
+     * @param city indicate if there is a conversation to station city
+     */
+    Loot(int nsu, int nw, int nsh, int nh, int nm, boolean ef, boolean city) {
+        nSupplies    = nsu;
+        nWeapons     = nw;
+        nShields     = nsh;
+        nHangars     = nh;
+        nMedals      = nm;
+        getEfficient = ef;
+        spaceCity    = city;
     }
     
     // Get methods
@@ -45,7 +69,7 @@ class Loot {
      * @return Number of supplies obtained from loot.
      */
     public int getNSupplies() {
-        return this.nSupplies;
+        return nSupplies;
     }
     
     /**
@@ -53,7 +77,7 @@ class Loot {
      * @return Number of weapons obtained from loot.
      */
     public int getNWeapons() {
-        return this.nWeapons;
+        return nWeapons;
     }
     
     /**
@@ -61,7 +85,7 @@ class Loot {
      * @return Number of shields obtained from loot. 
      */
     public int getNShields() {
-        return this.nShields;
+        return nShields;
     }
     
     /** 
@@ -70,7 +94,7 @@ class Loot {
      */
     
     public int getNHangars() {
-        return this.nHangars;
+        return nHangars;
     }
     
     /** 
@@ -78,14 +102,31 @@ class Loot {
      * @return Number of medals obtained from loot. 
      */
     public int getNMedals() {
-        return this.nMedals;
+        return nMedals;
+    }
+
+    /** 
+     * @brief Get method.
+     * @return if there is a conversion in an efficient spaceStation
+     */
+    public boolean getEfficient() {
+        return getEfficient;
+    }
+
+    /** 
+     * @brief Get method.
+     * @return if there is a conversion in a 
+     */
+    public boolean spaceCity() {
+        return spaceCity;
     }
 
     public String toString() {
         String data = "";
 
-        data += "[nSupplies: " + this.nSupplies + ", nWeapons: " + this.nWeapons + ", nShields: " + this.nShields;
-        data += ", nHangars: " + this.nHangars + ", nMedals: " + this.nMedals + "]";
+        data += "[nSupplies: " + nSupplies + ", nWeapons: " + nWeapons + ", nShields: " + nShields;
+        data += ", nHangars: " + nHangars + ", nMedals: " + nMedals + ", getEfficient: " + getEfficient;
+        data += ", spaceCity: " + spaceCity + "]";
 
         return data;
     }

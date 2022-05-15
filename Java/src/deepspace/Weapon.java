@@ -6,7 +6,7 @@
 
 package deepspace;
 
-class Weapon {
+class Weapon implements CombatElement {
     
     private static final float DEFAULTPOWER = 1.0f;
     
@@ -49,9 +49,10 @@ class Weapon {
     }
     
     /**
-     * @brief Get method
+     * @brief Get method. Override.
      * @return Uses associated to weapon. 
      */
+    @Override
     public int getUses() {
         return this.uses;
     }
@@ -65,9 +66,10 @@ class Weapon {
     }
     
     /**
-     * @brief It decreases the uses of the weapon.
+     * @brief It decreases the uses of the weapon. Override.
      * @return Weapon power if uses > 0. Otherwise, 1.0. 
      */
+    @Override
     public float useIt() {
         if(uses > 0) {
             uses--;

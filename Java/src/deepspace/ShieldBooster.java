@@ -6,7 +6,7 @@
 
 package deepspace;
 
-class ShieldBooster {
+class ShieldBooster implements CombatElement {
     
     private static final float DEFAULTBOOST = 1.0f;
     
@@ -42,10 +42,11 @@ class ShieldBooster {
     }
 
     /**
-     * @brief decrease the uses of the shield
+     * @brief decrease the uses of the shield. Override.
      * @pre uses > 0
      * @return boost if uses > 0 or 1.0 in other case
      */
+    @Override
     public float useIt() {
         if(uses > 0) {
             uses--;
@@ -64,9 +65,10 @@ class ShieldBooster {
     }
     
     /**
-     * @brief get method
+     * @brief get method. Override.
      * @return attribute uses
      */
+    @Override
     public int getUses() {
         return this.uses;
     }

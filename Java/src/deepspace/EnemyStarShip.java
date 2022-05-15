@@ -1,6 +1,6 @@
 package deepspace;
 
-public class EnemyStarShip {
+public class EnemyStarShip implements SpaceFighter {
     private float ammoPower;
     private String name;
     private float shieldPower;
@@ -8,11 +8,11 @@ public class EnemyStarShip {
     private Damage damage;
 
     EnemyStarShip(String n, float a, float s, Loot l, Damage d) {
-        this.ammoPower = a;
-        this.name = n;
+        this.ammoPower   = a;
+        this.name        = n;
         this.shieldPower = s;
-        this.loot = l; // Not usual.
-        this.damage = new Damage(d);
+        this.loot        = l;         // Not usual.
+        this.damage      = d.copy();
     }
 
     EnemyStarShip(EnemyStarShip e) {
@@ -23,6 +23,7 @@ public class EnemyStarShip {
         return new EnemyToUI(this);
     }
 
+    @Override
     public float fire() {
         return this.ammoPower;
     }
@@ -32,7 +33,7 @@ public class EnemyStarShip {
     }
 
     public Damage getDamage() {
-        return new Damage(this.damage);
+        return this.damage.copy();
     }
 
     public Loot getLoot() {
@@ -47,10 +48,12 @@ public class EnemyStarShip {
         return this.shieldPower;
     }
 
+    @Override
     public float protection() {
         return this.shieldPower;
     }
 
+    @Override
     public ShotResult receiveShot(float shot) {
         if (this.shieldPower < shot) {
             return ShotResult.DONOTRESIST;

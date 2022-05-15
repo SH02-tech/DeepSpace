@@ -2,7 +2,7 @@ package deepspace;
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class SpaceStation {
+public class SpaceStation implements SpaceFighter {
     
     // Attributes
 
@@ -20,7 +20,7 @@ public class SpaceStation {
 
     // Methods
 
-    // Constructor
+    // Constructors
 
     SpaceStation(String n, SuppliesPackage supplies) {
         name           = n;
@@ -32,6 +32,10 @@ public class SpaceStation {
         shieldBoosters = new ArrayList<>();
         hangar         = null;
         pendingDamage  = null;
+    }
+
+    SpaceStation(SpaceStation station) {
+        this(station.getName(), new SuppliesPackage(station.getAmmoPower(), station.getFuelUnits(), station.getShieldPower()));
     }
 
     private void assignFuelValue(float f) {
@@ -100,6 +104,7 @@ public class SpaceStation {
             hangar.removeWeapon(i);
     }
     
+    @Override
     public float fire() {   //P3
         float factor = 1f;
         for (Weapon weapon : weapons) {
@@ -138,7 +143,7 @@ public class SpaceStation {
         if (pendingDamage == null)
             return null;
         else {
-            return new Damage(pendingDamage);
+            return pendingDamage.copy();
         }
     }
 
@@ -187,7 +192,8 @@ public class SpaceStation {
         float fuel = fuelUnits*(1-getSpeed()); 
         assignFuelValue(fuel);
     }
- 
+    
+    @Override
     public float protection() { //P3
         float factor = 1f;
         for (ShieldBooster shieldBooster : shieldBoosters) {
@@ -209,6 +215,7 @@ public class SpaceStation {
             return false;
     }
     
+    @Override
     public ShotResult receiveShot(float shot) { // P3
         if (protection() >= shot) {
             shieldPower -= SHIELDLOSSPERUNITSHOT * shot;
@@ -233,7 +240,7 @@ public class SpaceStation {
             return false;
     }
     
-    public void setLoot(Loot loot) {
+    public Transformation setLoot(Loot loot) {
         CardDealer dealer = CardDealer.getInstance();
         
         int h = loot.getNHangars();
@@ -257,6 +264,14 @@ public class SpaceStation {
         }
 
         this.nMedals += loot.getNMedals();
+
+        if (loot.spaceCity()) {
+            return Transformation.SPACECITY;
+        } else if (loot.getEfficient()) {
+            return Transformation.GETEFFICIENT;
+        } else {
+            return Transformation.NOTRANSFORM;
+        }
     }
 
     public void setPendingDamage(Damage d) {
