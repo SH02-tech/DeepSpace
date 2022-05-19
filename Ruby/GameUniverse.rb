@@ -32,7 +32,27 @@ class GameUniverse
         @currentEnemy        = nil
         @spaceStations       = Array.new
         @currentStation      = nil
+        @haveSpaceCity       = false
     end
+
+    def createSpaceCity
+        if @haveSpaceCity == false
+           @currentStation  = SpaceCity.new(@currentStation, @spaceStations)
+           @haveSpaceCity   = true
+        end
+    end
+
+    private :createSpaceCity
+
+    def makeStationEfficient
+        if @dice.extraEfficiency # bettaEfficient
+            @currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
+        else #normalEfficeint
+            @currentStation = PowerEfficientSpaceStation.new(@currentStation)
+        end
+    end
+
+    private :makeStationEfficient
 
     def combatGo(station, enemy) 
         ch = @dice.firstShot
@@ -67,7 +87,11 @@ class GameUniverse
         else
             aLoot = enemy.loot
             station.setLoot(aLoot)
-            combatResult = CombatResult::STATIONWINS
+            if aLoot.getEfficient || aLoot.spaceCity
+                combatResult = CombatResult::STATIONWINSANDCONVERTS
+            else
+                combatResult = CombatResult::STATIONWINS 
+            end
         end
         @gameState.next(@turns, @spaceStations.length)
         return combatResult
