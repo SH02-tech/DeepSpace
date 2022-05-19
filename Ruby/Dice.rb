@@ -15,11 +15,21 @@ class Dice
     
     # Constructor
     def initialize
-        @NHANGARSPROB  = 0.25
-        @NSHIELDSPROB  = 0.25
-        @NWEAPONSPROB  = 0.33
-        @FIRSTSHOTPROB = 0.5
-        @generator     = Random.new
+        @NHANGARSPROB        = 0.25
+        @NSHIELDSPROB        = 0.25
+        @NWEAPONSPROB        = 0.33
+        @FIRSTSHOTPROB       = 0.5
+        @EXTRAEFFICIENCYPROB = 0.8
+        @generator           = Random.new
+    end
+
+    # Determines if a space station fire with an extra BetaPower
+    def extraEfficiency
+        if @generator.rand < @EXTRAEFFICIENCYPROB
+            true
+        else
+            false
+        end
     end
 
     # Determines the number of hangars that will receive a space stantion
