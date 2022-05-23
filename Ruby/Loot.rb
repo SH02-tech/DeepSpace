@@ -15,16 +15,18 @@ module Deepspace
     class Loot
 
         # Constructor 
-        def initialize(the_supplies, the_weapons, the_shields, the_hangars, the_medals)
+        def initialize(the_supplies, the_weapons, the_shields, the_hangars, the_medals, is_efficient=false, is_city=false)
             @nSupplies = the_supplies
             @nWeapons  = the_weapons
             @nShields  = the_shields
             @nHangars  = the_hangars
             @nMedals   = the_medals
+            @efficient = is_efficient
+            @spaceCity = is_city
         end
 
         # Getters
-        attr_reader :nSupplies, :nWeapons, :nShields, :nHangars, :nMedals 
+        attr_reader :nSupplies, :nWeapons, :nShields, :nHangars, :nMedals, :efficient, :spaceCity
 
         def getUIversion
             return LootToUI.new(self)

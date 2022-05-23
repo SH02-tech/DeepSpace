@@ -21,7 +21,7 @@ require_relative "EnemyToUI.rb"
             @ammoPower   = a
             @shieldPower = s
             @loot        = l
-            @damage      = Damage.newCopy(d)
+            @damage      = d.copy
         end
 
         def self.newCopy(e)
