@@ -2,7 +2,6 @@
 
 module Deepspace
     require_relative 'SpaceStation.rb'
-    require_relative 'Transformation.rb'
 
     class SpaceCity < SpaceStation
         def initialize(base, rest)

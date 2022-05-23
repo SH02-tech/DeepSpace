@@ -19,6 +19,7 @@ module Deepspace
     require_relative "ShotResult.rb"
     require_relative "SuppliesPackage.rb"
     require_relative "SpaceStationToUI.rb"
+    require_relative "Transformation.rb"
 
     class SpaceStation
 
@@ -268,7 +269,13 @@ module Deepspace
 
             @nMedals += medals
 
-            return nil
+            if loot.efficient
+                return Transformation::GETEFFICIENT
+            elsif loot.spaceCity
+                return Transformation::SPACECITY
+            else
+                return Transformation::NOTRANSFORM
+            end
         end
 
         def setPendingDamage(d)
@@ -435,7 +442,7 @@ if $0 == __FILE__ then
     puts space_station.to_s
 
     # Declarado arriba: l = Deepspace::Loot.new(2,2,2,2,2)
-    space_station.setLoot(l)
+    puts space_station.setLoot(l)
     puts space_station.to_s
 
     puts
@@ -457,7 +464,7 @@ if $0 == __FILE__ then
     puts "###############################"
     puts 
     
-    damage = Deepspace::Damage.newNumericWeapons(2,3)
+    damage = Deepspace::NumericDamage.new(2,3)
     puts space_station.to_s
 
     if (space_station.validState)
