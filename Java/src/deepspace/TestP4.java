@@ -164,5 +164,34 @@ public class TestP4 {
         System.out.println("Fire: " + city.fire());
         System.out.println("Protection: " + city.protection());
         System.out.println("Set loot: " + city.setLoot(l2));
+        
+        System.out.println("=============================================");
+        System.out.println("Efficient SpaceStations");
+        System.out.println("=============================================");
+        
+        PowerEfficientSpaceStation estation2 = new PowerEfficientSpaceStation(station2);
+        
+        System.out.println("Fire: " + estation2.fire());
+        System.out.println("Protection: " + estation2.protection());
+        System.out.println("SetLoot: " + estation2.setLoot(l1));
+        
+        System.out.println("=============================================");
+        System.out.println("Extraefficient SpaceStations");
+        System.out.println("=============================================");
+        
+        BetaPowerEfficientSpaceStation bestation2 = new BetaPowerEfficientSpaceStation(station2);
+        
+        System.out.println("Fire: " + bestation2.fire());
+        System.out.println("Protection: " + bestation2.protection());
+        System.out.println("SetLoot: " + bestation2.setLoot(l1));
+        
+        System.out.println("=============================================");
+        System.out.println("GameUniverse");
+        System.out.println("=============================================");
+        
+        GameUniverse gu = new GameUniverse();
+        ArrayList<String> names = new ArrayList<>();
+        names.add("S1"); names.add("S2"); names.add("S3");
+        gu.init(names);
     }
 }

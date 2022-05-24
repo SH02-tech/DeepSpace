@@ -19,24 +19,6 @@ class Loot {
     private boolean spaceCity;
     
     // Constructor
-    
-    /**
-     * @brief Constructor
-     * @param nsu Supplies of the loot.
-     * @param nw Weapons obtained from the loot.
-     * @param nsh Number of shields obtained from the loot.
-     * @param nh Number of hangars winned.
-     * @param nm Number of medals winned.
-     */
-    Loot(int nsu, int nw, int nsh, int nh, int nm) {
-        nSupplies    = nsu;
-        nWeapons     = nw;
-        nShields     = nsh;
-        nHangars     = nh;
-        nMedals      = nm;
-        getEfficient = false;
-        spaceCity    = false;
-    }
 
     /**
      * @brief Constructor
@@ -56,6 +38,18 @@ class Loot {
         nMedals      = nm;
         getEfficient = ef;
         spaceCity    = city;
+    }
+    
+    /**
+     * @brief Constructor
+     * @param nsu Supplies of the loot.
+     * @param nw Weapons obtained from the loot.
+     * @param nsh Number of shields obtained from the loot.
+     * @param nh Number of hangars winned.
+     * @param nm Number of medals winned.
+     */
+    Loot(int nsu, int nw, int nsh, int nh, int nm) {
+        this(nsu, nw, nsh, nh, nm, false, false);
     }
     
     // Get methods

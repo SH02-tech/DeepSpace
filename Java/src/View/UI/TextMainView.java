@@ -381,6 +381,10 @@ public class TextMainView implements DeepSpaceView {
   public void noCombatMessage() {
     showMessageln("No puedes combatir en este momento");
   }
+  
+  public void convertMessage() {
+      showMessageln("Estación espacial convertido");
+  }
 
   private String showStation (SpaceStationToUI station) {
     String out = "";

@@ -14,6 +14,7 @@ public class GameUniverse {
     private int currentStationIndex;
     private ArrayList<SpaceStation> spaceStations;
     private SpaceStation currentStation;
+    private boolean haveSpaceCity;
 
     // Constructors
 
@@ -25,6 +26,7 @@ public class GameUniverse {
         currentEnemy        = null;
         currentStation      = null;
         spaceStations       = new ArrayList<SpaceStation>();
+        haveSpaceCity       = false;
     }
 
     CombatResult combat(SpaceStation station, EnemyStarShip enemy) {
@@ -70,9 +72,20 @@ public class GameUniverse {
         } 
         else {
             Loot aLoot = this.currentEnemy.getLoot();
-            this.currentStation.setLoot(aLoot);
-
-            combatResult = CombatResult.STATIONWINS;
+            Transformation trans = this.currentStation.setLoot(aLoot);
+            
+            switch(trans) {
+                case GETEFFICIENT:
+                    makeStationEfficient();
+                    combatResult = CombatResult.STATIONWINSANDCONVERTS;
+                    break;
+                case SPACECITY:
+                    createSpaceCity();
+                    combatResult = CombatResult.STATIONWINSANDCONVERTS;
+                    break;
+                default:
+                    combatResult = CombatResult.STATIONWINS;
+            }            
         }
 
         this.gameState.next(this.turns, this.spaceStations.size());
@@ -201,6 +214,36 @@ public class GameUniverse {
         }
 
         return false;
+    }
+    
+    private void createSpaceCity() {
+        if (!haveSpaceCity) {
+            ArrayList<SpaceStation> collaborators = new ArrayList<>();
+            
+            for (int i=0; i<currentStationIndex; ++i)
+                collaborators.add(spaceStations.get(i));
+            
+            for (int i=currentStationIndex+1; i<spaceStations.size(); ++i)
+                collaborators.add(spaceStations.get(i));
+            
+            SpaceStation spaceCity = new SpaceCity(currentStation, collaborators);
+            
+            spaceStations.set(currentStationIndex, spaceCity);
+            currentStation = spaceStations.get(currentStationIndex);
+            haveSpaceCity = true;
+        }
+    }
+    
+    private void makeStationEfficient() {
+        SpaceStation newStation;
+        
+        if (dice.extraEfficiency())
+            newStation = new BetaPowerEfficientSpaceStation(currentStation);
+        else
+            newStation = new PowerEfficientSpaceStation(currentStation);
+        
+        spaceStations.set(currentStationIndex, newStation);
+        currentStation = spaceStations.get(currentStationIndex);
     }
 
     public String toString() {

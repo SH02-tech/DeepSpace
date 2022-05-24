@@ -14,6 +14,7 @@ class Dice {
     private final float NSHIELDSPROB;
     private final float NWEAPONSPROB;
     private final float FIRSTSHOTPROB;
+    private final float EXTRAEFFICIENCYPROB;
 
     private Random generator;
     
@@ -27,6 +28,7 @@ class Dice {
         this.NSHIELDSPROB = 0.25f;
         this.NWEAPONSPROB = 0.33f;
         this.FIRSTSHOTPROB = 0.5f;
+        this.EXTRAEFFICIENCYPROB = 0.8f;
         
         generator = new Random();
     }
@@ -96,6 +98,16 @@ class Dice {
             return GameCharacter.SPACESTATION;
         else
             return GameCharacter.ENEMYSTARSHIP;
+    }
+    
+    /**
+     * @brief This method determines whether ExtraEfficiency should be provided.
+     * @return True when converted. False otherwise.
+     */
+    public boolean extraEfficiency() {
+        float randomNumber = generator.nextFloat();
+        
+        return (randomNumber < EXTRAEFFICIENCYPROB);
     }
     
     // State methods 

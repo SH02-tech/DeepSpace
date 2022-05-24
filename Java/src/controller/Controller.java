@@ -66,6 +66,8 @@ public class Controller {
             case STATIONESCAPES :
               view.escapeMessage();
               break;
+            case STATIONWINSANDCONVERTS:
+              view.conversionMessage();
             case STATIONWINS :
               view.wonCombatMessage();
               if (game.haveAWinner()) {
