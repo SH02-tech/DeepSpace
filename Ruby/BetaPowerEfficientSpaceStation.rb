@@ -10,10 +10,10 @@ module Deepspace
 
         def self.newCopy(station)
             super(station)
+            dice = Dice.new 
         end
 
         def fire
-            dice = Dice.new 
             if dice.extraEfficiency
                 super*@@EXTRAEFFICIENCY
             else

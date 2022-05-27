@@ -30,6 +30,10 @@ public class PowerEfficientSpaceStation extends SpaceStation {
     @Override
     public Transformation setLoot(Loot loot) {
         super.setLoot(loot);
-        return Transformation.NOTRANSFORM;
+        if (loot.getEfficient()) {
+            return Transformation.GETEFFICIENT;
+        } else {
+            return Transformation.NOTRANSFORM;
+        }
     }
 }
