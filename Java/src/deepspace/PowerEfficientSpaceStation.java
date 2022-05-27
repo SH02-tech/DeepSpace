@@ -13,6 +13,11 @@ public class PowerEfficientSpaceStation extends SpaceStation {
     }
     
     @Override
+    public PowerEfficientSpaceStationToUI getUIversion() {
+        return new PowerEfficientSpaceStationToUI(this);
+    }
+    
+    @Override
     public float fire() {
         return super.fire()*EFFICIENCYFACTOR;
     }

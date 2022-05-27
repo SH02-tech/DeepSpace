@@ -9,15 +9,15 @@ package deepspace;
  *
  * @author Profe
  */
-// public class BetaPowerEfficientSpaceStationToUI extends PowerEfficientSpaceStationToUI {
+ public class BetaPowerEfficientSpaceStationToUI extends PowerEfficientSpaceStationToUI {
 
-//     BetaPowerEfficientSpaceStationToUI(BetaPowerEfficientSpaceStation s) {
-//         super(s);
-//     }
+     BetaPowerEfficientSpaceStationToUI(BetaPowerEfficientSpaceStation s) {
+         super(s);
+     }
     
-//   @Override
-//   public String getName () {
-//     return super.getName() + " (beta)";
-//   }
+   @Override
+   public String getName () {
+     return super.getName() + " (beta)";
+   }
     
-// }
+ }

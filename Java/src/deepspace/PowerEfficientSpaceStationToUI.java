@@ -9,14 +9,14 @@ package deepspace;
  *
  * @author Profe
  */
-//public class PowerEfficientSpaceStationToUI extends SpaceStationToUI {
-//  PowerEfficientSpaceStationToUI (PowerEfficientSpaceStation efficientStation) {
-//    super(efficientStation);
-//  }
-//  
-//  @Override
-//  public String getName () {
-//    return super.getName() + " (ESTACIÓN EFICIENTE)";
-//  }
-//
-//}
+public class PowerEfficientSpaceStationToUI extends SpaceStationToUI {
+  PowerEfficientSpaceStationToUI (PowerEfficientSpaceStation efficientStation) {
+    super(efficientStation);
+  }
+  
+  @Override
+  public String getName () {
+    return super.getName() + " (ESTACIÓN EFICIENTE)";
+  }
+
+}

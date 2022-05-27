@@ -15,6 +15,11 @@ public class BetaPowerEfficientSpaceStation extends PowerEfficientSpaceStation {
     }
     
     @Override
+    public BetaPowerEfficientSpaceStationToUI getUIversion() {
+        return new BetaPowerEfficientSpaceStationToUI(this);
+    }
+    
+    @Override
     public float fire() {
         float firePower = super.fire();
         
