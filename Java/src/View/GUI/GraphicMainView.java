@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package View.UI;
+package View.GUI;
 import View.DeepSpaceView;
 import java.util.ArrayList;
 import controller.Controller;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +15,8 @@ import controller.Controller;
 public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView {
     
     private static GraphicMainView instance = null;
+    private StationView station;
+    private EnemyView enemy;
     
     public static GraphicMainView getInstance() {
         if (instance == null) {
@@ -28,6 +31,13 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
     private GraphicMainView() {
         initComponents();
         setTitle ("Título");
+        
+        station = new StationView();
+        jpStarShip.add(station);
+        
+        enemy = new EnemyView();
+        jpEnemyStarShip.add(enemy);
+        
         repaint();
         setLocationRelativeTo(null);
         
@@ -57,7 +67,7 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
     // Outputs
     @Override
     public boolean confirmExitMessage() {
-        throw new UnsupportedOperationException();
+        return (JOptionPane.showConfirmDialog(this, "¿Estás seguro/a de que deseas salir?", "Salida", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
     };
     @Override
     public void nextTurnNotAllowedMessage() {
@@ -100,8 +110,8 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
         jpStarShip = new javax.swing.JPanel();
         jpEnemyStarShip = new javax.swing.JPanel();
         jbCombat = new javax.swing.JButton();
-        jbExit = new javax.swing.JButton();
         jbNextTurn = new javax.swing.JButton();
+        jbExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,56 +123,57 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
         jbCombat.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jbCombat.setText("COMBATIR");
 
+        jbNextTurn.setText("Siguente Turno");
+
+        jbExit.setBackground(new java.awt.Color(255, 204, 204));
         jbExit.setText("Salir");
-        jbExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExitActionPerformed(evt);
+        jbExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbExitMouseClicked(evt);
             }
         });
-
-        jbNextTurn.setText("Siguente Turno");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jpStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbNextTurn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
-                        .addComponent(jbExit))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jbCombat, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13))
+                .addContainerGap()
+                .addComponent(jpStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jbNextTurn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbExit))
+                        .addComponent(jbCombat, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpStarShip, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
-                        .addComponent(jbCombat, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
+                        .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbCombat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbExit)
-                            .addComponent(jbNextTurn)))
-                    .addComponent(jpStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(228, Short.MAX_VALUE))
+                            .addComponent(jbNextTurn)
+                            .addComponent(jbExit))))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbExitActionPerformed
+    private void jbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbExitMouseClicked
+        Controller.getInstance().finish(0);
+    }//GEN-LAST:event_jbExitMouseClicked
 
     /**
      * @param args the command line arguments

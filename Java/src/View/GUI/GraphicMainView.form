@@ -24,42 +24,42 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="jpStarShip" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="333" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jbNextTurn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="455" max="32767" attributes="0"/>
-                      <Component id="jbExit" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jbCombat" min="-2" pref="376" max="-2" attributes="0"/>
-                      <Component id="jpEnemyStarShip" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jpStarShip" min="-2" pref="562" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jpEnemyStarShip" min="-2" pref="360" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jbNextTurn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jbExit" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jbCombat" min="-2" pref="358" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jpStarShip" pref="565" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jpEnemyStarShip" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="214" max="32767" attributes="0"/>
-                      <Component id="jbCombat" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="jpEnemyStarShip" min="-2" pref="429" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jbCombat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jbExit" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbNextTurn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbExit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jpStarShip" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="228" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,18 +98,21 @@
         <Property name="text" type="java.lang.String" value="COMBATIR"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbExit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbExitActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="jbNextTurn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Siguente Turno"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbExit">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbExitMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

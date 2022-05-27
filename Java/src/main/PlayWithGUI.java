@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package main;
-import View.UI.GraphicMainView;
+import View.GUI.GraphicMainView;
 import View.DeepSpaceView;
 import controller.Controller;
 import deepspace.GameUniverse;
