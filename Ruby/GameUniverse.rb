@@ -64,7 +64,7 @@ class GameUniverse
         else #normalEfficeint
             newStation = PowerEfficientSpaceStation.newCopy(@currentStation)
         end
-        @spaceStations[@currentStationIndex] = spaceCity
+        @spaceStations[@currentStationIndex] = newStation
         @currentStation = @spaceStations.at(@currentStationIndex)
     end
 

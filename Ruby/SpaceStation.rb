@@ -360,6 +360,16 @@ if $0 == __FILE__ then
 
     puts 
     puts "###############################"
+    puts "Copia"
+    puts "###############################"
+    puts
+
+    station_copy = Deepspace::SpaceStation.newCopy(space_station)
+
+    puts station_copy.to_s
+
+    puts 
+    puts "###############################"
     puts "Modificación"
     puts "###############################"
     puts 
