@@ -3,6 +3,8 @@
 module Deepspace
 
     require_relative "Dice.rb"
+    require_relative "BetaPowerEfficientSpaceStationToUI.rb"
+
 
     class BetaPowerEfficientSpaceStation < PowerEfficientSpaceStation
 
@@ -10,14 +12,19 @@ module Deepspace
 
         def self.newCopy(station)
             super(station)
-            dice = Dice.new 
+        end
+
+        def getUIversion
+            BetaPowerEfficientSpaceStationToUI.new(self)
         end
 
         def fire
-            if dice.extraEfficiency
+            @dice = Dice.new 
+            if @dice.extraEfficiency
                 super*@@EXTRAEFFICIENCY
             else
                 super
+            end
         end
         
     end

@@ -1,5 +1,8 @@
 #encoding:utf-8
 require_relative 'SpaceCity'
+require_relative 'PowerEfficientSpaceStation.rb'
+require_relative 'BetaPowerEfficientSpaceStation.rb'
+require_relative "GameUniverse.rb"
 
 puts '----------------------------------------------------'
 puts 'Constructor and Collaborators'
@@ -29,3 +32,36 @@ puts 'Set Loot'
 puts '----------------------------------------------------'
 
 puts sc.setLoot(loot)
+
+puts '----------------------------------------------------'
+puts 'Power Efficent Station'
+puts '----------------------------------------------------'
+
+pes = Deepspace::PowerEfficientSpaceStation.newCopy(s2)
+
+puts pes.to_s
+puts
+puts "Fire: #{pes.fire}"
+puts "Protection: #{pes.protection}"
+puts "SetLoot: #{pes.setLoot(loot)}"
+
+puts '----------------------------------------------------'
+puts 'Betta Power Efficent Station'
+puts '----------------------------------------------------'
+
+bpes = Deepspace::BetaPowerEfficientSpaceStation.newCopy(s3)
+
+puts bpes.to_s
+puts
+puts "Fire: #{bpes.fire}"
+puts "Protection: #{bpes.protection}"
+puts "SetLoot: #{bpes.setLoot(loot)}"
+
+puts '----------------------------------------------------'
+puts 'GameUniverse'
+puts '----------------------------------------------------'
+
+g = Deepspace::GameUniverse.new
+g.init(["Mario", "Maria"])
+puts "Resultado del combate: #{g.combat}" 
+

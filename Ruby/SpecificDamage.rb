@@ -18,7 +18,11 @@ require_relative 'SpecificDamageToUI.rb'
 class SpecificDamage < Damage
     def initialize(wl,s)
         super(s)
-        @weapons = Array.new(wl)
+        if wl != nil
+            @weapons = Array.new(wl)
+        else
+            @weapons = Array.new
+        end
     end
 
     public_class_method :new

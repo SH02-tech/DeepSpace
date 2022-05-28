@@ -16,8 +16,12 @@ require_relative "GameCharacter.rb"
 require_relative "Dice.rb"
 require_relative "ShotResult.rb"
 require_relative "SpaceStation.rb"
+require_relative "SpaceCity.rb"
 require_relative "CardDealer.rb"
 require_relative "GameUniverseToUI.rb"
+require_relative "Transformation.rb"
+require_relative 'PowerEfficientSpaceStation.rb'
+require_relative 'BetaPowerEfficientSpaceStation.rb'
 
 class GameUniverse
 
@@ -36,9 +40,19 @@ class GameUniverse
     end
 
     def createSpaceCity
-        if @haveSpaceCity == false
-           @currentStation  = SpaceCity.new(@currentStation, @spaceStations)
-           @haveSpaceCity   = true
+        if !@haveSpaceCity
+           collaborators = Array.new
+           for i in (0..@currentStationIndex-1) do
+            collaborators.push(@spaceStations.at(i))
+           end
+           for i in (@currentStationIndex+1..@spaceStations.length-1) do
+            collaborators.push(@spaceStations.at(i))  
+           end
+
+           SpaceStation spaceCity = SpaceCity.new(@currentStation, collaborators)
+           @spaceStations[@currentStationIndex] = spaceCity
+           @currentStation = @spaceStations.at(@currentStationIndex)
+           @haveSpaceCity = true
         end
     end
 
@@ -46,10 +60,12 @@ class GameUniverse
 
     def makeStationEfficient
         if @dice.extraEfficiency # bettaEfficient
-            @currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
+            newStation = BetaPowerEfficientSpaceStation.newCopy(@currentStation)
         else #normalEfficeint
-            @currentStation = PowerEfficientSpaceStation.new(@currentStation)
+            newStation = PowerEfficientSpaceStation.newCopy(@currentStation)
         end
+        @spaceStations[@currentStationIndex] = spaceCity
+        @currentStation = @spaceStations.at(@currentStationIndex)
     end
 
     private :makeStationEfficient
@@ -86,11 +102,16 @@ class GameUniverse
             end
         else
             aLoot = enemy.loot
-            station.setLoot(aLoot)
-            if aLoot.getEfficient || aLoot.spaceCity
-                combatResult = CombatResult::STATIONWINSANDCONVERTS
+            transformation = station.setLoot(aLoot)
+            case transformation
+            when Transformation::GETEFFICIENT
+                makeStationEfficient
+                combatResult = CombatResult::STATIONWINSANDCONVERT
+            when Transformation::SPACECITY
+                createSpaceCity
+                combatResult = CombatResult::STATIONWINSANDCONVERT
             else
-                combatResult = CombatResult::STATIONWINS 
+                combatResult = CombatResult::STATIONWINS
             end
         end
         @gameState.next(@turns, @spaceStations.length)
