@@ -2,12 +2,18 @@
 
 module Deepspace
 
+    require_relative "PowerEfficientSpaceStationToUI.rb"
+
     class PowerEfficientSpaceStation < SpaceStation 
 
         @@EFFICIENCYFACTOR = 1.1
 
         def self.newCopy(station)
             super(station)
+        end
+
+        def getUIversion
+            PowerEfficientSpaceStationToUI.new(self)
         end
 
         def fire
@@ -20,7 +26,11 @@ module Deepspace
 
         def setLoot(loot)
             super(loot)
-            return Transformation::NOTRASNFORM
+            if loot.efficient
+                Transformation::GETEFFICIENT
+            else 
+                Transformation::NOTRANSFORM
+            end
         end
 
     end # PowerEfficientSpaceStation

@@ -41,6 +41,10 @@ module Deepspace
             @hangar         = nil
         end
 
+        def self.newCopy(station)
+            new(station.name, SuppliesPackage.new(station.ammoPower, station.fuelUnits, station.shieldPower))
+        end
+
         attr_reader :ammoPower, :fuelUnits, :hangar, :name, :nMedals, :pendingDamage, :shieldPower, :shieldBoosters, :weapons
 
         def getSpeed
