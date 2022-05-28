@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View.GUI;
+import deepspace.DamageToUI;
 
 /**
  *
@@ -13,8 +14,21 @@ public class DamageView extends javax.swing.JPanel {
     /**
      * Creates new form LootView
      */
-    public DamageView() {
+    DamageView() {
         initComponents();
+    }
+    
+    void setDamage(DamageToUI damage) {
+        clearDamage();
+        jlShield.setText(Integer.toString(damage.getNShields()));
+        jlWeapon.setText(damage.getWeaponInfo());
+        repaint();
+    }
+    
+    void clearDamage(){
+        jlShield.setText("Inválido");
+        jlWeapon.setText("Inválido");
+        repaint();
     }
 
     /**

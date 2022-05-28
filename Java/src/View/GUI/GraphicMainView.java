@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView {
     
     private static GraphicMainView instance = null;
-    private StationView station;
-    private EnemyView enemy;
+    private StationView stationView;
+    private EnemyView enemyView;
     
     public static GraphicMainView getInstance() {
         if (instance == null) {
@@ -32,26 +32,29 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
         initComponents();
         setTitle ("Título");
         
-        station = new StationView();
-        jpStarShip.add(station);
+        stationView = new StationView();
+        jpStarShip.add(stationView);
         
-        enemy = new EnemyView();
-        jpEnemyStarShip.add(enemy);
+        enemyView = new EnemyView();
+        jpEnemyStarShip.add(enemyView);
         
         repaint();
         setLocationRelativeTo(null);
         
-        /*setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
                 Controller.getInstance().finish(0);
             }
-        });*/
+        });
     }
     
     @Override
-    public void updateView() {};
+    public void updateView() {
+        enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
+        stationView.setStation(Controller.getInstance().getUIversion().getCurrentStation());
+    };
     
     @Override
     public void showView() {
@@ -71,31 +74,31 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
     };
     @Override
     public void nextTurnNotAllowedMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"Siguiente turno no permitido.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void lostCombatMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"Has PERDIDO el combate. \tCumple tu castigo.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void escapeMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"Has logrado escapar. \tEres una Gallina Espacial.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);;
     };
     @Override
     public void wonCombatMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"Has GANADO el combate. \tDisfruta de tu botín.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void wonGameMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"\tHAS GANADO LA PARTIDA.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void conversionMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"Has GANADO el combate. \nAdemás te has CONVERTIDO. \nDisfruta de tu botín.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void noCombatMessage() {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog (this,"No puedes combatir en este momento.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
 
     /**
@@ -122,8 +125,18 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
         jbCombat.setBackground(new java.awt.Color(204, 255, 204));
         jbCombat.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jbCombat.setText("COMBATIR");
+        jbCombat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbCombatMouseClicked(evt);
+            }
+        });
 
         jbNextTurn.setText("Siguente Turno");
+        jbNextTurn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbNextTurnMouseClicked(evt);
+            }
+        });
 
         jbExit.setBackground(new java.awt.Color(255, 204, 204));
         jbExit.setText("Salir");
@@ -174,6 +187,16 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
     private void jbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbExitMouseClicked
         Controller.getInstance().finish(0);
     }//GEN-LAST:event_jbExitMouseClicked
+
+    private void jbNextTurnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbNextTurnMouseClicked
+        Controller.getInstance().nextTurn();
+        updateView();
+    }//GEN-LAST:event_jbNextTurnMouseClicked
+
+    private void jbCombatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCombatMouseClicked
+        Controller.getInstance().combat();
+        updateView();
+    }//GEN-LAST:event_jbCombatMouseClicked
 
     /**
      * @param args the command line arguments

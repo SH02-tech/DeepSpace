@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View.GUI;
-
+import deepspace.LootToUI;
 /**
  *
  * @author shao
@@ -15,6 +15,15 @@ public class LootView extends javax.swing.JPanel {
      */
     public LootView() {
         initComponents();
+    }
+    
+    public void setLoot(LootToUI loot) {
+        jlWeapons.setText(Integer.toString(loot.getnWeapons()));
+        jlShields.setText(Integer.toString(loot.getnShields()));
+        jlHangar.setText(Integer.toString(loot.getnHangars()));
+        jlSupplies.setText(Integer.toString(loot.getnSupplies()));
+        jlMedals.setText(Integer.toString(loot.getnMedals()));
+        repaint();
     }
 
     /**
@@ -31,11 +40,11 @@ public class LootView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jlWeapon = new javax.swing.JLabel();
-        jlShield = new javax.swing.JLabel();
-        jlFuel = new javax.swing.JLabel();
+        jlWeapons = new javax.swing.JLabel();
+        jlShields = new javax.swing.JLabel();
+        jlSupplies = new javax.swing.JLabel();
         jlHangar = new javax.swing.JLabel();
-        jlMedal = new javax.swing.JLabel();
+        jlMedals = new javax.swing.JLabel();
 
         jLabel1.setText("Armas:");
 
@@ -43,19 +52,19 @@ public class LootView extends javax.swing.JPanel {
 
         jLabel3.setText("Tamaño Hangar:");
 
-        jLabel4.setText("Combustible:");
+        jLabel4.setText("Suministros:");
 
         jLabel5.setText("Medallas:");
 
-        jlWeapon.setText("0");
+        jlWeapons.setText("0");
 
-        jlShield.setText("0");
+        jlShields.setText("0");
 
-        jlFuel.setText("0");
+        jlSupplies.setText("0");
 
         jlHangar.setText("0");
 
-        jlMedal.setText("0");
+        jlMedals.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,11 +75,11 @@ public class LootView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlWeapons, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlShield, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlShields, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,12 +89,12 @@ public class LootView extends javax.swing.JPanel {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlFuel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlMedal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jlSupplies, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlMedals, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jlHangar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,14 +103,14 @@ public class LootView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jlWeapon)
-                    .addComponent(jlFuel))
+                    .addComponent(jlWeapons)
+                    .addComponent(jlSupplies))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jlShield)
-                    .addComponent(jlMedal))
+                    .addComponent(jlShields)
+                    .addComponent(jlMedals))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -117,10 +126,10 @@ public class LootView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jlFuel;
     private javax.swing.JLabel jlHangar;
-    private javax.swing.JLabel jlMedal;
-    private javax.swing.JLabel jlShield;
-    private javax.swing.JLabel jlWeapon;
+    private javax.swing.JLabel jlMedals;
+    private javax.swing.JLabel jlShields;
+    private javax.swing.JLabel jlSupplies;
+    private javax.swing.JLabel jlWeapons;
     // End of variables declaration//GEN-END:variables
 }

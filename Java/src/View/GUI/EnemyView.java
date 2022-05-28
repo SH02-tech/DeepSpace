@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View.GUI;
+import deepspace.EnemyToUI;
 
 /**
  *
@@ -16,12 +17,21 @@ public class EnemyView extends javax.swing.JPanel {
     /**
      * Creates new form EnemyView
      */
-    public EnemyView() {
+    EnemyView() {
         initComponents();
         lootView = new LootView();
         jpLoot.add(lootView);
         damageView = new DamageView();
         jpDamage.add(damageView);
+    }
+    
+    void setEnemy(EnemyToUI enemy) {
+        jlName.setText(enemy.getName());
+        jlPower.setText(Float.toString(enemy.getAmmoPower()));
+        jlShield.setText(Float.toString(enemy.getShieldPower()));
+        lootView.setLoot(enemy.getLoot());
+        damageView.setDamage(enemy.getDamage());
+        repaint();
     }
 
     /**

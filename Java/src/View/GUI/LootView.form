@@ -21,12 +21,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jlWeapon" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="jlWeapons" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jlShield" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="jlShields" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -39,8 +39,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jlFuel" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jlMedal" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jlSupplies" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jlMedals" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -48,7 +48,7 @@
                       <Component id="jlHangar" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,15 +59,15 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlWeapon" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlFuel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlWeapons" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlSupplies" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlShield" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlMedal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlShields" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlMedals" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -97,7 +97,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Combustible:"/>
+        <Property name="text" type="java.lang.String" value="Suministros:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -105,17 +105,17 @@
         <Property name="text" type="java.lang.String" value="Medallas:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlWeapon">
+    <Component class="javax.swing.JLabel" name="jlWeapons">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlShield">
+    <Component class="javax.swing.JLabel" name="jlShields">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlFuel">
+    <Component class="javax.swing.JLabel" name="jlSupplies">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
@@ -125,7 +125,7 @@
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlMedal">
+    <Component class="javax.swing.JLabel" name="jlMedals">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>

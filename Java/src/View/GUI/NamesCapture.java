@@ -17,7 +17,7 @@ public class NamesCapture extends javax.swing.JDialog {
     /**
      * Creates new form NamesCapture
      */
-    public NamesCapture(GraphicMainView parent) {
+    NamesCapture(GraphicMainView parent) {
         super(parent, true);
         initComponents();
         setLocationRelativeTo (null);
@@ -31,7 +31,7 @@ public class NamesCapture extends javax.swing.JDialog {
         });
     }
     
-    public ArrayList<String> getNames() {
+    ArrayList<String> getNames() {
         setVisible(true);
         return names;
     }
