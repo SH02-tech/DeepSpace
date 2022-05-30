@@ -30,7 +30,7 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
      */
     private GraphicMainView() {
         initComponents();
-        setTitle ("Título");
+        setTitle("GUI-Deepspace");
         
         stationView = new StationView();
         jpStarShip.add(stationView);
@@ -169,7 +169,7 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpStarShip, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                    .addComponent(jpStarShip, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

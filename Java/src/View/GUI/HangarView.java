@@ -13,68 +13,46 @@ import java.awt.Component;
  * @author shao
  */
 public class HangarView extends javax.swing.JPanel {
+    
+    private WeaponListView weaponListView;
+    private ShieldBoosterListView shieldBoosterListView;
 
     /**
      * Creates new form HangarView
      */
     HangarView() {
         initComponents();
+        
+        weaponListView = new WeaponListView();
+        jpWeapon.add(weaponListView);
+        
+        shieldBoosterListView = new ShieldBoosterListView();
+        jpShield.add(shieldBoosterListView);
     }
     
     void setHangar(HangarToUI hangar) {
         clearView();
         
         jlCapacity.setText(Integer.toString(hangar.getMaxElements()));
-        
-        for (WeaponToUI weapon : hangar.getWeapons()) {
-            WeaponView weaponView = new WeaponView();
-            weaponView.setWeapon(weapon);
-            jpWeapon.add(weaponView);
-        }
-        
-        
-        for (ShieldToUI shield : hangar.getShieldBoosters()) {
-            ShieldBoosterView shieldBoosterView = new ShieldBoosterView();
-            shieldBoosterView.setShield(shield);
-            jpShield.add(shieldBoosterView);
-        }
+        weaponListView.setWeapons(hangar.getWeapons());
+        shieldBoosterListView.setShieldBoosters(hangar.getShieldBoosters());
         
         repaint();
         revalidate();
     }
     
     ArrayList<Integer> getSelectedWeapons() {
-        ArrayList<Integer> positions = new ArrayList<>();
-        int i=0;
-        
-        for (Component c : jpWeapon.getComponents()) {
-            if (((WeaponView) c).isSelected()) {
-                positions.add(i);
-            }
-            ++i;
-        }
-        
-        return positions;
+        return weaponListView.getSelectedWeapons();
     }
     
     ArrayList<Integer> getSelectedShields() {
-        ArrayList<Integer> positions = new ArrayList<>();
-        int i=0;
-        
-        for (Component c : jpShield.getComponents()) {
-            if (((ShieldBoosterView) c).isSelected()) {
-                positions.add(i);
-            }
-            ++i;
-        }
-        
-        return positions;
+        return shieldBoosterListView.getSelectedShields();
     }
     
     void clearView() {
-        jpWeapon.removeAll();
-        jpShield.removeAll();
         jlCapacity.setText("-1 (inválido)");
+        weaponListView.clearView();
+        shieldBoosterListView.clearView();
         repaint();
     }
 
@@ -125,7 +103,7 @@ public class HangarView extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlCapacity)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addComponent(jScrollPane2)
         );
