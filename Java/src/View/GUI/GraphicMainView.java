@@ -94,7 +94,7 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
     };
     @Override
     public void conversionMessage() {
-        JOptionPane.showMessageDialog (this,"Has GANADO el combate. \nAdemás te has CONVERTIDO. \nDisfruta de tu botín.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog (this,"Te has CONVERTIDO.", "Deep Space 1.0", JOptionPane.INFORMATION_MESSAGE);
     };
     @Override
     public void noCombatMessage() {
@@ -169,7 +169,7 @@ public class GraphicMainView extends javax.swing.JFrame implements DeepSpaceView
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpStarShip, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                    .addComponent(jpStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpEnemyStarShip, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
