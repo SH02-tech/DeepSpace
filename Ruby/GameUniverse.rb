@@ -49,7 +49,7 @@ class GameUniverse
             collaborators.push(@spaceStations.at(i))  
            end
 
-           SpaceStation spaceCity = SpaceCity.new(@currentStation, collaborators)
+           spaceCity = SpaceCity.new(@currentStation, collaborators)
            @spaceStations[@currentStationIndex] = spaceCity
            @currentStation = @spaceStations.at(@currentStationIndex)
            @haveSpaceCity = true
