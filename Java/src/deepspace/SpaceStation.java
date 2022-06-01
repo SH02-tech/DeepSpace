@@ -36,6 +36,11 @@ public class SpaceStation implements SpaceFighter {
 
     SpaceStation(SpaceStation station) {
         this(station.getName(), new SuppliesPackage(station.getAmmoPower(), station.getFuelUnits(), station.getShieldPower()));
+        nMedals = station.nMedals;
+        weapons = new ArrayList<>(station.weapons);
+        shieldBoosters = new ArrayList<>(station.shieldBoosters);
+        hangar = station.getHangar();
+        pendingDamage = station.getPendingDamage();
     }
 
     private void assignFuelValue(float f) {

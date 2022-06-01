@@ -174,7 +174,7 @@ public class TestP4 {
         System.out.println("Fire: " + estation2.fire());
         System.out.println("Protection: " + estation2.protection());
         System.out.println("SetLoot: " + estation2.setLoot(l1));
-        
+       
         System.out.println("=============================================");
         System.out.println("Extraefficient SpaceStations");
         System.out.println("=============================================");
@@ -184,6 +184,8 @@ public class TestP4 {
         System.out.println("Fire: " + bestation2.fire());
         System.out.println("Protection: " + bestation2.protection());
         System.out.println("SetLoot: " + bestation2.setLoot(l1));
+        
+        System.out.println(bestation2.toString());
         
         System.out.println("=============================================");
         System.out.println("GameUniverse");
