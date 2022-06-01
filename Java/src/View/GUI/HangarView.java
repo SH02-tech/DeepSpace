@@ -68,17 +68,17 @@ public class HangarView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jlCapacity = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jpWeapon = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         jpShield = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jpWeapon = new javax.swing.JPanel();
 
         jLabel1.setText("Capacidad:");
 
         jlCapacity.setText("0");
 
-        jScrollPane1.setViewportView(jpWeapon);
+        jScrollPane1.setViewportView(jpShield);
 
-        jScrollPane2.setViewportView(jpShield);
+        jScrollPane2.setViewportView(jpWeapon);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,10 +91,11 @@ public class HangarView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jlCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +104,7 @@ public class HangarView extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlCapacity)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addComponent(jScrollPane2)
         );
