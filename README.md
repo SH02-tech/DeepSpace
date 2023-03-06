@@ -47,6 +47,4 @@ _Run/Build Project_ in Netbeans interface.
 
 - __Java__. The output consists of a name screen and a main panel: 
 
-![Java intro page.](img/java-intro.png)
-
-![Java main page.](img/java-mainpage.png)
+![Java User Interface.](img/java-main.png)
